@@ -41,9 +41,9 @@ const getIconifyStyle = computed(() => {
 </script>
 
 <template>
-  <SvgIcon v-if="isLocal" :icon-class="svgClass" :size="size" :color="color" />
-  <ElIcon v-else :size="size" :color="color">
-    <Icon v-if="isUseOnline" :icon="onlineClass" :style="getIconifyStyle" />
+  <ElIcon :size="size" :color="color">
+    <SvgIcon v-if="isLocal" :icon-class="svgClass" :size="size" :color="color" />
+    <Icon v-else-if="isUseOnline" :icon="onlineClass" :style="getIconifyStyle" />
     <span v-else :class="`${icon} iconify`" :style="getIconifyStyle" />
   </ElIcon>
 </template>

@@ -15,13 +15,13 @@ function handleClickMenu(subItem: Menu.MenuOptions) {
   <template v-for="subItem in menuList" :key="subItem.path">
     <ElSubMenu v-if="subItem.children?.length" :index="subItem.path">
       <template #title>
-        <ReIcon v-if="subItem.meta.icon" :icon="subItem.meta.icon" />
+        <ReIcon v-if="subItem.meta.icon" :icon="subItem.meta.icon" class="el-icon" />
         <span class="sle">{{ subItem.meta.title }}</span>
       </template>
       <SubMenu :menu-list="subItem.children" />
     </ElSubMenu>
     <ElMenuItem v-else :index="subItem.path" @click="handleClickMenu(subItem)">
-      <ReIcon v-if="subItem.meta.icon" :icon="subItem.meta.icon" />
+      <ReIcon v-if="subItem.meta.icon" :icon="subItem.meta.icon" class="el-icon" />
       <template #title>
         <span class="sle">{{ subItem.meta.title }}</span>
       </template>

@@ -71,7 +71,7 @@ onBeforeUnmount(() => {
     <router-view v-slot="{ Component, route }">
       <transition appear name="fade-transform" mode="out-in">
         <keep-alive :include="keepAliveName">
-          <component :is="createComponentWrapper(Component, route)" v-if="isRouterShow" :key="route.fullPath" />
+          <component :is="createComponentWrapper(Component, route)" v-if="isRouterShow" :key="route.name" />
         </keep-alive>
       </transition>
     </router-view>
