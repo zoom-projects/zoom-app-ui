@@ -51,7 +51,6 @@ export function useGorokuInfo() {
         const item = getDict(gorokuAutidStatusDictKey, value)
         return h(ElTag, { type: item.color }, () => item.label)
       },
-      hideInSearch: true,
       hideInForm: true,
     },
     {

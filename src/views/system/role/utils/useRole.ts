@@ -15,6 +15,7 @@ export function useRole(onEdit: (row: any) => void) {
 
   const currentRow = ref<any>({})
   const showPermission = ref(false)
+  const showOpenApi = ref(false)
   const tableLoading = ref(false)
   const tableColumns: PlusColumn[] = [
     {
@@ -96,6 +97,20 @@ export function useRole(onEdit: (row: any) => void) {
         showPermission.value = true
       },
     },
+    {
+      text: '分配OpenAPI',
+      props: {
+        type: 'primary',
+        underline: false,
+      },
+      directives: [
+        [auth, 'sys:role:open:api:grant'],
+      ],
+      onClick: ({ row }) => {
+        currentRow.value = row
+        showOpenApi.value = true
+      },
+    },
 
   ]
   const handleReset = () => {
@@ -135,6 +150,7 @@ export function useRole(onEdit: (row: any) => void) {
     tableData,
     pageSizeList,
     showPermission,
+    showOpenApi,
     tableColumns,
     tableActionButtions,
     onLoad,

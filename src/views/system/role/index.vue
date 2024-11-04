@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import OpenApi from './openApi.vue'
 import Permission from './permission.vue'
 import { useRole, useRoleForm } from './utils/useRole'
 
@@ -12,6 +13,7 @@ const {
   tableData,
   tableColumns,
   showPermission,
+  showOpenApi,
   tableActionButtions,
   onLoad,
   onSearch,
@@ -118,6 +120,8 @@ onMounted(() => {
         </ElPopconfirm>
       </template>
     </PlusDialogForm>
+
+    <OpenApi v-model:visible="showOpenApi" :role-info="currentRow" />
   </div>
 </template>
 

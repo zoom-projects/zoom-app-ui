@@ -74,3 +74,22 @@ export function getPerms(id: string) {
 export function savePerms(id: string, perms: string[]) {
   return http.put<string>(`${SERVER1}/sys/role/perms/${id}`, perms)
 }
+
+/**
+ *  获取角色开放接口
+ * @param id .
+ * @returns .
+ */
+export function getRoleOpenApi(id: string) {
+  return http.get<string[]>(`${SERVER1}/sys/role/open_apis`, { id })
+}
+
+/**
+ *  保存角色开放接口
+ * @param id .
+ * @param openApis .
+ * @returns .
+ */
+export function saveRoleOpenApis(id: string, openApis: string[]) {
+  return http.put<string>(`${SERVER1}/sys/role/open_apis/${id}`, openApis)
+}

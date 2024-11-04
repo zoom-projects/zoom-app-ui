@@ -55,6 +55,26 @@ export namespace Auth {
 
   export interface ResLogin {
   }
+
+  export interface ReqAccessToken extends ReqPage {
+    name?: string
+  }
+
+  export interface ResAccessToken {
+    id: string
+    name: string
+    expireTime: string
+    status: boolean
+    description: string
+    created: string
+  }
+
+  export interface ReqCreateAccessTokenForm {
+    name: string
+    expireTime?: string
+    description?: string
+    openAppIds?: string[]
+  }
 }
 
 // 系统模块

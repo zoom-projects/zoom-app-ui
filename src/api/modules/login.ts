@@ -1,6 +1,5 @@
-import type { Auth } from '../types'
+import type { Auth, ResPage } from '../types'
 import http from '@/api'
-import authMenuList from '@/mock/data/authMenuList.json'
 import { SERVER1 } from '../config/server'
 import { random } from '/src/utils'
 import { AES, SHA, str2Hex } from '/src/utils/crypto'
@@ -102,4 +101,25 @@ export function getAuthMenuListApi() {
   // 如果想让菜单变为本地数据，注释上一行代码，并引入本地 authMenuList.json 数据
   return http.get<any>(`${SERVER1}/auth/menu`, {})
   // return http.get<any>(`${SERVER1}/auth/menu`, {}).then(() => authMenuList)
+}
+
+// 获取用户访问令牌
+export function getUserAccessTokenApi(params: Auth.ReqAccessToken) {
+  return http.get <ResPage<Auth.ResAccessToken>>(`${SERVER1}/auth/user/access_token`, params)
+}
+
+export function createAccessTokenApi(data: Auth.ReqCreateAccessTokenForm) {
+  return http.post<string>(`${SERVER1}/auth/user/access_token`, data)
+}
+
+export function cancelAccessTokenApi(id: string) {
+  return http.put(`${SERVER1}/auth/user/access_token/cancel/${id}`)
+}
+
+export function restoreAccessTokenApi(id: string) {
+  return http.put(`${SERVER1}/auth/user/access_token/restore/${id}`)
+}
+
+export function removeAccessTokenApi(id: string) {
+  return http.delete(`${SERVER1}/auth/user/access_token/delete/${id}`)
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store'
 import { useRouter } from 'vue-router'
+import AccessToken from './components/AccessToken/index.vue'
 import AccountManagement from './components/AccountManagement.vue'
 import OperatorLog from './components/OperatorLog/index.vue'
 import Preferences from './components/Preferences.vue'
@@ -32,6 +33,12 @@ const panes = [
     label: '账户管理',
     icon: 'svg-icon:profile-line',
     component: AccountManagement,
+  },
+  {
+    key: 'accessToken',
+    label: '个人令牌',
+    icon: 'svg-icon:lock-access',
+    component: AccessToken,
   },
 ]
 const witchPane = ref('profile')

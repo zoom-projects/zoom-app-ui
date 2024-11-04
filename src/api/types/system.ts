@@ -344,4 +344,34 @@ export namespace System {
     status: boolean
   }
 
+  export interface OpenApiQuery extends ReqPage {
+    apiCode?: string
+    apiName?: string
+    module?: string
+    status?: boolean
+  }
+
+  export interface ResOpenApi {
+    id: string
+    apiCode: string
+    apiName: string
+    module: string
+    description: string
+    status: boolean
+  }
+
+  export interface ReqOpenApiForm {
+    id?: string
+    apiCode: string
+    apiName: string
+    module: string
+    description: string
+    status: boolean
+  }
+
+  export interface ResOpenApiGroup {
+    module: string
+    children: ResOpenApi[]
+  }
+
 }
