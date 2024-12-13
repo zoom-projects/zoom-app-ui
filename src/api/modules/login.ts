@@ -123,3 +123,11 @@ export function restoreAccessTokenApi(id: string) {
 export function removeAccessTokenApi(id: string) {
   return http.delete(`${SERVER1}/auth/user/access_token/delete/${id}`)
 }
+
+export function getUserSetttings() {
+  return http.get(`${SERVER1}/auth/user/settings`)
+}
+
+export function updateUserSettings(data: any) {
+  return http.put(`${SERVER1}/auth/user/settings`, data)
+}

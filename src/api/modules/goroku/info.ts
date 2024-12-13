@@ -23,6 +23,6 @@ export function remove(id: string) {
   return http.delete(`${SERVER1}/goroku/info/delete`, { id })
 }
 
-export function audit(ids: string[], auditStatus: number) {
-  return http.put(`${SERVER1}/goroku/info/audit`, { ids, auditStatus })
+export function audit(data: Goroku.ReqGorokuAudit) {
+  return http.put(`${SERVER1}/goroku/info/audit`, data)
 }

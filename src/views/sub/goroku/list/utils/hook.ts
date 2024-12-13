@@ -3,7 +3,7 @@ import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusDialogFormInstance,
 import * as gorokuApi from '@/api/modules/goroku/info'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'
-import { dictKeys, gorokuAutidStatusDictKey, gorokuTypeDictKey } from './const'
+import { dictKeys, gorokuAuditReason, gorokuAutidStatusDictKey, gorokuTypeDictKey } from './const'
 
 export function useGorokuInfo() {
   const { toOptions, getDict, loadDict } = useDictStore()
@@ -20,6 +20,13 @@ export function useGorokuInfo() {
   }
   const submitLoading = ref(false)
   const auditLoading = ref(false)
+  const createFilter = (queryString: string) => {
+    return (auditReason: string) => {
+      return (
+        auditReason.toLowerCase().includes(queryString.toLowerCase())
+      )
+    }
+  }
   const formColumns: PlusColumn[] = [
     {
       label: '类型',
@@ -36,11 +43,11 @@ export function useGorokuInfo() {
     },
     {
       label: '来源',
-      prop: 'form',
+      prop: 'from',
     },
     {
       label: '作者',
-      prop: 'formWho',
+      prop: 'fromWho',
     },
     {
       label: '审核状态',
@@ -85,6 +92,32 @@ export function useGorokuInfo() {
       formProps: {
         rules: {
           auditStatus: [{ required: true, message: '请选择审核状态', trigger: 'change' }],
+        },
+      },
+    },
+    {
+      label: '审核原因',
+      prop: 'auditReason',
+      valueType: 'autocomplete',
+      fieldProps: {
+        type: 'textarea',
+        fetchSuggestions: (queryString: string, cb: any) => {
+          let results: any = queryString
+            ? gorokuAuditReason.filter(createFilter(queryString))
+            : gorokuAuditReason
+          results = results.map((item: string) => {
+            return {
+              value: item,
+              label: item,
+            }
+          })
+          cb(results)
+        },
+
+      },
+      formProps: {
+        rules: {
+          auditReason: [{ required: true, message: '请输入审核原因', trigger: 'change' }],
         },
       },
     },
@@ -156,12 +189,18 @@ export function useGorokuInfo() {
   }
   async function handleAudit() {
     auditLoading.value = true
-    const { success } = await gorokuApi.audit([formModel.value.id], formAuditModel.value.auditStatus).finally(() => {
+    const body = {
+      ids: [formModel.value.id],
+      auditStatus: formAuditModel.value.auditStatus,
+      auditReason: formAuditModel.value.auditReason,
+    }
+    const { success } = await gorokuApi.audit(body).finally(() => {
       auditLoading.value = false
     })
     if (success) {
       ElMessage.success('操作成功')
       formAuditVisible.value = false
+      formAuditModel.value = {}
       plusPageRef.value?.getList()
     }
   }

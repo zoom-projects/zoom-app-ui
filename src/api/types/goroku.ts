@@ -29,4 +29,10 @@ export namespace Goroku{
     formWho?: string
   }
 
+  export interface ReqGorokuAudit {
+    ids: string[]
+    auditStatus: number
+    auditReason: string
+  }
+
 }
