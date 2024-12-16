@@ -35,7 +35,7 @@
     "@iconify/json": "^2.2.256",
     "@iconify/vue": "^4.1.2",
     "@plus-pro-components/resolver": "^0.0.3",
-    "@tinymce/tinymce-vue": "^5",
+    "@tinymce/tinymce-vue": "^6.1.0",
     "@types/node": "^22.7.4",
     "@types/nprogress": "^0.2.3",
     "@types/qs": "^6.9.16",
