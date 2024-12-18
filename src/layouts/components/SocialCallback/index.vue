@@ -24,12 +24,6 @@ async function init() {
     urlFull.host = domain
     window.location.href = urlFull.toString()
   }
-  console.log('code', code)
-  console.log('state', state)
-  console.log('source', source)
-  console.log('stateJson', stateJson)
-  console.log('domain', domain)
-  console.log('host', host)
 
   // 判断是否登陆还是注册
   // token存在则是绑定授权callback
