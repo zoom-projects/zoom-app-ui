@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store'
 import RestPassword from './RestPassword.vue'
+import Social from './Social/index.vue'
 
 const { userInfo } = useUserStore()
 
@@ -53,23 +54,26 @@ function handleUpdateEmail() {
 </script>
 
 <template>
-  <LayInfo title="账户管理">
-    <div v-for="(item, index) in list" :key="index">
-      <div class="flex items-center">
-        <div class="flex-1">
-          <p>{{ item.title }}</p>
-          <el-text class="mx-1" type="info">
-            {{ item.illustrate }}
-          </el-text>
+  <div>
+    <LayInfo title="账户管理">
+      <div v-for="(item, index) in list" :key="index">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <p>{{ item.title }}</p>
+            <el-text class="mx-1" type="info">
+              {{ item.illustrate }}
+            </el-text>
+          </div>
+          <el-button type="primary" text @click="handleClick(item, item.key)">
+            {{ item.button }}
+          </el-button>
         </div>
-        <el-button type="primary" text @click="handleClick(item, item.key)">
-          {{ item.button }}
-        </el-button>
+        <el-divider />
       </div>
-      <el-divider />
-    </div>
-    <RestPassword v-model:visible="restPasswordVisible" />
-  </LayInfo>
+      <RestPassword v-model:visible="restPasswordVisible" />
+    </LayInfo>
+    <Social />
+  </div>
 </template>
 
 <style lang="scss" scoped>

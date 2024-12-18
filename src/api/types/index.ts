@@ -43,6 +43,11 @@ export namespace Auth {
     phone: string
     code: string
   }
+  export interface ReqLoginSocialForm {
+    socialCode: string
+    socialState: string
+    socialSource: string
+  }
   /**
    * 重置密码
    */
@@ -74,6 +79,12 @@ export namespace Auth {
     expireTime?: string
     description?: string
     openAppIds?: string[]
+  }
+
+  export interface ReqSocialCallback {
+    code: string
+    state: string
+    source: string
   }
 }
 

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { LoginType } from '/src/utils/enums'
+import type { LoginType } from '@/utils/enums'
+import { authBindSocial, loginApiByUsernameApi } from '@/api/modules/login'
+import { useUserStore } from '@/store'
 import { ElForm } from 'element-plus'
 import Motion from '../utils/motion'
 import PhoneLogin from './PhoneLogin.vue'
 import Register from './Register.vue'
 import ResetPassword from './ResetPassword.vue'
-import { loginApiByUsernameApi } from '/src/api/modules/login'
-import { useUserStore } from '/src/store'
 
 const userStore = useUserStore()
 
@@ -48,6 +48,13 @@ function formSubmit() {
 
 function changeLoginType(type: LoginType) {
   userStore.loginType = type
+}
+
+async function socialLogin(source: string) {
+  const { success, data } = await authBindSocial(source)
+  if (success) {
+    window.location.href = data
+  }
 }
 </script>
 
@@ -134,6 +141,7 @@ function changeLoginType(type: LoginType) {
                 icon="svg-icon:github-fill"
                 :size="20"
                 class="cursor-pointer text-gray-500 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-300"
+                @click="socialLogin('github')"
               />
             </div>
           </ElFormItem>

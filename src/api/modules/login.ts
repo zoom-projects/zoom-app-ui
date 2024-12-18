@@ -40,6 +40,10 @@ export async function loginApiByPhoneApi(params: Auth.ReqLoginPhoneForm) {
   }, { loading: false })
 }
 
+export async function loginBySocialApi(params: Auth.ReqLoginSocialForm) {
+  return http.post<string>(`${SERVER1}/auth/login/social`, params)
+}
+
 /**
  *  获取验证码
  * @param type  mobile | email
@@ -130,4 +134,18 @@ export function getUserSetttings() {
 
 export function updateUserSettings(data: any) {
   return http.put(`${SERVER1}/auth/user/settings`, data)
+}
+/**
+ *  绑定社交账号
+ * @param source .
+ * @returns .
+ */
+export function authBindSocial(source: string) {
+  return http.get<string>(`${SERVER1}/auth/social/${source}`, {
+    domain: window.location.host,
+  })
+}
+
+export function socialCallback(data: Auth.ReqSocialCallback) {
+  return http.post(`${SERVER1}/auth/social/callback/${data.source}`, data)
 }

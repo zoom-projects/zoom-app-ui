@@ -33,6 +33,14 @@ export const staticRouter: RouteRecordRaw[] = [
       title: '个人设置',
     },
   },
+  {
+    path: '/social/callback',
+    name: 'socialCallback',
+    component: () => import('@/layouts/components/SocialCallback/index.vue'),
+    meta: {
+      title: '社交账号绑定',
+    },
+  },
 ]
 
 /**

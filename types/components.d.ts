@@ -98,6 +98,8 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchMenu: typeof import('./../src/layouts/components/header/components/SearchMenu.vue')['default']
+    Social: typeof import('./../src/layouts/components/UserInfo/components/Social/index.vue')['default']
+    SocialCallback: typeof import('./../src/layouts/components/SocialCallback/index.vue')['default']
     Src: typeof import('./../src/components/PlusDialogForm/src/index.vue')['default']
     SubMenu: typeof import('./../src/layouts/components/menu/SubMenu.vue')['default']
     SvgIcon: typeof import('./../src/components/SvgIcon/index.vue')['default']

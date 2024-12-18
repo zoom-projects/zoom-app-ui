@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import LoginForm from './componetns/LoginForm.vue'
-import Motion from './utils/motion'
 
 const title = import.meta.env.VITE_APP_TITLE || 'ZOOM-Admin'
 </script>
