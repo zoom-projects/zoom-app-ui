@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Auth } from '@/api/types'
 import { loginBySocialApi, socialCallback } from '@/api/modules/login'
+import router from '@/router'
 import { useUserStore } from '@/store'
 
 const { token, setToken, afterLogin } = useUserStore()
@@ -53,7 +54,7 @@ async function init() {
 async function callback(data: Auth.ReqSocialCallback) {
   const { success } = await socialCallback(data)
   if (success) {
-    location.href = '/'
+    router.push('/userInfo')
   }
 }
 async function login(body: Auth.ReqLoginSocialForm) {
@@ -72,7 +73,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <slot />
+  <div class="h-full flex items-center justify-center">
+    <el-card class="w-[400px]">
+      <div class="text-center">
+        <el-image src="/logo.png" class="mx-auto h-[100px] w-[100px]" />
+        <h2 class="mt-4 text-2xl font-bold">
+          授权中...
+        </h2>
+      </div>
+    </el-card>
   </div>
 </template>

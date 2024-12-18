@@ -20,6 +20,12 @@ export const useUserStore = defineStore(
     }
     const userInfo = ref<any>({})
 
+    // 激活的用户信息面板
+    const activeUserInfoPanel = ref<string>('profile')
+    function setActiveUserInfoPanel(value: string) {
+      activeUserInfoPanel.value = value
+    }
+
     /**
      * 登录成功后的操作
      */
@@ -53,9 +59,11 @@ export const useUserStore = defineStore(
       loginType,
       token,
       userInfo,
+      activeUserInfoPanel,
       setToken,
       afterLogin,
       afterLogout,
+      setActiveUserInfoPanel,
     }
   },
   {

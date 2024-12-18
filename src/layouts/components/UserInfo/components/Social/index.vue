@@ -2,7 +2,7 @@
 import { socialTypeList } from './utils/const'
 import { useSocialHook } from './utils/hook'
 
-const { bindSocial } = useSocialHook()
+const { bindSocial, socialBinds,unLockSocial } = useSocialHook()
 </script>
 
 <template>
@@ -20,9 +20,20 @@ const { bindSocial } = useSocialHook()
           </div>
         </div>
         <div class="action">
-          <ElButton type="primary" @click="bindSocial(item.key)">
+          <ElButton v-if="!socialBinds.includes(item.key)" type="primary" @click="bindSocial(item.key)">
             绑定
           </ElButton>
+          <ElPopconfirm
+            v-else
+            title="确定要解绑吗？"
+            @confirm="unLockSocial(item.key)"
+          >
+            <template #reference>
+              <ElButton type="danger">
+                解绑
+              </ElButton>
+            </template>
+          </ElPopconfirm>
         </div>
       </div>
     </div>

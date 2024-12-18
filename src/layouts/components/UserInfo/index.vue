@@ -7,7 +7,7 @@ import OperatorLog from './components/OperatorLog/index.vue'
 import Preferences from './components/Preferences.vue'
 import Profile from './components/Profile.vue'
 
-const { userInfo } = useUserStore()
+const { userInfo, activeUserInfoPanel, setActiveUserInfoPanel } = useUserStore()
 const router = useRouter()
 const panes = [
   {
@@ -42,6 +42,14 @@ const panes = [
   },
 ]
 const witchPane = ref('profile')
+
+watchEffect(() => {
+  setActiveUserInfoPanel(witchPane.value)
+})
+
+watchEffect(() => {
+  witchPane.value = activeUserInfoPanel
+})
 </script>
 
 <template>

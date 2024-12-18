@@ -146,6 +146,29 @@ export function authBindSocial(source: string) {
   })
 }
 
+/**
+ * 社交账号回调
+ * @param data
+ * @returns
+ */
 export function socialCallback(data: Auth.ReqSocialCallback) {
   return http.post(`${SERVER1}/auth/social/callback/${data.source}`, data)
+}
+
+/**
+ *
+ * 解除社交账号绑定
+ * @param source
+ * @returns
+ */
+export function authUnLockSocial(source: string) {
+  return http.delete(`${SERVER1}/auth/social/unbind/${source}`)
+}
+
+/**
+ * 获取已绑定的社交账号
+ * @returns
+ */
+export function getSocialBind() {
+  return http.get<string[]>(`${SERVER1}/auth/social/bind`)
 }
