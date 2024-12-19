@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { loginApiByCodeApi } from '@/api/modules/login'
 import { useUserStore } from '@/store'
 import { LoginType } from '@/utils/enums'
 import { ElForm } from 'element-plus'
@@ -6,24 +7,39 @@ import Motion from '../utils/motion'
 import { useVerifyCode } from '../utils/verifyCode'
 
 const { isDisabled, text } = useVerifyCode()
-const useStore = useUserStore()
+const userStore = useUserStore()
 type FormInstance = InstanceType<typeof ElForm>
 const ruleFormRef = ref<FormInstance>()
-const phoneRules = reactive({
-  phone: [{ required: true, message: '请输入手机号', trigger: 'blur' }],
+const usernameRules = reactive({
+  username: [{ required: true, message: '请输入手机号/邮箱', trigger: 'blur' }],
   code: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
 })
 const loading = ref(false)
 const ruleForm = reactive<any>({
-  phone: '',
+  username: '',
   code: '',
 })
 
 function formSubmit() {
+  ruleFormRef.value?.validate(async (valid) => {
+    if (!valid)
+      return
+    loading.value = true
+    try {
+      // // 1.执行登录接口
+      const { data } = await loginApiByCodeApi({ ...ruleForm })
+      userStore.setToken(data)
+      // 2.执行登录后的操作
+      await userStore.afterLogin()
+    }
+    finally {
+      loading.value = false
+    }
+  })
 }
 
 function onBack() {
-  useStore.loginType = LoginType.username
+  userStore.loginType = LoginType.username
 }
 </script>
 
@@ -31,14 +47,14 @@ function onBack() {
   <ElForm
     ref="ruleFormRef"
     :model="ruleForm"
-    :rules="phoneRules"
+    :rules="usernameRules"
     size="large"
   >
     <Motion>
-      <ElFormItem prop="phone">
+      <ElFormItem prop="username">
         <ElInput
-          v-model="ruleForm.phone"
-          placeholder="手机号"
+          v-model="ruleForm.username"
+          placeholder="手机号/邮箱"
         >
           <template #prefix>
             <ReIcon icon="svg-icon:iphone" class="el-icon" />
@@ -61,7 +77,7 @@ function onBack() {
           <ElButton
             class="ml-2"
             :disabled="isDisabled"
-            @click="useVerifyCode().start(ruleFormRef, 'mobile', ruleForm.phone, 'mobile')"
+            @click="useVerifyCode().start(ruleFormRef, 'mobile', ruleForm.username, 'login')"
           >
             {{ text.length > 0 ? `${text} 秒后重新获取` : '获取验证码' }}
           </ElButton>

@@ -25,6 +25,7 @@ export async function loginApiByUsernameApi(params: Auth.ReqLoginForm) {
 /**
  *  手机号登录
  * @param params .
+ * @deprecated 使用code登录
  */
 export async function loginApiByPhoneApi(params: Auth.ReqLoginPhoneForm) {
   const timestamp = new Date().getTime()
@@ -38,6 +39,25 @@ export async function loginApiByPhoneApi(params: Auth.ReqLoginPhoneForm) {
     captchaKey: iv,
     timestamp,
   }, { loading: false })
+}
+
+/**
+ *  验证码登录
+ * @param params .
+ */
+export async function loginApiByCodeApi(params: Auth.ReqLoginCodeForm) {
+  const timestamp = new Date().getTime()
+  const iv = random(16)
+  const _key = await SHA.has256Hex(iv + timestamp)
+  const _iv = await str2Hex(iv)
+  const data = await AES.encryptHex(params.username, _key, _iv)
+
+  return http.post<string>(`${SERVER1}/auth/login/code`, {
+    username: data,
+    captchaCode: params.code,
+    captchaKey: iv,
+    timestamp,
+  })
 }
 
 export async function loginBySocialApi(params: Auth.ReqLoginSocialForm) {

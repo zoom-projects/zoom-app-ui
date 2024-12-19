@@ -4,7 +4,7 @@ import { authBindSocial, loginApiByUsernameApi } from '@/api/modules/login'
 import { useUserStore } from '@/store'
 import { ElForm } from 'element-plus'
 import Motion from '../utils/motion'
-import PhoneLogin from './PhoneLogin.vue'
+import CodeLogin from './CodeLogin.vue'
 import Register from './Register.vue'
 import ResetPassword from './ResetPassword.vue'
 
@@ -18,7 +18,7 @@ const loginRules = reactive({
 })
 const currentLoginType = computed(() => userStore.loginType)
 const loginTypes = [
-  { type: 'phone', label: '手机登录' },
+  { type: 'phone', label: '验证码登录' },
   { type: 'register', label: '注册' },
 ]
 
@@ -149,7 +149,7 @@ async function socialLogin(source: string) {
       </Motion>
     </ElForm>
   </template>
-  <PhoneLogin v-if="currentLoginType === 'phone'" />
+  <CodeLogin v-if="currentLoginType === 'phone'" />
   <Register v-if="currentLoginType === 'register'" />
   <ResetPassword v-if="currentLoginType === 'reset'" />
 </template>

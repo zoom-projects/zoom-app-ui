@@ -43,6 +43,10 @@ export namespace Auth {
     phone: string
     code: string
   }
+  export interface ReqLoginCodeForm {
+    username: string
+    code: string
+  }
   export interface ReqLoginSocialForm {
     socialCode: string
     socialState: string
