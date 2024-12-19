@@ -30,7 +30,7 @@ const {
     >
       <template #table-title>
         <el-button
-          v-auth="['sys:open:api:add']"
+          v-auth="['sys:open:api:save']"
           type="primary"
           @click="addNew"
         >
