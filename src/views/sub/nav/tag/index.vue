@@ -1,24 +1,19 @@
 <script setup lang="ts">
-import { useGorokuInfo } from './utils/hook'
+import { useNavTagHook } from './utils/hook'
 
 const {
   plusPageRef,
   plusDialogFormRef,
-  formVisible,
-  formAuditVisible,
-  formModel,
-  formAuditModel,
-  submitLoading,
-  auditLoading,
   formColumns,
-  formAuditColumns,
   formRules,
+  formModel,
+  dialogFormVisible,
+  dialogSubmitLoading,
   actionButtins,
   loadData,
   handleAdd,
   handleSave,
-  handleAudit,
-} = useGorokuInfo()
+} = useNavTagHook()
 </script>
 
 <template>
@@ -35,7 +30,7 @@ const {
     >
       <template #table-title>
         <el-button
-          v-auth="'goroku:info:save'"
+          v-auth="'nav:tag:save'"
           type="primary"
           @click="handleAdd"
         >
@@ -49,34 +44,19 @@ const {
 
     <PlusDialogForm
       ref="plusDialogFormRef"
-      v-model:visible="formVisible"
+      v-model:visible="dialogFormVisible"
       v-model="formModel"
       :form="{
         columns: formColumns,
         labelWidth: '100px',
         rules: formRules,
-        submitLoading,
       }"
       :dialog="{
-        title: formModel.id ? '编辑语录' : '新增语录',
-        width: '45%',
+        title: formModel.id ? '编辑' : '新增',
+        width: '35%',
+        submitLoading: dialogSubmitLoading,
       }"
       @confirm="handleSave"
-    />
-
-    <PlusDialogForm
-      v-model:visible="formAuditVisible"
-      v-model="formAuditModel"
-      :dialog="{
-        title: `审核语录`,
-        width: '30%',
-      }"
-      :form="{
-        columns: formAuditColumns,
-        labelWidth: '100px',
-        submitLoading: auditLoading,
-      }"
-      @confirm="handleAudit"
     />
   </div>
 </template>

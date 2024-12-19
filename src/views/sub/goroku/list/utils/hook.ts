@@ -3,11 +3,13 @@ import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusDialogFormInstance,
 import * as gorokuApi from '@/api/modules/goroku/info'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'
+import { resolveDirective } from 'vue'
 import { dictKeys, gorokuAuditReason, gorokuAutidStatusDictKey, gorokuTypeDictKey } from './const'
 
 export function useGorokuInfo() {
   const { toOptions, getDict, loadDict } = useDictStore()
 
+  const auth = resolveDirective('auth')
   const plusPageRef = ref<Nullable<PlusPageInstance>>(null)
   const plusDialogFormRef = ref<Nullable<PlusDialogFormInstance>>(null)
   const formAuditVisible = ref(false)
@@ -129,6 +131,9 @@ export function useGorokuInfo() {
         type: 'primary',
         underline: false,
       },
+      directives: [
+        [auth, 'goroku:info:update'],
+      ],
       onClick: ({ row }) => {
         formModel.value = clone(row, true)
         formVisible.value = true
@@ -144,6 +149,9 @@ export function useGorokuInfo() {
         title: '提示',
         message: '确定删除吗',
       },
+      directives: [
+        [auth, 'goroku:info:delete'],
+      ],
       onConfirm: async ({ row }) => {
         const { success } = await gorokuApi.remove(row.id)
         if (success) {
@@ -158,6 +166,9 @@ export function useGorokuInfo() {
         type: 'success',
         underline: false,
       },
+      directives: [
+        [auth, 'goroku:info:audit'],
+      ],
       onClick: ({ row }) => {
         formModel.value = clone(row, true)
         formAuditModel.value = {
