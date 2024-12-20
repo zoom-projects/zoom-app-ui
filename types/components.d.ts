@@ -17,6 +17,7 @@ declare module 'vue' {
     Avatar: typeof import('./../src/layouts/components/header/components/Avatar.vue')['default']
     Breadcrumb: typeof import('./../src/layouts/components/header/components/Breadcrumb.vue')['default']
     CollapseIcon: typeof import('./../src/layouts/components/header/components/CollapseIcon.vue')['default']
+    copy: typeof import('../src/components/Attachment/upload/uploadImg/index.vue')['default']
     Editor: typeof import('./../src/components/Tinymce/src/Editor.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -45,6 +46,7 @@ declare module 'vue' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
+    ElImageViewer: typeof import('element-plus/es')['ElImageViewer']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMain: typeof import('element-plus/es')['ElMain']
@@ -70,6 +72,7 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTreeV2: typeof import('element-plus/es')['ElTreeV2']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     ElWatermark: typeof import('element-plus/es')['ElWatermark']
     Footer: typeof import('./../src/layouts/components/Footer/index.vue')['default']
     Fullscreen: typeof import('./../src/layouts/components/header/components/Fullscreen.vue')['default']
@@ -111,6 +114,7 @@ declare module 'vue' {
     Tinymce: typeof import('../src/components/Tinymce')['default']
     ToolBarLeft: typeof import('./../src/layouts/components/header/ToolBarLeft.vue')['default']
     ToolBarRight: typeof import('./../src/layouts/components/header/ToolBarRight.vue')['default']
+    UploadImg: typeof import('./../src/components/Attachment/upload/uploadImg/index.vue')['default']
     UserInfo: typeof import('./../src/layouts/components/UserInfo/index.vue')['default']
   }
   export interface ComponentCustomProperties {

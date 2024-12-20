@@ -1,24 +1,23 @@
 import type { ReqPage } from '@/api/types'
 
-export namespace NavTag{
+export namespace AttachmentList {
   /**
    * 查询参数
    */
   export interface ReqQuery extends ReqPage {
-    name?: string
+    displayName?: string
+    contentType?: string
   }
+
   /**
    * 返回参数
    */
   export interface ResPage {
     id: string
-    name: string
+    displayName: string
+    contentType: string
+    size: number
+    created: string
   }
 
-  /**
-   * 保存参数
-   */
-  export interface ReqForm {
-    name: string
-  }
 }
