@@ -17,6 +17,7 @@ export namespace AttachmentList {
     displayName: string
     contentType: string
     size: number
+    permalink: string
     created: string
   }
 

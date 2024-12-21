@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AttachmentSelect } from '@/components/Attachment'
 import { useNavCategoryHook } from './utils/hook'
 
 const {
@@ -70,7 +71,8 @@ const {
         <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
       </template>
       <template #plus-field-icon="{ prop }">
-        <IconPicker v-model="formModel[prop]" />
+        <!-- <IconPicker v-model="formModel[prop]" /> -->
+        <AttachmentSelect v-model="formModel[prop]" />
       </template>
     </PlusDialogForm>
   </div>
