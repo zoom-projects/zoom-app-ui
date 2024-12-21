@@ -17,6 +17,14 @@ function handleConfirm(data: AttachmentList.ResPage[]) {
   modelValue.value = data.map(item => item.permalink).join(',')
   emits('update:modelValue', modelValue.value)
 }
+
+watch(() => prop.modelValue, (val) => {
+  modelValue.value = val
+})
+
+watch(modelValue, (val) => {
+  emits('update:modelValue', val)
+})
 </script>
 
 <template>

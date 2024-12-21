@@ -94,20 +94,21 @@ export function useNavCategoryHook() {
     {
       label: '分类图标',
       prop: 'icon',
-      render: (value) => {
-        return h(ReIcon, { icon: value })
+      valueType: 'img',
+      fieldSlots: {
+        error: () => h(ElEmpty, { description: '加载失败...' }),
       },
     },
     {
-      label: '是否隐藏',
+      label: '是否展示',
       prop: 'isHidden',
       valueType: 'select',
       options: computed(() => [
-        { label: '是', value: true },
-        { label: '否', value: false },
+        { label: '是', value: false },
+        { label: '否', value: true },
       ]),
       render: (value) => {
-        return h(ElTag, { type: value ? 'success' : 'danger' }, { default: () => value ? '是' : '否' })
+        return h(ElTag, { type: value ? 'danger' : 'success' }, { default: () => value ? '否' : '是' })
       },
     },
     {

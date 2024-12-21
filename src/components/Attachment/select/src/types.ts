@@ -3,7 +3,7 @@ export interface AttachmentSelectProps {
   /**
    * modelValue
    */
-  modelValue: string
+  modelValue?: string
   /**
    *  placeholder
    */

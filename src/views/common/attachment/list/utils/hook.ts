@@ -99,6 +99,9 @@ export function useAttachmentHook() {
   async function handleClose() {
     formVisible.value = false
   }
+  async function handleRefresh() {
+    plusPageRef.value?.getList()
+  }
   return {
     plusPageRef,
     columns,
@@ -109,5 +112,6 @@ export function useAttachmentHook() {
     loadData,
     handleOpen,
     handleClose,
+    handleRefresh,
   }
 }

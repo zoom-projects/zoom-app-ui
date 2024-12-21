@@ -13,6 +13,14 @@ export function page(query?: NavTag.ReqQuery) {
 }
 
 /**
+ *  查询所有
+ * @returns .
+ */
+export function listNames() {
+  return http.get<string[]>(`${SERVER1}/nav/tag/tags`)
+}
+
+/**
  * 保存
  * @param data .
  * @returns

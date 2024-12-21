@@ -10,6 +10,7 @@ const {
   loadData,
   handleOpen,
   handleClose,
+  handleRefresh,
 } = useAttachmentHook()
 </script>
 
@@ -54,7 +55,7 @@ const {
       ref="formUploadRef"
       v-model="formVisible"
       @close="handleClose"
-      @refresh="loadData"
+      @refresh="handleRefresh"
     />
   </div>
 </template>
