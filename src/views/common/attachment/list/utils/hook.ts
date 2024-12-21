@@ -99,11 +99,6 @@ export function useAttachmentHook() {
   async function handleClose() {
     formVisible.value = false
   }
-  async function handleUpload() {
-    const drone = handleClose
-    formUploadRef.value!.submitFileForm(drone)
-  }
-
   return {
     plusPageRef,
     columns,
@@ -114,6 +109,5 @@ export function useAttachmentHook() {
     loadData,
     handleOpen,
     handleClose,
-    handleUpload,
   }
 }

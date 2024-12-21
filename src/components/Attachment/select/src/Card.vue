@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AttachmentList } from '/src/api/modules/system/attachment/list/types'
+import type { AttachmentList } from '@/api/modules/system/attachment/list/types'
 
 const props = defineProps({
   data: {

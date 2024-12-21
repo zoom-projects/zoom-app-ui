@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import Form from './form.vue'
 import { useAttachmentHook } from './utils/hook'
 
 const {
   plusPageRef,
   columns,
   actionButtins,
-  plusDialogRef,
   formVisible,
   formUploadRef,
   loadData,
   handleOpen,
   handleClose,
-  handleUpload,
 } = useAttachmentHook()
 </script>
 
@@ -53,30 +50,11 @@ const {
         </template>
       </template>
     </PlusPage>
-
-    <PlusDialog
-      ref="plusDialogRef"
+    <MultipleUploadImg
+      ref="formUploadRef"
       v-model="formVisible"
-      title="上传附件"
-    >
-      <Form ref="formUploadRef" />
-      <template #footer>
-        <el-button @click="handleClose">
-          取消
-        </el-button>
-        <el-popconfirm
-          title="确定上传附件吗？"
-          @confirm="handleUpload"
-        >
-          <template #reference>
-            <el-button
-              type="primary"
-            >
-              上传
-            </el-button>
-          </template>
-        </el-popconfirm>
-      </template>
-    </PlusDialog>
+      @close="handleClose"
+      @refresh="loadData"
+    />
   </div>
 </template>

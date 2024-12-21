@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AttachmentList } from '/src/api/modules/system/attachment/list/types'
+import type { AttachmentList } from '@/api/modules/system/attachment/list/types'
 import type { PageInfo, PlusDialogInstance } from 'plus-pro-components'
 import type { AttachmentDialogProps } from './types'
 import * as attachmentApi from '@/api/modules/system/attachment/list'
@@ -7,7 +7,7 @@ import Card from './Card.vue'
 
 const props = withDefaults(defineProps<AttachmentDialogProps>(), {
   visible: false,
-  multiple: true,
+  multiple: false,
   title: '选择附件',
   width: '50%',
 })
