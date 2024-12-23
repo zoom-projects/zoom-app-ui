@@ -33,6 +33,7 @@ const {
     >
       <template #table-title>
         <el-button
+          v-auth="['nav:list:save']"
           type="primary"
           @click="handleAdd"
         >

@@ -4,9 +4,11 @@ import { list as navCategory } from '@/api/modules/nav/category'
 import * as websitesApi from '@/api/modules/nav/websites'
 import { useDictStore } from '@/store'
 import { clone, deepTree } from '@/utils'
+import { resolveDirective } from 'vue'
 import { dictKeys, isDeprecatedDictKey, isHiddenDictKey } from './const'
 
 export function useNavWebsitesHook() {
+  const auth = resolveDirective('auth')
   const { toOptions, getDict, loadDict } = useDictStore()
   const plusPageRef = ref<Nullable<PlusPageInstance>>(null)
   const categoryList = ref<any>([])
@@ -124,6 +126,9 @@ export function useNavWebsitesHook() {
         type: 'primary',
         underline: false,
       },
+      directives: [
+        [auth, 'nav:list:update'],
+      ],
       onClick: ({ row }) => {
         formModel.value = clone(row, true)
         drawerFormVisible.value = true
@@ -135,6 +140,9 @@ export function useNavWebsitesHook() {
         type: 'danger',
         underline: false,
       },
+      directives: [
+        [auth, 'nav:list:delete'],
+      ],
       confirm: {
         title: '提示',
         message: '确定删除吗',

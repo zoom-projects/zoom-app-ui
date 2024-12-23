@@ -14,6 +14,7 @@ export default defineConfig({
     'flx-center': 'flex items-center justify-center',
     'flx-justify-between': 'flex items-center justify-between',
     'flx-align-center': 'flex items-center',
+    'fixed-bottom': 'fixed bottom-0 left-0 right-0',
   },
   presets: [
     presetUno(),
