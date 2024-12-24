@@ -28,6 +28,11 @@ export function useNavWebsitesHook() {
       prop: 'url',
       valueType: 'link',
       hideInSearch: true,
+      fieldProps: value => ({
+        underline: false,
+        target: '_blank',
+        href: value,
+      }),
     },
     {
       label: '网站分类',

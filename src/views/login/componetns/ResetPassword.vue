@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store'
 import { LoginType } from '@/utils/enums'
+import { useVerifyCode } from '@/utils/verifyCode'
 import { ElForm } from 'element-plus'
 import Motion from '../utils/motion'
-import { useVerifyCode } from '../utils/verifyCode'
 
 type FormInstance = InstanceType<typeof ElForm>
 const ruleFormRef = ref<FormInstance>()
@@ -68,7 +68,7 @@ function onBack() {
           <ElButton
             :disabled="isDisabled"
             class="ml-2"
-            @click="useVerifyCode().start(ruleFormRef, 'phone', ruleForm.phone, 'register')"
+            @click="useVerifyCode().start(ruleFormRef, 'phone', ruleForm.phone, 'get')"
           >
             {{
               text.length > 0

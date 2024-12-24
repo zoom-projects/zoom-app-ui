@@ -189,7 +189,7 @@ export function useJob() {
     return jobApi.save(formModel.value)
   }
   async function _update() {
-    return { success: true }
+    return jobApi.update(formModel.value.id, formModel.value)
   }
   onBeforeMount(() => {
     loadDict(dictKeys)

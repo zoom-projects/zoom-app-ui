@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store'
+import RestEmail from './RestEmail.vue'
 import RestPassword from './RestPassword.vue'
 import Social from './Social/index.vue'
 
 const { userInfo } = useUserStore()
 
 const restPasswordVisible = ref(false)
+const restEmailVisible = ref(false)
 
 const list = ref([
   {
@@ -50,6 +52,7 @@ function handleUpdatePhone() {
 }
 
 function handleUpdateEmail() {
+  restEmailVisible.value = true
 }
 </script>
 
@@ -71,6 +74,7 @@ function handleUpdateEmail() {
         <el-divider />
       </div>
       <RestPassword v-model:visible="restPasswordVisible" />
+      <RestEmail v-model="restEmailVisible" />
     </LayInfo>
     <Social />
   </div>

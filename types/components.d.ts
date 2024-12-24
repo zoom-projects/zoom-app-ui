@@ -105,6 +105,7 @@ declare module 'vue' {
     Preferences: typeof import('./../src/layouts/components/UserInfo/components/Preferences.vue')['default']
     Profile: typeof import('./../src/layouts/components/UserInfo/components/Profile.vue')['default']
     ReIcon: typeof import('./../src/components/ReIcon/index.vue')['default']
+    RestEmail: typeof import('./../src/layouts/components/UserInfo/components/RestEmail.vue')['default']
     RestPassword: typeof import('./../src/layouts/components/UserInfo/components/RestPassword.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

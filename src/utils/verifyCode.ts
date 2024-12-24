@@ -11,7 +11,7 @@ export function useVerifyCode() {
     formEl: FormInstance | undefined,
     props: FormItemProp,
     account: string,
-    type: 'login' | 'register',
+    scene: 'login' | 'get',
     time = 60,
   ) => {
     if (!formEl)
@@ -20,13 +20,12 @@ export function useVerifyCode() {
 
     await formEl.validateField(props, async (isValid) => {
       if (isValid) {
-        let _type: string = type
-        if (type === 'login') {
-          // 如果是登录，需要判断是手机号还是邮箱
-          _type = account.includes('@') ? 'email' : 'phone'
-        }
-        const { success } = await getCaptchaCode(_type, account)
+        // 判断acccount是否为email
+        const msgType = account.includes('@') ? 'email' : 'sms'
+
+        const { success } = await getCaptchaCode(scene, msgType, account)
         if (success) {
+          ElMessage.success('发送成功，请注意查收')
           clearInterval(timer.value)
           isDisabled.value = true
           text.value = `${time}`

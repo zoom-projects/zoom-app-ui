@@ -66,17 +66,17 @@ export async function loginBySocialApi(params: Auth.ReqLoginSocialForm) {
 
 /**
  *  获取验证码
- * @param type  mobile | email
+ * @param type  sms | email
  * @param account 手机号或邮箱
  * @returns .
  */
-export async function getCaptchaCode(type: string, account: string) {
+export async function getCaptchaCode(scene: 'login' | 'get', type: 'sms' | 'email', account: string) {
   const timestamp = new Date().getTime()
   const iv = random(16)
   const _key = await SHA.has256Hex(iv + timestamp)
   const _iv = await str2Hex(iv)
   const data = await AES.encryptHex(account, _key, _iv)
-  return http.post<string>(`${SERVER1}/auth/captcha/${type}`, {
+  return http.post<string>(`${SERVER1}/auth/captcha/${scene}/${type}`, {
     value: data,
     captchaKey: iv,
     timestamp,
@@ -191,4 +191,25 @@ export function authUnLockSocial(source: string) {
  */
 export function getSocialBind() {
   return http.get<string[]>(`${SERVER1}/auth/social/bind`)
+}
+
+/**
+ *  重置
+ * @param type phone,email
+ * @param data key,code
+ * @returns .
+ */
+export async function resetEmailPhone(type: 'email' | 'phone', data: { key: string, code: string }) {
+  const timestamp = new Date().getTime()
+  const iv = random(16)
+  const _key = await SHA.has256Hex(iv + timestamp)
+  const _iv = await str2Hex(iv)
+  const key = await AES.encryptHex(data.key, _key, _iv)
+  const body = {
+    key,
+    captchaCode: data.code,
+    captchaKey: iv,
+    timestamp,
+  }
+  return http.put(`${SERVER1}/auth/user/reset/${type}`, body)
 }
