@@ -19,6 +19,6 @@
 1. 本地svg图标
    使用 `@/assets/svgs` 目录下的svg图标, 例如 `@/assets/svgs/icon-name.svg` 的图标名称为 `svg-icon:icon-name`
 2. 在线iconify图标
-   比如: 使用`iconify:i:icon-name`的图标名称
+   比如: 使用`iconify-logos:icon-name`的图标名称
 3. 离线iconify图标
-   比如: 安装`@iconify-json/mdi`后, 使用`i-mdi:icon-name`的图标名称
+   比如: 安装`@iconify-json/mdi`后, 使用`i-logos:icon-name`的图标名称

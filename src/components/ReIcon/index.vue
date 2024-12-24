@@ -19,14 +19,14 @@ const props = defineProps({
 
 const isLocal = computed(() => props.icon.startsWith('svg-icon:'))
 // 是否使用在线图标
-const isUseOnline = computed(() => props.icon.startsWith('iconify:'))
+const isUseOnline = computed(() => props.icon.startsWith('iconify-'))
 
 const svgClass = computed(() => {
   return props.icon.replace('svg-icon:', '')
 })
 
 const onlineClass = computed(() => {
-  return props.icon.replace('iconify:', '')
+  return props.icon.replace('iconify-', '')
 })
 
 const getIconifyStyle = computed(() => {
@@ -41,9 +41,9 @@ const getIconifyStyle = computed(() => {
 </script>
 
 <template>
-  <ElIcon :size="size">
-    <SvgIcon v-if="isLocal" :icon-class="svgClass" :size="size" :color="color" />
-    <Icon v-else-if="isUseOnline" :icon="onlineClass" :style="getIconifyStyle" />
-    <span v-else :class="`${icon} iconify`" :style="getIconifyStyle" />
+  <ElIcon :size="size" :color="color">
+    <Icon v-if="isUseOnline" :icon="onlineClass" :style="getIconifyStyle" v-bind="$attrs" />
+    <SvgIcon v-else-if="isLocal" :icon-class="svgClass" :size="size" :color="color" v-bind="$attrs" />
+    <span v-else :class="`${icon} iconify`" :style="getIconifyStyle" v-bind="$attrs" />
   </ElIcon>
 </template>

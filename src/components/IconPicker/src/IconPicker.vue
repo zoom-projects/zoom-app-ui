@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import epIcons from './data/icons.ep'
+import logosIcons from './data/icons.logos'
 import riIcons from './data/icons.ri'
 import svgIcons from './data/icons.svg'
+import tablerIcons from './data/icons.tabler'
 
 const modelValue = defineModel<string>()
 
-const icons = [epIcons, riIcons, svgIcons]
+const icons = [epIcons, riIcons, svgIcons, logosIcons, tablerIcons]
 const iconName = ref(icons[0].prefix)
 const search = ref('')
 const pageSize = ref(40)
@@ -21,9 +23,16 @@ function popoverShow() {
 async function init(icon?: string) {
   if (!icon)
     return
-  const iconInfo = icon.split(':')
-  iconName.value = iconInfo[0]
-  const wrapIndex = icons.findIndex(item => item.prefix === iconInfo[0])
+  // icon 是否满足前缀:名称的格式 [svg-icon,iconify-,i-,iconfont-]
+  const [prefix, name] = icon.split(':')
+  if (!prefix || !name)
+    return
+  // 查询当前icon的前缀
+  const wrapIndex = icons.findIndex(item => item.prefix === prefix)
+  if (wrapIndex === -1)
+    return
+  // 切换当前icon的前缀
+  iconName.value = prefix
   // 查询当前icon的索引
   const index = filterItemIcons(icons[wrapIndex].data).findIndex(item => item === icon)
   // 计算当前icon的页码

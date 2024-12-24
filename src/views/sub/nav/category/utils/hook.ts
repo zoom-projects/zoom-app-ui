@@ -1,7 +1,6 @@
 import type { FormRules, TreeNode } from 'element-plus'
 import type { ActionBarButtonsRow, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
 import * as navCategoryApi from '@/api/modules/nav/category'
-import ReIcon from '@/components/ReIcon/index.vue'
 import { clone, deepTree } from '@/utils'
 import { resolveDirective } from 'vue'
 
@@ -94,10 +93,8 @@ export function useNavCategoryHook() {
     {
       label: '分类图标',
       prop: 'icon',
-      valueType: 'img',
-      fieldSlots: {
-        error: () => h(ElEmpty, { description: '加载失败...' }),
-      },
+      hideInSearch: true,
+      editable: true,
     },
     {
       label: '是否展示',

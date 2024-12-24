@@ -31,6 +31,9 @@ const pagination = ref<PageInfo>({
 
 watch(() => props.visible, (val) => {
   dialogVisible.value = val
+  if (!val) {
+    selectedList.value = []
+  }
 })
 const isSelected = computed(() => (item: AttachmentList.ResPage) => {
   return selectedList.value.some((i: AttachmentList.ResPage) => i.id === item.id)

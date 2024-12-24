@@ -13,7 +13,7 @@ async function generateIcon() {
   const collections = Object.entries(raw).map(([id, item]: [string, any]) => ({
     ...item,
     id,
-  })).sort((a, b) => a.name.localeCompare(b.name));
+  })).sort((a, b) => a.name.localeCompare(b.name))
 
   inquirer
     .prompt([
@@ -28,10 +28,15 @@ async function generateIcon() {
           return true
         },
       },
+      {
+        type: 'confirm',
+        name: 'online',
+        message: '是否使用在线图标集',
+      },
     ])
     // ↓命令行问答的答案
     .then(async (answers) => {
-      const { name } = answers
+      const { name, online } = answers
       // 切割图标名称
       const iconSet = name.split(' ')
       console.log(iconSet)
@@ -42,7 +47,14 @@ async function generateIcon() {
         const setData = await lookupCollection(info.id)
         if (setData) {
           const { icons, prefix } = setData
-          const prefixName = `i-${prefix}`
+          // ↓生成对应的图标数据
+          let prefixName = ''
+          if (online) {
+            prefixName = `iconify-${prefix}`
+          }
+          else {
+            prefixName = `i-${prefix}`
+          }
           const data = Object.keys(icons).map(item => `${prefixName}:${item}`)
           await fs.writeFileSync(
             path.join(path.resolve(process.cwd(), 'src/components/IconPicker/src/data'), `icons.${prefix}.ts`),

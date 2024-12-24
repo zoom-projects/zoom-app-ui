@@ -31,16 +31,16 @@ export default defineConfig({
     transformerAttributifyJsx(),
   ],
   content: {
-    pipeline: {
-      include: [
-        // default
-        /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
-        // extra
-        'src/**/*.{vue,ts,tsx,jsx}',
-      ],
-    },
-    filesystem: [
-      'src/**/*.{vue,ts,tsx,jsx}',
-    ],
+    // pipeline: {
+    //   include: [
+    //     // default
+    //     /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+    //     // extra
+    //     'src/**/*.{vue,ts,tsx,jsx}',
+    //   ],
+    // },
+    // filesystem: [
+    //   'src/**/*.{vue,ts,tsx,jsx}',
+    // ],
   },
 })

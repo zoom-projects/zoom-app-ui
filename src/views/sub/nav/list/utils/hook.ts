@@ -24,6 +24,12 @@ export function useNavWebsitesHook() {
       prop: 'title',
     },
     {
+      label: '网站链接',
+      prop: 'url',
+      valueType: 'link',
+      hideInSearch: true,
+    },
+    {
       label: '网站分类',
       prop: 'categoryId',
       valueType: 'cascader',
@@ -37,12 +43,13 @@ export function useNavWebsitesHook() {
         },
       },
       options: computed(() => categoryList.value),
+      hideInTable: true,
     },
     {
-      label: '网站标签',
-      prop: 'tags',
-      valueType: 'plus-input-tag',
-      editable: true,
+      label: '网站分类',
+      prop: 'categoryName',
+      hideInForm: true,
+      hideInSearch: true,
     },
     {
       label: '网站描述',
@@ -51,10 +58,10 @@ export function useNavWebsitesHook() {
       hideInSearch: true,
     },
     {
-      label: '网站链接',
-      prop: 'url',
-      valueType: 'link',
-      hideInSearch: true,
+      label: '网站标签',
+      prop: 'tags',
+      valueType: 'plus-input-tag',
+      editable: true,
     },
     {
       label: '是否隐藏',
@@ -198,12 +205,12 @@ export function useNavWebsitesHook() {
 
   async function handleAdd() {
     drawerFormVisible.value = true
-    formModel.value = defaultFormModel
+    formModel.value = { ...defaultFormModel }
   }
 
   function handleCancel() {
     drawerFormVisible.value = false
-    formModel.value = defaultFormModel
+    formModel.value = { ...defaultFormModel }
     nextTick(() => {
       plusDrawerFormRef.value?.formInstance.clearValidate()
     })

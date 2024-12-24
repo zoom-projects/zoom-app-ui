@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { AttachmentSelect } from '@/components/Attachment'
 import { useNavCategoryHook } from './utils/hook'
 
 const {
@@ -46,6 +45,14 @@ const {
           </el-button>
         </div>
       </template>
+      <template #plus-field-icon="{ row }">
+        <template v-if="row.icon">
+          <ReIcon :icon="row.icon" :size="20" />
+        </template>
+        <template v-else>
+          <span>暂无图标</span>
+        </template>
+      </template>
     </PlusPage>
 
     <PlusDialogForm
@@ -71,8 +78,8 @@ const {
         <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
       </template>
       <template #plus-field-icon="{ prop }">
-        <!-- <IconPicker v-model="formModel[prop]" /> -->
-        <AttachmentSelect v-model="formModel[prop]" />
+        <IconPicker v-model="formModel[prop]" />
+        <!-- <AttachmentSelect v-model="formModel[prop]" /> -->
       </template>
     </PlusDialogForm>
   </div>
