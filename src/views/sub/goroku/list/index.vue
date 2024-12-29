@@ -14,10 +14,14 @@ const {
   formAuditColumns,
   formRules,
   actionButtins,
+  fileImportVisible,
   loadData,
   handleAdd,
   handleSave,
   handleAudit,
+  handleExport,
+  handleDownloadTemplate,
+  handleImport,
 } = useGorokuInfo()
 </script>
 
@@ -44,6 +48,29 @@ const {
           </template>
           新增
         </el-button>
+        <el-button v-auth="'goroku:info:import'" type="primary" @click="handleImport">
+          <template #icon>
+            <ReIcon icon="i-ep:upload" class="el-icon" />
+          </template>
+          导入
+        </el-button>
+
+        <el-popconfirm
+          title="确定导出数据吗？"
+          @click="handleExport"
+        >
+          <template #reference>
+            <el-button
+              v-auth="'goroku:info:export'"
+              type="primary"
+            >
+              <template #icon>
+                <ReIcon icon="i-ep:download" class="el-icon" />
+              </template>
+              导出
+            </el-button>
+          </template>
+        </el-popconfirm>
       </template>
     </PlusPage>
 
@@ -77,6 +104,16 @@ const {
         submitLoading: auditLoading,
       }"
       @confirm="handleAudit"
+    />
+
+    <ImportFile
+      v-model:visible="fileImportVisible"
+      title="语录"
+      :num="1"
+      :accept="['.xls', '.xlsx']"
+      biz-app="zoom-goroku-job"
+      task-type="I01"
+      @download-template="handleDownloadTemplate"
     />
   </div>
 </template>

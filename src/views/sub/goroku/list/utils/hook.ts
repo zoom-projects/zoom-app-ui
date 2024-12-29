@@ -1,5 +1,6 @@
 import type { FormRules } from 'element-plus'
 import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
+import * as taskApi from '@/api/modules/common/task'
 import * as gorokuApi from '@/api/modules/goroku/info'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'
@@ -178,6 +179,8 @@ export function useGorokuInfo() {
     },
   ]
 
+  const fileImportVisible = ref(false)
+
   async function handleAdd() {
     formModel.value = {}
     formVisible.value = true
@@ -223,6 +226,40 @@ export function useGorokuInfo() {
     return gorokuApi.update(formModel.value.id, formModel.value)
   }
 
+  async function handleExport() {
+    // 获取查询条件
+    // TODO 未完成 getSearchFieldsValue v0.1.17
+    // const params = plusPageRef.value.get
+    const params = {}
+    const body = {
+      type: 'E01',
+      appName: 'zoom-goroku-job',
+      param: params,
+    }
+    const { success, data } = await taskApi.exp(body)
+    if (success) {
+      ElMessage.success(`导出请求成功，请稍后查看任务列表任务号：${data}`)
+    }
+  }
+
+  async function handleDownloadTemplate() {
+    const pom = document.createElement('a')
+    pom.setAttribute('href', '/excel/gorokuTemplate.xlsx')
+    pom.setAttribute('download', '语录-导入模板.xlsx')
+    if (document.createEvent) {
+      const event = document.createEvent('MouseEvents')
+      event.initEvent('click', true, true)
+      pom.dispatchEvent(event)
+    }
+    else {
+      pom.click()
+    }
+  }
+
+  async function handleImport() {
+    fileImportVisible.value = true
+  }
+
   const loadData = async (query: PageInfo & any) => {
     const params = clone(query, true)
     Reflect.set(params, 'current', Reflect.get(query, 'page'))
@@ -260,9 +297,13 @@ export function useGorokuInfo() {
     formAuditColumns,
     formRules,
     actionButtins,
+    fileImportVisible,
     loadData,
     handleAdd,
     handleSave,
     handleAudit,
+    handleExport,
+    handleDownloadTemplate,
+    handleImport,
   }
 }
