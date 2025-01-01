@@ -7,7 +7,7 @@
     <ElPopover placement="bottom" :width="310" trigger="click">
       <template #reference>
         <el-badge :value="5" class="item">
-          <ReIcon icon="svg-icon:bell-outlined" class="toolBar-icon" />
+          <ReIcon size="16" icon="svg-icon:bell-outlined" class="toolBar-icon" />
         </el-badge>
       </template>
     </ElPopover>

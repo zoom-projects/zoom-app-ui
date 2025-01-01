@@ -8,6 +8,6 @@ function openDrawer() {
 
 <template>
   <div class="theme-setting">
-    <ReIcon icon="svg-icon:theme-outline" class="toolBar-icon" @click="openDrawer" />
+    <ReIcon size="16" icon="svg-icon:theme-outline" class="toolBar-icon" @click="openDrawer" />
   </div>
 </template>

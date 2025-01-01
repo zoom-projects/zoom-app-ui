@@ -20,7 +20,7 @@ function setAssemblySize(item: Size) {
 
 <template>
   <el-dropdown trigger="click" @command="setAssemblySize">
-    <ReIcon icon="svg-icon:size" class="toolBar-icon" />
+    <ReIcon icon="svg-icon:size" class="toolBar-icon" size="16" />
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item

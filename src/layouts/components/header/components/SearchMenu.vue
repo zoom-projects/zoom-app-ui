@@ -96,7 +96,7 @@ function handleClickMenu() {
 
 <template>
   <div class="search-menu">
-    <ReIcon icon="svg-icon:search" class="toolBar-icon" @click="handleOpen" />
+    <ReIcon icon="svg-icon:search" class="toolBar-icon" size="16" @click="handleOpen" />
     <ElDialog v-model="isShowSearch" class="search-dialog" :width="600" :show-close="false" top="10vh">
       <el-input
         ref="menuInputRef"

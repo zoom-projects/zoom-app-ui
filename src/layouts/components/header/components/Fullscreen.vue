@@ -6,6 +6,6 @@ const { isFullscreen, toggle } = useFullscreen()
 
 <template>
   <div class="fullscreen">
-    <ReIcon :icon="isFullscreen ? 'svg-icon:fullscreen-exit' : 'svg-icon:fullscreen'" class="toolBar-icon" @click="toggle" />
+    <ReIcon size="16" :icon="isFullscreen ? 'svg-icon:fullscreen-exit' : 'svg-icon:fullscreen'" class="toolBar-icon" @click="toggle" />
   </div>
 </template>
