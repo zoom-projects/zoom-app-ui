@@ -6,6 +6,7 @@ import AccountManagement from './components/AccountManagement.vue'
 import OperatorLog from './components/OperatorLog/index.vue'
 import Preferences from './components/Preferences.vue'
 import Profile from './components/Profile.vue'
+import SubscribeMsg from './components/SubscribeMsg/index.vue'
 
 const { userInfo, activeUserInfoPanel, setActiveUserInfoPanel } = useUserStore()
 const router = useRouter()
@@ -23,16 +24,22 @@ const panes = [
     component: Preferences,
   },
   {
-    key: 'securityLog',
-    label: '安全日志',
-    icon: 'svg-icon:security-shield-fill',
-    component: OperatorLog,
-  },
-  {
     key: 'accountManagement',
     label: '账户管理',
     icon: 'svg-icon:profile-line',
     component: AccountManagement,
+  },
+  {
+    key: 'subscribeMsg',
+    label: '消息接收管理',
+    icon: 'iconify-tabler:notification',
+    component: SubscribeMsg,
+  },
+  {
+    key: 'securityLog',
+    label: '安全日志',
+    icon: 'svg-icon:security-shield-fill',
+    component: OperatorLog,
   },
   {
     key: 'accessToken',

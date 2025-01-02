@@ -120,6 +120,7 @@ declare module 'vue' {
     SocialCallback: typeof import('./../src/layouts/components/SocialCallback/index.vue')['default']
     Src: typeof import('./../src/components/Attachment/select/src/index.vue')['default']
     SubMenu: typeof import('./../src/layouts/components/menu/SubMenu.vue')['default']
+    SubscribeMsg: typeof import('./../src/layouts/components/UserInfo/components/SubscribeMsg/index.vue')['default']
     SvgIcon: typeof import('./../src/components/SvgIcon/index.vue')['default']
     SwitchDark: typeof import('./../src/components/SwitchDark/index.vue')['default']
     Tabs: typeof import('./../src/layouts/components/Tabs/index.vue')['default']
