@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormRules } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import type { PlusColumn, PlusDialogFormInstance } from 'plus-pro-components'
 import { resetEmailPhone } from '@/api/modules/login'
 import { useUserStore } from '@/store'
@@ -95,7 +95,7 @@ async function handleSubmit() {
         <ElButton
           :disabled="isDisabled"
           class="ml-2"
-          @click="useVerifyCode().start(plusDialogFormRef?.formInstance, 'key', formModel.key, 'get')"
+          @click="useVerifyCode().start(plusDialogFormRef?.formInstance as FormInstance, 'key', formModel.key, 'get')"
         >
           {{
             text.length > 0

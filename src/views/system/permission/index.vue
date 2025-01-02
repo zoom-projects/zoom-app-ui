@@ -63,23 +63,23 @@ const {
       }"
       @confirm="handleConfirm"
     >
-      <template #plus-field-menuType="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-menuType="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
-      <template #plus-field-isHidden="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-isHidden="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
-      <template #plus-field-isKeepAlive="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-isKeepAlive="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
-      <template #plus-field-isAffix="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-isAffix="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
-      <template #plus-field-isFullScreen="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-isFullScreen="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
-      <template #plus-field-status="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-status="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
       <template #plus-field-icon="{ prop }">
         <IconPicker v-model="formModel[prop]" />

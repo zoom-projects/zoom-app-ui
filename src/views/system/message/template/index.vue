@@ -62,14 +62,14 @@ const {
       }"
       @confirm="handleSave"
     >
-      <template #plus-field-templateType="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-templateType="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
       <template #plus-field-templateContentHtml="{ prop }">
         <Tinymce :value="formModel[prop]" @change="contentChange" />
       </template>
-      <template #plus-field-status="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-status="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
       <template #dialog-footer="{ handleConfirm, handleCancel }">
         <ElButton

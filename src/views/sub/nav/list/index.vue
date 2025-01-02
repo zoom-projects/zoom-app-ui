@@ -79,21 +79,21 @@ const {
       @cancel="handleCancel"
       @confirm="handleConfirm"
     >
-      <template #plus-field-logo="{ column }">
+      <template #plus-field-logo="{ prop }">
         <AttachmentSelect
-          v-model="formModel[column.prop]"
+          v-model="formModel[prop]"
           placeholder="请选择logo"
           :clearable="true"
         />
         <img
-          v-if="formModel[column.prop]"
-          :src="formModel[column.prop]"
+          v-if="formModel[prop]"
+          :src="formModel[prop]"
           class="h-[100px] w-[100px]"
         >
       </template>
-      <template #plus-field-url="{ column }">
+      <template #plus-field-url="{ prop }">
         <el-input
-          v-model="formModel[column.prop]"
+          v-model="formModel[prop]"
           placeholder="请输入网站地址"
           clearable
         >
@@ -107,11 +107,11 @@ const {
           </template>
         </el-input>
       </template>
-      <template #plus-field-isHidden="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-isHidden="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
-      <template #plus-field-isDeprecated="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-isDeprecated="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
     </PlusDrawerForm>
   </div>

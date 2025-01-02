@@ -61,11 +61,11 @@ const {
       }"
       @confirm="formSave"
     >
-      <template #plus-field-status="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-status="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
-      <template #plus-field-gender="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-gender="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
       <template #dialog-footer="{ handleConfirm, handleCancel }">
         <ElButton

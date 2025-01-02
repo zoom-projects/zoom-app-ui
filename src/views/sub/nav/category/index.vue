@@ -74,8 +74,8 @@ const {
       }"
       @confirm="handleConfirm"
     >
-      <template #plus-field-isHidden="{ prop, column }">
-        <ElSegmented v-model="formModel[prop]" :options="column.options.value" />
+      <template #plus-field-isHidden="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
       <template #plus-field-icon="{ prop }">
         <IconPicker v-model="formModel[prop]" />
