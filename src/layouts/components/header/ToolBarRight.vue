@@ -7,9 +7,9 @@
     <div class="header-icon">
       <SearchMenu />
       <Fullscreen />
+      <Message />
       <AssemblySize />
       <ThemeSetting />
-      <Message />
     </div>
     <Avatar class="avatar" />
   </div>

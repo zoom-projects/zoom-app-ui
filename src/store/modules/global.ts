@@ -3,7 +3,7 @@ import { LayoutMode, Size, ThemeColorMode } from '@/utils/enums'
 import { store } from '..'
 import piniaPersistConfig from '../helper/persist'
 
-type SettingsValue = LayoutMode | Size | ThemeColorMode | string | boolean
+type SettingsValue = LayoutMode | Size | ThemeColorMode | string | boolean | number
 /**
  * @description 全局状态
  */
@@ -46,6 +46,8 @@ export const useGlobalStore = defineStore(
     const tabsIcon = ref(true)
     // 页脚
     const footer = ref(true)
+    // 未读消息
+    const unreadCount = ref(0)
     // 设置更改函数
     const settingsMap: Record<string, Ref<SettingsValue>> = {
       layout,
@@ -66,6 +68,7 @@ export const useGlobalStore = defineStore(
       tabs,
       tabsIcon,
       footer,
+      unreadCount,
     }
 
     // 设置全局状态
@@ -94,6 +97,7 @@ export const useGlobalStore = defineStore(
       tabs,
       tabsIcon,
       footer,
+      unreadCount,
       setGlobalState,
     }
   },

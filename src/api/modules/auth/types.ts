@@ -1,3 +1,5 @@
+import type { ReqPage } from '../../types'
+
 export namespace Auth{
   export interface ResSubscribeMsg {
     module: string
@@ -18,5 +20,18 @@ export namespace Auth{
     name?: string
     value: boolean
     type: 'SITE' | 'EMAIL' | 'SMS'
+  }
+
+  export interface ResNoticeMsg {
+    id: string
+    title: string
+    content: string
+    status: number
+    created: string
+  }
+
+  export interface ReqNoticeMsg extends ReqPage {
+    status?: number
+
   }
 }

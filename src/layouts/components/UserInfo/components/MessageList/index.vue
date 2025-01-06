@@ -1,8 +1,7 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <div>
-    <SubscribeMsg />
-  </div>
+  <LayInfo title="我的消息" />
 </template>

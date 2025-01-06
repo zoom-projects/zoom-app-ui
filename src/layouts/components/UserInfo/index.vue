@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { useUserStore } from '@/store'
+import { useGlobalStore, useUserStore } from '@/store'
 import { useRouter } from 'vue-router'
 import AccessToken from './components/AccessToken/index.vue'
 import AccountManagement from './components/AccountManagement.vue'
+import MessageList from './components/MessageList/index.vue'
 import OperatorLog from './components/OperatorLog/index.vue'
 import Preferences from './components/Preferences.vue'
 import Profile from './components/Profile.vue'
-import SubscribeMsg from './components/SubscribeMsg/index.vue'
 
 const { userInfo, activeUserInfoPanel, setActiveUserInfoPanel } = useUserStore()
+const { unreadCount } = useGlobalStore()
 const router = useRouter()
 const panes = [
   {
@@ -30,10 +31,10 @@ const panes = [
     component: AccountManagement,
   },
   {
-    key: 'subscribeMsg',
-    label: '消息接收管理',
-    icon: 'iconify-tabler:notification',
-    component: SubscribeMsg,
+    key: 'messageList',
+    label: '我的消息',
+    icon: 'svg-icon:message',
+    component: MessageList,
   },
   {
     key: 'securityLog',
@@ -92,6 +93,7 @@ watchEffect(() => {
           <div class="z-10 flex items-center">
             <ReIcon :icon="item.icon" class="el-icon" />
             <span>{{ item.label }}</span>
+            <el-badge v-if="item.key === 'messageList'" :value="unreadCount" class="badge ml-2" />
           </div>
         </ElMenuItem>
       </ElMenu>
@@ -132,5 +134,12 @@ watchEffect(() => {
   text-align: center;
   font-size: 18px;
   vertical-align: middle;
+}
+
+.badge {
+  display: inline-flex;
+  :deep(sup) {
+    top: 0;
+  }
 }
 </style>
