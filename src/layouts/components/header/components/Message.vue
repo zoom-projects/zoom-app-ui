@@ -140,7 +140,7 @@ async function handleMore() {
       </el-tabs>
     </ElPopover>
 
-    <Reading v-model:visible="readingVisible" :data="currentItem" />
+    <NoticeReading v-model:visible="readingVisible" :data="currentItem" />
   </div>
 </template>
 

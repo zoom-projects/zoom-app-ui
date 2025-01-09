@@ -105,6 +105,7 @@ declare module 'vue' {
     MessageList: typeof import('./../src/layouts/components/UserInfo/components/MessageList/index.vue')['default']
     MoreButton: typeof import('./../src/layouts/components/Tabs/ components/MoreButton.vue')['default']
     MultipleUploadImg: typeof import('./../src/components/Attachment/upload/MultipleUploadImg/index.vue')['default']
+    NoticeReading: typeof import('./../src/components/NoticeReading/index.vue')['default']
     OpenApiTable: typeof import('./../src/components/role/openApiTable.vue')['default']
     OperatorLog: typeof import('./../src/layouts/components/UserInfo/components/OperatorLog/index.vue')['default']
     PlusDatePicker: typeof import('plus-pro-components/es')['PlusDatePicker']

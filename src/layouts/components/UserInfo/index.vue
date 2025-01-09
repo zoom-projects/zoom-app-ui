@@ -93,7 +93,7 @@ watchEffect(() => {
           <div class="z-10 flex items-center">
             <ReIcon :icon="item.icon" class="el-icon" />
             <span>{{ item.label }}</span>
-            <el-badge v-if="item.key === 'messageList'" :value="unreadCount" class="badge ml-2" />
+            <el-badge v-if="item.key === 'messageList' && unreadCount > 0" :value="unreadCount" class="badge ml-2" />
           </div>
         </ElMenuItem>
       </ElMenu>
