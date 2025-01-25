@@ -14,7 +14,7 @@
     "icon:svg": "esno ./scripts/icon-svg.ts"
   },
   "dependencies": {
-    "@vueuse/core": "^11.3.0",
+    "@vueuse/core": "^12.5.0",
     "@vueuse/motion": "^2.2.6",
     "animate.css": "^4.1.1",
     "axios": "^1.7.9",
