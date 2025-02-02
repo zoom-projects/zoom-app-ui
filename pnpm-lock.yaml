@@ -73,8 +73,8 @@ importers:
         specifier: ^0.0.3
         version: 0.0.3
       '@tinymce/tinymce-vue':
-        specifier: ^5.1.1
-        version: 5.1.1(vue@3.5.13(typescript@5.7.3))
+        specifier: ^6.1.0
+        version: 6.1.0(tinymce@6.8.5)(vue@3.5.13(typescript@5.7.3))
       '@types/codemirror':
         specifier: ^5.60.15
         version: 5.60.15
@@ -1302,10 +1302,14 @@ packages:
   '@sxzz/popperjs-es@2.11.7':
     resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}
 
-  '@tinymce/tinymce-vue@5.1.1':
-    resolution: {integrity: sha512-iO57HOWesFOhsaqjA5Ea6sDvQBmJJH3/dq00Uvg7metlct2kLF+ctRgoDsetLt6gmeZ7COPftr814/XzqnJ/dg==}
+  '@tinymce/tinymce-vue@6.1.0':
+    resolution: {integrity: sha512-7JdaKMOaohuFWpjKwRmaZJbT/eNVUUYHG93R7+lUf7SUN+hSqd2spbuqZcki+tG9kaSAGd2ZmvJIsmzWDNAzpw==}
     peerDependencies:
+      tinymce: ^7.0.0 || ^6.0.0 || ^5.5.1
       vue: ^3.0.0
+    peerDependenciesMeta:
+      tinymce:
+        optional: true
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -6750,10 +6754,11 @@ snapshots:
 
   '@sxzz/popperjs-es@2.11.7': {}
 
-  '@tinymce/tinymce-vue@5.1.1(vue@3.5.13(typescript@5.7.3))':
+  '@tinymce/tinymce-vue@6.1.0(tinymce@6.8.5)(vue@3.5.13(typescript@5.7.3))':
     dependencies:
-      tinymce: 6.8.5
       vue: 3.5.13(typescript@5.7.3)
+    optionalDependencies:
+      tinymce: 6.8.5
 
   '@trysound/sax@0.2.0': {}
 
@@ -11403,7 +11408,8 @@ snapshots:
       fdir: 6.4.2(picomatch@4.0.2)
       picomatch: 4.0.2
 
-  tinymce@6.8.5: {}
+  tinymce@6.8.5:
+    optional: true
 
   tippy.js@6.3.7:
     dependencies:
