@@ -1,7 +1,7 @@
-@import "./element.scss";
-@import "./transition.scss";
-@import "./common.scss";
-@import "./element.dark.scss";
+@use "./element.scss";
+@use "./transition.scss";
+@use "./common.scss";
+@use "./element.dark.scss" as elementDark;
 
 html,
 body,

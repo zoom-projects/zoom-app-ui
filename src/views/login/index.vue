@@ -25,5 +25,5 @@ const title = import.meta.env.VITE_APP_TITLE || 'ZOOM-Admin'
 </template>
 
 <style lang="scss" scoped>
-@import './index.scss';
+@use './index.scss';
 </style>

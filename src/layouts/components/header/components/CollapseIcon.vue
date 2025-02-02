@@ -2,7 +2,10 @@
 import { useGlobalStore } from '@/store'
 
 const globalStore = useGlobalStore()
-const changeCollapse = () => globalStore.setGlobalState('isCollapse', !globalStore.isCollapse)
+// const changeCollapse = () => globalStore.setGlobalState('isCollapse', !globalStore.isCollapse)
+function changeCollapse(){
+  globalStore.setGlobalState('isCollapse', !globalStore.isCollapse)
+}
 </script>
 
 <template>
@@ -10,7 +13,7 @@ const changeCollapse = () => globalStore.setGlobalState('isCollapse', !globalSto
     class="collapse-icon"
     :icon="globalStore.isCollapse ? 'i-ep:expand' : 'i-ep:fold'"
     :size="22"
-    @click="changeCollapse"
+    @click.stop="changeCollapse"
   />
 </template>
 

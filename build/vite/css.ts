@@ -6,6 +6,7 @@ export function createViteCSS(): CSSOptions {
     preprocessorOptions: {
       scss: {
         additionalData: '@use "@/styles/var/index.scss" as *;',
+        api:"modern-compiler"
       },
     },
   }
