@@ -66,7 +66,7 @@ const {
         <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
       <template #plus-field-templateContentHtml="{ prop }">
-        <Tinymce :value="formModel[prop]" @change="contentChange" />
+        <Tinymce :value="formModel[prop]" @change="contentChange" output-format="html" />
       </template>
       <template #plus-field-status="{ prop, options }:any">
         <ElSegmented v-model="formModel[prop]" :options="options" />

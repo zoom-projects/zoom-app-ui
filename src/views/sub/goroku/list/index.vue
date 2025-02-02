@@ -57,7 +57,7 @@ const {
 
         <el-popconfirm
           title="确定导出数据吗？"
-          @click="handleExport"
+          @confirm="handleExport"
         >
           <template #reference>
             <el-button

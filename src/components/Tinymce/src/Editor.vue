@@ -8,7 +8,7 @@ import { isNumber } from '@/utils/is'
 import Editor from '@tinymce/tinymce-vue'
 import tinymce from 'tinymce'
 import { bindHandlers } from './helper'
-import { menubar, simplePlugins, simpleToolbar } from './tinymce'
+import { simplePlugins, simpleToolbar } from './tinymce'
 import 'tinymce/icons/default'
 import 'tinymce/themes/silver'
 import 'tinymce/models/dom'
@@ -30,6 +30,9 @@ import 'tinymce/plugins/preview'
 // 图片插件
 import 'tinymce/plugins/image'
 
+// code插件
+import 'tinymce/plugins/code'
+
 import '@/assets/tinymce/langs/zh_CN.js'
 import { onMountedOrActivated } from '/src/hooks/onMountedOrActivated'
 
@@ -38,7 +41,6 @@ const props = withDefaults(defineProps<TinymceProps>(), {
   value: '',
   toolbar: () => simpleToolbar,
   plugins: () => simplePlugins,
-  menubar: () => menubar,
   height: 400,
   width: 'auto',
   showImageUpload: false,
@@ -72,7 +74,7 @@ const skinName = computed(() => {
 })
 
 const initOptions = computed(() => {
-  const { height, options, toolbar, plugins, menubar } = props
+  const { height, options, toolbar, plugins } = props
   let publicPath = import.meta.env.VITE_PUBLIC_PATH || '/'
   if (!publicPath.endsWith('/')) {
     publicPath += '/'
