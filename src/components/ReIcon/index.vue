@@ -17,9 +17,9 @@ const props = defineProps({
   },
 })
 
-const isLocal = computed(() => props.icon.startsWith('svg-icon:'))
+const isLocal = computed(() => props.icon?.startsWith('svg-icon:'))
 // 是否使用在线图标
-const isUseOnline = computed(() => props.icon.startsWith('iconify-'))
+const isUseOnline = computed(() => props.icon?.startsWith('iconify-'))
 
 const svgClass = computed(() => {
   return props.icon.replace('svg-icon:', '')

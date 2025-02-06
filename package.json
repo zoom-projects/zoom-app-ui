@@ -22,15 +22,19 @@
     "codemirror-editor-vue3": "^2.8.0",
     "dayjs": "^1.11.13",
     "element-plus": "^2.9.3",
+    "html2canvas": "^1.4.1",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.3.1",
     "pinia-plugin-persistedstate": "^4.2.0",
     "plus-pro-components": "^0.1.20",
     "qs": "^6.14.0",
+    "v-contextmenu": "^3.0.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
-    "vue-tippy": "6.6.0"
+    "vue-tippy": "6.6.0",
+    "vue3-colorpicker": "^2.3.0",
+    "vue3-json-viewer": "^2.2.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.16.0",
