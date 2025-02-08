@@ -21,7 +21,7 @@ export function useLiListItem(iconItem: {
       height: '',
       borderRadius: '',
     }, // 组件快照
-    keywords: '头像', // 组件关键词，用于搜索
+    keywords: '列表', // 组件关键词，用于搜索
     category: 'li', // 组件分类
     props: {}, // 组件属性
     css: {

@@ -6,7 +6,7 @@ import { useDictStore } from '@/store'
 import { clone, deepTree } from '@/utils'
 import { ElTag } from 'element-plus'
 import { resolveDirective } from 'vue'
-import { dictKeys, menuAffixDictKey, menuFullScreenDictKey, menuHiddenDictKey, menuKeepAliveDictKey, menuStatusDictKey, menuTypeDictKey } from '../utils/const'
+import { dictKeys, menuAffixDictKey, menuFullScreenDictKey, menuHiddenDictKey, menuIsRequiredLoginDictKey, menuKeepAliveDictKey, menuStatusDictKey, menuTypeDictKey } from '../utils/const'
 
 export function usePermission() {
   const { toOptions, getDict, loadDict } = useDictStore()
@@ -21,6 +21,7 @@ export function usePermission() {
   const defaultModel: FormItemProps = {
     menuType: 0,
     sort: 99,
+    isRequireLogin: true,
     isHidden: false,
     isKeepAlive: true,
     isAffix: false,
@@ -116,6 +117,14 @@ export function usePermission() {
         span: 12,
       },
       hideInForm: computed(() => formModel.value.menuType === 3),
+    },
+    {
+      label: '是否需要登陆',
+      prop: 'isRequireLogin',
+      colProps: {
+        span: 12,
+      },
+      options: computed(() => toOptions(menuIsRequiredLoginDictKey)),
     },
     {
       label: '是否隐藏',

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import * as resumeTemplateApi from '@/api/modules/resume/template'
+import router from '@/router'
+import SvgIcon from '../legoDesigner/components/svgIcon/SvgIcon.vue'
 import Category from './component/Category.vue'
 import LatestDesign from './component/LatestDesign.vue'
 import CategoryData from './data/category.json'
@@ -74,10 +76,25 @@ getLegoUserResumeList()
 
 // 删除个人制作简历
 async function deletePersonTemplate(id: string) {
+  const { success, msg } = await resumeTemplateApi.deleteTemplate(id)
+  if (success) {
+    ElMessage.success('删除成功')
+    getLegoUserResumeList()
+  }
+  else {
+    ElMessage.error(msg)
+  }
 }
 
 // 复制个人制作简历
-async function copyUserResume(id: string) {
+async function copyUserResume(cardData: { id: string, category: string }) {
+  router.push({
+    path: '/resume/legoDesigner',
+    query: {
+      templateId: cardData.id,
+      category: cardData.category,
+    },
+  })
 }
 </script>
 
@@ -94,6 +111,13 @@ async function copyUserResume(id: string) {
           @delete-person-template="deletePersonTemplate"
           @copy-user-resume="copyUserResume"
         />
+        <!-- 查看更多 -->
+        <div v-if="personTotal > personLimit" class="see-more-box">
+          <p>
+            查看全部
+            <SvgIcon icon-name="icon-chakangengduo" color="#737373" size="18px" />
+          </p>
+        </div>
       </div>
       <!-- 分类筛选 -->
       <Category

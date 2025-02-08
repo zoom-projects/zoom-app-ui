@@ -34,6 +34,10 @@ export interface FormItemProps {
    */
   parentId?: string
   /**
+   * 是否需要登陆
+   */
+  isRequiredLogin?: boolean
+  /**
    * 是否固定页签
    */
   isAffix?: boolean

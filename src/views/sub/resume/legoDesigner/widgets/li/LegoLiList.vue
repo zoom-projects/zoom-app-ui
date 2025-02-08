@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { IWidget } from '../../types'
+import SvgIcon from '../../components/svgIcon/SvgIcon.vue'
 
 interface IAvatar {
   widgetData: IWidget | null // 模块数据
@@ -21,7 +22,7 @@ const listStyleType = computed(() => {
 <template>
   <ul class="li-list-box">
     <li :class="[{ 'have-image': widgetData?.customProps.listStyleImage ? true : false }]">
-      <svg-icon
+      <SvgIcon
         v-if="widgetData?.customProps.listStyleImage"
         :icon-name="widgetData?.customProps.listStyleImage"
         color="#333"

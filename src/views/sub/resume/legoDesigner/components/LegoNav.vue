@@ -6,6 +6,7 @@ import PreviewImage from '../render/PreviewImage/index.vue'
 import RenderPage from '../render/RenderPage.vue'
 import { useLegoJsonStoreHook, useLegoSelectWidgetStoreHook, useRefreshStoreHook } from '../store/lego'
 import { getImgBase64URL } from '../utils/html2img'
+import { exportLegoPdf, exportLegoPNG } from '../utils/pdf'
 import DownloadDialog from './DownloadDialog/index.vue'
 import LogoCom from './LogoCom.vue'
 
@@ -20,6 +21,9 @@ const { resetHJSchemaJsonData } = useLegoJsonStoreHook()
 const { setUuid } = useRefreshStoreHook()
 const { resetSelectWidget } = useLegoSelectWidgetStoreHook()
 const { templateId, category } = useRoute().query
+
+// 当前ID
+const _id = ref<string>('')
 
 // 打开导出弹窗
 const dialogDownloadVisible = ref<boolean>(false)
@@ -51,12 +55,19 @@ async function generateReport(type: string) {
       clearInterval(timer)
     }
   }, 500)
-  if (type === 'pdf') {
-    // await exportLegoPdf(_id.value)
-  }
-  else {
-    // await exportLegoPNG(_id.value)
-  }
+  // if (type === 'pdf') {
+  //   await exportLegoPdf(_id.value)
+  // }
+  // else {
+  //   await exportLegoPNG(_id.value)
+  // }
+  router.push({
+    path: '/resume/printPdfPreview',
+    query: {
+      id: _id.value,
+      pType: type,
+    },
+  })
 
   clearInterval(timer)
   percentage.value = 100
@@ -94,7 +105,6 @@ async function handlePostWorkSuccess() {
 // 保存草稿
 const imgUrl = ref<string>('')
 const isCanSave = ref<boolean>(true)
-const _id = ref<string>('')
 const saveLoading = ref<boolean>(false)
 async function saveDraft() {
   if (isCanSave.value) {
@@ -154,7 +164,7 @@ onBeforeUnmount(async () => {
 
 // 监听路由离开
 onBeforeRouteLeave((to, from, next) => {
-  if (to.path === '/postWorkSuccess') {
+  if (to.path === '/postWorkSuccess' || to.path === '/resume/printPdfPreview') {
     next()
     return true
   }

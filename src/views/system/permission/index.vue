@@ -66,6 +66,9 @@ const {
       <template #plus-field-menuType="{ prop, options }:any">
         <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>
+      <template #plus-field-isRequireLogin="{ prop, options }:any">
+        <ElSegmented v-model="formModel[prop]" :options="options" />
+      </template>
       <template #plus-field-isHidden="{ prop, options }:any">
         <ElSegmented v-model="formModel[prop]" :options="options" />
       </template>

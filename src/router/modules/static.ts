@@ -77,3 +77,18 @@ export const errorRouter = [
     component: () => import('@/components/errorMessage/404.vue'),
   },
 ]
+
+export const resumePreviewRouter: RouteRecordRaw[] = [
+  {
+    path: '/resume/printPdfPreview',
+    name: 'ResumePrintPdfPreview',
+    component: () => import('@/views/sub/resume/legoDesigner/render/LegoPrintPdfPreview/index.vue'),
+    meta: {
+      title: '打印预览页',
+      isHide: true,
+      isKeepAlive: false,
+      isFull: true,
+      isRequireLogin: false,
+    },
+  },
+]

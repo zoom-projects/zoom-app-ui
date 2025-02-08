@@ -65,6 +65,10 @@ declare global {
        * @description 是否缓存
        */
       isKeepAlive: boolean
+      /**
+       * @description 是否需要登录
+       */
+      requireLogin: boolean
     }
   }
 

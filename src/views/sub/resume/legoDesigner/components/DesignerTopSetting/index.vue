@@ -7,7 +7,7 @@ import GlobalSeeting from '../GlobalSetting/index.vue'
 
 const emit = defineEmits(['addSize', 'reduceSize'])
 const number = ref<number>(100)
-const { HJSchemaJsonStore, draftTips } = useLegoJsonStoreHook()
+const { HJSchemaJsonStore, draftTips } = storeToRefs(useLegoJsonStoreHook())
 
 onMounted(() => {
   // 鼠标事件
@@ -27,8 +27,8 @@ onBeforeUnmount(() => {
 })
 
 // 鼠标按下事件
-const oldHJSchemaJsonStore = ref<any>(clone(HJSchemaJsonStore, true))
-const newHJSchemaJsonStore = ref<any>(clone(HJSchemaJsonStore, true))
+const oldHJSchemaJsonStore = ref<any>(clone(HJSchemaJsonStore.value, true))
+const newHJSchemaJsonStore = ref<any>(clone(HJSchemaJsonStore.value, true))
 function handleMousedown() {
   oldHJSchemaJsonStore.value = clone(HJSchemaJsonStore, true)
 }
@@ -39,7 +39,7 @@ function handleMouseup() {
   if (!isEqualJson) {
     handleCache(oldHJSchemaJsonStore.value)
   }
-  oldHJSchemaJsonStore.value = clone(HJSchemaJsonStore, true)
+  oldHJSchemaJsonStore.value = clone(HJSchemaJsonStore.value, true)
 }
 // 键盘按下
 function keydown(event: any) {
@@ -49,7 +49,7 @@ function keydown(event: any) {
   if (crtlZ || ctrlY) {
     return
   }
-  oldHJSchemaJsonStore.value = clone(HJSchemaJsonStore, true)
+  oldHJSchemaJsonStore.value = clone(HJSchemaJsonStore.value, true)
 }
 // 键盘松开
 function keyboard(event: any) {
@@ -59,7 +59,7 @@ function keyboard(event: any) {
   if (crtlZ || ctrlY) {
     return
   }
-  newHJSchemaJsonStore.value = clone(HJSchemaJsonStore, true)
+  newHJSchemaJsonStore.value = clone(HJSchemaJsonStore.value, true)
   const isEqualJson = isEqual(oldHJSchemaJsonStore.value, newHJSchemaJsonStore.value)
   if (!isEqualJson) {
     handleCache(oldHJSchemaJsonStore.value)
@@ -159,9 +159,6 @@ function blurTitle() {
       <div class="title-box">
         <p v-show="!isShowIpt">
           <span :title="HJSchemaJsonStore.config.title">{{ HJSchemaJsonStore.config.title }}</span>
-          <!-- <el-icon :size="20" color="#74a274" @click="changeTitle">
-            <Edit />
-          </el-icon> -->
           <ReIcon :size="20" color="#74a274" icon="i-ep:edit" @click="changeTitle" />
         </p>
         <el-input

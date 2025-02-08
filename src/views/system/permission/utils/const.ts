@@ -10,6 +10,16 @@ export const menuAffixDictKey = 'systemMenuAffix'
 export const menuFullScreenDictKey = 'systemMenuFullScreen'
 // 菜单状态 dict
 export const menuStatusDictKey = 'systemStatus'
+// 是否需要登陆 dict
+export const menuIsRequiredLoginDictKey = 'systemLogicType'
 
 // 字典keys
-export const dictKeys = [menuTypeDictKey, menuHiddenDictKey, menuKeepAliveDictKey, menuAffixDictKey, menuFullScreenDictKey, menuStatusDictKey]
+export const dictKeys = [
+  menuTypeDictKey,
+  menuHiddenDictKey,
+  menuKeepAliveDictKey,
+  menuAffixDictKey,
+  menuFullScreenDictKey,
+  menuStatusDictKey,
+  menuIsRequiredLoginDictKey,
+]

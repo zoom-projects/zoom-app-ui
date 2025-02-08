@@ -21,3 +21,12 @@ export function queryById(id: string) {
 export function saveDraft(data: ResumeTemplate.SaveDraftRequest) {
   return http.post<ResumeTemplate.ResResumeTemplate>(`${SERVER1}/resume/template/draft`, data)
 }
+
+/**
+ * 删除模板
+ * @param id 模板 ID
+ * @returns 删除结果
+ */
+export function deleteTemplate(id: string) {
+  return http.delete(`${SERVER1}/resume/template/${id}`)
+}

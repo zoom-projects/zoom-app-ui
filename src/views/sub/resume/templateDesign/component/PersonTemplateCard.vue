@@ -39,8 +39,7 @@ async function deleteUserResume() {
 }
 
 async function copyUserResume() {
-  ElMessage.success('复制成功')
-  emit('copyUserResume', props.cardData.id)
+  emit('copyUserResume', props.cardData)
 }
 </script>
 

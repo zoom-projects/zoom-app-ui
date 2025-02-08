@@ -3,7 +3,7 @@ import NProgress from '@/config/nprogress'
 import { useAuthStore, useUserStore } from '@/store'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { initDynamicRouter } from './modules/dynamicRouter'
-import { errorRouter, staticRouter } from './modules/static'
+import { errorRouter, resumePreviewRouter, staticRouter } from './modules/static'
 
 const mode = import.meta.env.VITE_ROUTER_MODE ?? 'history'
 
@@ -22,6 +22,7 @@ const routerMode = {
  * @param meta.icon ==> 菜单和面包屑对应的图标
  * @param meta.title ==> 路由标题 (用作 document.title || 菜单的名称)
  * @param meta.activeMenu ==> 当前路由为详情页时，需要高亮的菜单
+ * @param meta.isRequireLogin ==> 是否需要登陆
  * @param meta.isLink ==> 路由外链时填写的访问地址
  * @param meta.isHide ==> 是否在菜单中隐藏 (通常列表详情页需要隐藏)
  * @param meta.isFull ==> 菜单是否全屏 (示例：数据大屏页面)
@@ -30,7 +31,7 @@ const routerMode = {
  */
 const router = createRouter({
   history: routerMode[mode](),
-  routes: [...staticRouter, ...errorRouter],
+  routes: [...staticRouter, ...errorRouter, ...resumePreviewRouter],
   strict: false,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
@@ -59,20 +60,24 @@ router.beforeEach(async (to, from, next) => {
   // 4.判断访问页面是否在路由白名单地址(静态路由)中，如果存在直接放行
   if (ROUTER_WHITE_LIST.includes(to.path))
     return next()
+  // 5. 是否需要登陆，如果不需要登陆直接放行
+  if (!to.meta.isRequireLogin && to.meta.isRequireLogin !== undefined) {
+    return next()
+  }
 
-  // 5.判断是否有 Token，没有重定向到 login 页面
+  // 6.判断是否有 Token，没有重定向到 login 页面
   if (!userStore.token) {
     return next({ path: LOGIN_URL, replace: true })
   }
-  // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
+  // 7.如果没有菜单列表，就重新请求菜单列表并添加动态路由
   if (!authStore.authMenuList.length) {
     await initDynamicRouter()
     return next({ ...to, replace: true })
   }
-  // 7.存储 routerName 做按钮权限筛选
+  // 8.存储 routerName 做按钮权限筛选
   authStore.setRouteName(to.name as string)
 
-  // 8.正常访问页面
+  // 9.正常访问页面
   next()
 })
 
