@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { IWidget } from '../../types'
+import SvgIcon from '../../components/svgIcon/SvgIcon.vue'
 import { getImgListStyleImageFile } from './imageList'
 
 interface IAvatar {
@@ -15,7 +16,7 @@ withDefaults(defineProps<IAvatar>(), {
     <template v-if="!widgetData?.dataSource.imgUrl">
       <!-- 上传控件 -->
       <div class="upload-widget">
-        <svg-icon icon-name="icon-jiahao" color="#8e8e8e" size="16px" />
+        <SvgIcon icon-name="icon-jiahao" color="#8e8e8e" size="16px" />
         <p>自定义上传</p>
       </div>
     </template>

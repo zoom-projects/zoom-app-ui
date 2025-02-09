@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import * as resumeTemplateApi from '@/api/modules/resume/template'
+import Loading from '@/components/Loading/index.vue'
 import router from '@/router'
+import NoData from '../legoDesigner/components/NoData/index.vue'
 import SvgIcon from '../legoDesigner/components/svgIcon/SvgIcon.vue'
 import Category from './component/Category.vue'
 import LatestDesign from './component/LatestDesign.vue'
+import TemplateList from './component/TemplateList.vue'
 import CategoryData from './data/category.json'
+
 // 查询分类列表
 const categoryList = ref<any>([])
 async function getLegoTemplateCategoryList() {
@@ -96,6 +100,64 @@ async function copyUserResume(cardData: { id: string, category: string }) {
     },
   })
 }
+
+// 是否显示骨架
+const isShowSkeleton = ref<boolean>(true)
+// 查询模板列表
+const page = ref<number>(1)
+const limit = ref<number>(12)
+const total = ref<number>(0)
+const currentPage = ref<number>(1)
+const templateList = ref<any>([])
+async function getTemplateList() {
+  isShowSkeleton.value = true
+  const params = {
+    page: page.value,
+    size: limit.value,
+    category: category.value === '全部' ? '' : category.value,
+    sorts: 'created desc',
+    published: true,
+  }
+  const { success, data, msg } = await resumeTemplateApi.queryPublished(params)
+  if (success) {
+    templateList.value = data.records.map((item: any) => {
+      categoryList.value.forEach(
+        (categoryItem: { category_label: any, width: string, height: string }) => {
+          if (categoryItem.category_label === item.category) {
+            item.width = `${categoryItem.width}px`
+            item.height = `${categoryItem.height}px`
+          }
+        },
+      )
+      return item
+    })
+    total.value = data.total
+    currentPage.value = data.pageNum
+    isShowSkeleton.value = false
+  }
+  else {
+    ElMessage.error(msg)
+    isShowSkeleton.value = false
+  }
+}
+getTemplateList() // 获取模板列表
+
+// 改变页码时
+function handleCurrentChange(currentPage: number) {
+  page.value = currentPage
+  getTemplateList()
+}
+
+// 根据分类查询模板列表
+
+const sort = ref<string>()
+async function getTemplateListByCategory(item: any) {
+  category.value = item.category
+  sort.value = item.sort
+  page.value = 1
+  limit.value = 12
+  getTemplateList()
+}
 </script>
 
 <template>
@@ -122,7 +184,35 @@ async function copyUserResume(cardData: { id: string, category: string }) {
       <!-- 分类筛选 -->
       <Category
         :category-list="categoryList"
+        @get-template-list-by-cate="getTemplateListByCategory"
       />
+      <!-- 模板列表 -->
+      <TemplateList
+        v-if="templateList.length && !isShowSkeleton"
+        :template-list="templateList"
+        :lego-person-list="legoPersonList"
+        :category="category"
+        :category-list="categoryList"
+      />
+      <!-- 暂无数据 -->
+      <div v-if="!templateList.length && !isShowSkeleton" class="no-data-box">
+        <NoData />
+      </div>
+      <!-- 等待动画 -->
+      <div v-if="isShowSkeleton" class="no-data-box">
+        <Loading />
+      </div>
+      <!-- 分页组件 -->
+      <div class="pagination-box">
+        <ElPagination
+          v-if="templateList.length && !isShowSkeleton"
+          :current-page="currentPage"
+          :page-size="limit"
+          :total="total"
+          layout="prev, pager, next"
+          @current-change="handleCurrentChange"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -155,6 +245,12 @@ async function copyUserResume(cardData: { id: string, category: string }) {
     }
     .no-data-box {
       margin-top: 80px;
+    }
+    .pagination-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
     }
   }
 }

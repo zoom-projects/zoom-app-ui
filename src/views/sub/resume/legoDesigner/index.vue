@@ -40,6 +40,26 @@ async function getPersonLegoJson() {
 
 // 查询个人创作的模板数据--编辑模板
 const postWorkInfo = ref<any>(null)
+async function getLegoUserTemplateByIdAndJsonId() {
+  // const params = {
+  //   id,
+  //   jsonId,
+  // }
+  // const data = await getLegoUserTemplateByIdAndJsonIdAsync(params)
+  // if (data.data.status === 200) {
+  //   postWorkInfo.value = {
+  //     _id: data.data.data._id,
+  //     category: data.data.data.category,
+  //     how_much: data.data.data.how_much,
+  //     previewUrl: data.data.data.previewUrl,
+  //     title: data.data.data.title,
+  //   }
+  //   changeHJSchemaJsonData(data.data.data.lego_json)
+  // }
+  // else {
+  //   ElMessage.error(data.data.message)
+  // }
+}
 
 // 查询模板数据
 const templateInfo = ref<any>(null) // 模板的其他相关信息
@@ -64,10 +84,10 @@ if (templateId) {
   // 查找模板数据
   getTemplate()
 }
-// else if (id && jsonId) {
-//   // 编辑模板
-//   getLegoUserTemplateByIdAndJsonId()
-// }
+else if (id && jsonId) {
+  // 编辑模板
+  getLegoUserTemplateByIdAndJsonId()
+}
 else if (id) {
   // 查询用户个人模板数据
   getPersonLegoJson()

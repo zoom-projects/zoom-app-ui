@@ -6,9 +6,9 @@ import PreviewImage from '../render/PreviewImage/index.vue'
 import RenderPage from '../render/RenderPage.vue'
 import { useLegoJsonStoreHook, useLegoSelectWidgetStoreHook, useRefreshStoreHook } from '../store/lego'
 import { getImgBase64URL } from '../utils/html2img'
-import { exportLegoPdf, exportLegoPNG } from '../utils/pdf'
 import DownloadDialog from './DownloadDialog/index.vue'
 import LogoCom from './LogoCom.vue'
+import PostWorkDialog from './PostWorkDialog/index.vue'
 
 const props = defineProps<{
   pagesRefs: any
@@ -116,6 +116,7 @@ async function saveDraft() {
       cover: imgUrl.value,
       category: category as string,
       legoJson: HJSchemaJsonStore.value,
+      jsonId: HJSchemaJsonStore.value.id,
     }
     const { success, data } = await resumeTemplateApi.saveDraft(params)
     if (success) {
@@ -238,7 +239,7 @@ onBeforeRouteLeave((to, from, next) => {
         </div>
       </ElTooltip>
       <ElTooltip effect="dark" content="发布为模板供他人使用" placement="bottom">
-        <div class="icon-box icon-download">
+        <div class="icon-box icon-download" @click="publishTemplate">
           <ReIcon icon="iconify-ri:send-plane-line" color="#555" size="17px" />
           <span class="icon-tips">发布</span>
         </div>
@@ -255,6 +256,14 @@ onBeforeRouteLeave((to, from, next) => {
     <PreviewImage v-show="dialogPreviewVisible" @close="closePreview">
       <RenderPage />
     </PreviewImage>
+
+    <!-- 发布作品弹窗 -->
+    <PostWorkDialog
+      :dialog-post-work-visible="dialogPostWorkVisible"
+      :post-work-info="postWorkInfo"
+      @cancle="canclePostWork"
+      @update-success="handlePostWorkSuccess"
+    />
   </div>
 </template>
 

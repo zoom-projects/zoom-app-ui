@@ -1,64 +1,20 @@
 <script lang="ts" setup>
-// import type { UploadProps } from 'element-plus'
-// import CONFIG from '@/config'
-// import appStore from '@/store'
-// import useSelectWidgetItem from '../../hooks/useSelectWidgetItem'
-// import { getImgListStyleImageFile } from '../../widgets/image/imageList'
+import useSelectWidgetItem from '../../hooks/useSelectWidgetItem'
 
-// const props = defineProps<{
-//   id: string
-//   pageIndex: number
-// }>()
+const props = defineProps<{
+  id: string
+  pageIndex: number
+}>()
 
-// // 选中的widgetItem
-// const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex)
-
-// // 上传文件地址
-// function uploadAddress() {
-//   return `${CONFIG.serverAddress}/huajian/upload/file/legoImages`
-// }
-
-// // 文件上传成功
-// const handleAvatarSuccess: UploadProps['onSuccess'] = async (response: {
-//   data: { data: { fileUrl: string } }
-// }) => {
-//   widgetItem.dataSource.imgUrl = response.data.data.fileUrl
-// }
-
-// const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-//   if (rawFile.size / 1024 / 1024 > 5) {
-//     ElMessage.error('图片不能大于5M')
-//     return false
-//   }
-//   return true
-// }
+// 选中的widgetItem
+const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex)
 </script>
 
 <template>
   <div class="avatar-editor">
-    <!-- <el-form-item label="图片上传:">
-      <el-upload
-        class="hj-img-uploader"
-        :action="uploadAddress()"
-        :headers="{ Authorization: appStore.useTokenStore.token }"
-        :show-file-list="false"
-        :on-success="handleAvatarSuccess"
-        :before-upload="beforeAvatarUpload"
-        accept=".jpg,.jpeg,.png,.gif,.JPG,.JPEG,.PNG,.GIF"
-      >
-        <img
-          v-if="widgetItem.dataSource.imgUrl"
-          :src="getImgListStyleImageFile(widgetItem.dataSource.imgUrl)"
-          class="avatar"
-        >
-        <el-icon v-else class="avatar-uploader-icon">
-          <Plus />
-        </el-icon>
-      </el-upload>
-      <p class="tips">
-        图片大小不能超过5M，仅支持（jpg、jpeg、png、gif）格式
-      </p>
-    </el-form-item> -->
+    <ElFormItem label="文件上传：">
+      <UploadImg v-model="widgetItem!.dataSource.imgUrl" />
+    </ElFormItem>
   </div>
 </template>
 

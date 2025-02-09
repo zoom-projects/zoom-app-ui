@@ -13,29 +13,8 @@ const props = withDefaults(defineProps<IAvatar>(), {
   widgetData: null,
 })
 
-// widgetItem
-const { widgetItem } = useGetWidgetItemById(props.widgetData?.id as string)
-
-// 上传文件地址
-function uploadAddress() {
-  // return `${CONFIG.serverAddress}/huajian/upload/file/legoImages`
-}
-
 // 文件上传成功
 const imageRef = ref<any>(null)
-const handleAvatarSuccess: UploadProps['onSuccess'] = async (response: {
-  data: { data: { fileUrl: string } }
-}) => {
-  widgetItem.dataSource.imgUrl = response.data.data.fileUrl
-}
-
-const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-  if (rawFile.size / 1024 / 1024 > 5) {
-    ElMessage.error('图片不能大于5M')
-    return false
-  }
-  return true
-}
 </script>
 
 <template>
@@ -43,23 +22,7 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
     <template v-if="!widgetData?.dataSource.imgUrl">
       <!-- 上传控件 -->
       <div class="upload-widget">
-        <!-- <ElUpload
-          class="avatar-uploader"
-          :action="uploadAddress()"
-          :headers="{ Authorization: appStore.useTokenStore.token }"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
-        >
-          <img
-            v-if="widgetData?.dataSource.imgUrl"
-            :src="widgetData?.dataSource.imgUrl"
-            class="avatar"
-          >
-          <el-icon v-else class="avatar-uploader-icon">
-            <Plus />
-          </el-icon>
-        </ElUpload> -->
+        <UploadImg v-model="widgetData!.dataSource.imgUrl" />
       </div>
     </template>
     <template v-else>

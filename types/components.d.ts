@@ -135,6 +135,7 @@ declare module 'vue' {
     PlusSearch: typeof import('plus-pro-components/es')['PlusSearch']
     PlusSelect: typeof import('plus-pro-components/es')['PlusSelect']
     PlusTable: typeof import('plus-pro-components/es')['PlusTable']
+    PostWorkDialog: typeof import('./../src/views/sub/resume/legoDesigner/components/PostWorkDialog/index.vue')['default']
     Preferences: typeof import('./../src/layouts/components/UserInfo/components/Preferences.vue')['default']
     PreviewHtml: typeof import('./../src/views/sub/resume/legoDesigner/render/LegoPrintPdfPreview/components/PreviewHtml.vue')['default']
     Profile: typeof import('./../src/layouts/components/UserInfo/components/Profile.vue')['default']

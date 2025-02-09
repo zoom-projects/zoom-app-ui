@@ -11,7 +11,7 @@ export function queryPublished(query?: ResumeTemplate.ReqQuery) {
   if (query) {
     query.published = true
   }
-  return http.get<ResumeTemplate.ResResumeTemplate[]>(`${SERVER1}/resume/template/published`, query)
+  return http.get<ResPage<ResumeTemplate.ResResumeTemplate[]>>(`${SERVER1}/resume/template/published`, query)
 }
 
 export function queryById(id: string) {

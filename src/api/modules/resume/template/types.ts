@@ -8,6 +8,8 @@ export namespace ResumeTemplate{
 
   export interface SaveDraftRequest {
     category: string
+    jsonId: string
+    templateId?: string
     legoJson: any
     cover: string
   }
@@ -24,6 +26,14 @@ export namespace ResumeTemplate{
      * 类别
      */
     category: string
+    /**
+     * jsonId
+     */
+    jsonId: string
+    /**
+     * 模板ID
+     */
+    templateId: string
     /**
      * 内容
      */
