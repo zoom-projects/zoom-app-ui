@@ -14,15 +14,15 @@
     "icon:svg": "esno ./scripts/icon-svg.ts"
   },
   "dependencies": {
-    "@vueuse/core": "^12.5.0",
+    "@vueuse/core": "^12.6.1",
     "@vueuse/motion": "^2.2.6",
     "animate.css": "^4.1.1",
     "axios": "^1.7.9",
     "codemirror": "^5.65.18",
     "codemirror-editor-vue3": "^2.8.0",
     "dayjs": "^1.11.13",
-    "element-plus": "^2.9.3",
-    "html-to-image": "^1.11.11",
+    "element-plus": "^2.9.4",
+    "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
     "lodash-es": "^4.17.21",
@@ -40,24 +40,24 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.16.0",
-    "@iconify/json": "^2.2.303",
+    "@iconify/json": "^2.2.306",
     "@iconify/vue": "^4.3.0",
     "@plus-pro-components/resolver": "^0.0.3",
     "@tinymce/tinymce-vue": "^6.1.0",
     "@types/codemirror": "^5.60.15",
-    "@types/node": "^22.13.1",
+    "@types/node": "^22.13.4",
     "@types/nprogress": "^0.2.3",
     "@types/qs": "^6.9.18",
     "@unocss/eslint-plugin": "^0.65.4",
     "@unocss/reset": "^0.65.4",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.1",
     "eslint-plugin-format": "^1.0.1",
     "esno": "^4.8.0",
     "inquirer": "^12.4.1",
     "mitt": "^3.0.1",
-    "sass": "^1.84.0",
+    "sass": "^1.85.0",
     "typescript": "^5.7.3",
     "unocss": "^0.65.4",
     "unplugin-auto-import": "^19.0.0",
@@ -72,7 +72,7 @@
     "vue-tsc": "^2.2.0"
   },
   "volta": {
-    "node": "20.18.2",
+    "node": "20.18.3",
     "pnpm": "9.15.5"
   }
 }
