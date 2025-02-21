@@ -89,7 +89,7 @@ function copyUserResume(id: string) {
   height: 70px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid var(--el-header-border-color);
   // margin-top: 20px;
   h1 {
     color: #0d1216;
