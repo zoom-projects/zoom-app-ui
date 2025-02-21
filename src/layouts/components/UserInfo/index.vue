@@ -9,7 +9,9 @@ import Preferences from './components/Preferences.vue'
 import Profile from './components/Profile.vue'
 
 const { userInfo, activeUserInfoPanel, setActiveUserInfoPanel } = useUserStore()
-const { unreadCount } = useGlobalStore()
+// const { unreadCount } = useGlobalStore()
+const globalStore = useGlobalStore()
+const unreadCount = ref(globalStore.unreadCount)
 const router = useRouter()
 const panes = [
   {
@@ -57,6 +59,12 @@ watchEffect(() => {
 
 watchEffect(() => {
   witchPane.value = activeUserInfoPanel
+})
+
+watch(() => globalStore.unreadCount, (val) => {
+  unreadCount.value = val
+}, {
+  immediate: true,
 })
 </script>
 

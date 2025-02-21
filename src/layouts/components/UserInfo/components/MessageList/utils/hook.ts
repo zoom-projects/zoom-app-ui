@@ -1,11 +1,12 @@
 import type { PageInfo, PlusColumn, PlusPageInstance } from 'plus-pro-components'
 import * as noticeMessageApi from '@/api/modules/auth'
-import { useDictStore } from '@/store'
+import { useDictStore, useGlobalStore } from '@/store'
 import { clone } from '@/utils'
 import { dictKeys, readStatusDictKey } from './const'
 
 export function useMessageListHook() {
   const { loadDict, getDict, toOptions } = useDictStore()
+  const { setGlobalState } = useGlobalStore()
 
   const plusPageRef = ref<Nullable<PlusPageInstance>>(null)
   const readingVisible = ref(false)
@@ -34,9 +35,15 @@ export function useMessageListHook() {
             cursor: 'pointer',
             transition: 'color 0.3s',
           },
-          onClick: () => {
+          onClick: async () => {
             readingData.value = row
             readingVisible.value = true
+            // 发送已读请求
+            await noticeMessageApi.readNoticeMsg(row.id)
+            // 更新未读消息数量
+            await queryCountUnreadMessage()
+            // loadData
+            await plusPageRef.value?.getList()
           },
         }, row.title)
       },
@@ -86,6 +93,13 @@ export function useMessageListHook() {
     return {
       data: [],
       total: 0,
+    }
+  }
+
+  async function queryCountUnreadMessage() {
+    const { success, data } = await noticeMessageApi.getNoticeMsgCount(true)
+    if (success) {
+      setGlobalState('unreadCount', data)
     }
   }
 

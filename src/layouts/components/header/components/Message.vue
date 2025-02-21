@@ -156,6 +156,9 @@ async function handleMore() {
 .message-list {
   display: flex;
   flex-direction: column;
+  // 高度
+  max-height: 200px;
+  overflow-y: auto;
   .message-item {
     display: flex;
     align-items: center;

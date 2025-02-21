@@ -214,6 +214,7 @@ export function useGorokuInfo() {
     if (success) {
       ElMessage.success('操作成功')
       formAuditVisible.value = false
+      plusDialogFormRef.value?.formInstance?.clearValidate()
       formAuditModel.value = {}
       plusPageRef.value?.getList()
     }
