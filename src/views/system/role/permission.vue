@@ -78,7 +78,12 @@ function handleClose() {
 }
 
 async function handleSave() {
+  // 半选+已选择
+  const ids = []
   const checkedKeys = treeRef.value?.getCheckedKeys() as string[]
+  const halfCheckedKeys = treeRef.value?.getHalfCheckedKeys() as string[]
+  ids.push(...checkedKeys)
+  ids.push(...halfCheckedKeys)
   treeLoading.value = true
   const { success } = await roleApi.savePerms(modelValue.value.id, checkedKeys).finally(() => {
     treeLoading.value = false
