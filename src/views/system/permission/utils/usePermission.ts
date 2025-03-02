@@ -23,7 +23,7 @@ export function usePermission() {
     sort: 99,
     isRequireLogin: true,
     isHidden: false,
-    isKeepAlive: true,
+    isKeepAlive: false,
     isAffix: false,
     isFullScreen: false,
     status: true,
@@ -125,6 +125,7 @@ export function usePermission() {
         span: 12,
       },
       options: computed(() => toOptions(menuIsRequiredLoginDictKey)),
+      hideInForm: computed(() => formModel.value.menuType === 3),
     },
     {
       label: '是否隐藏',
