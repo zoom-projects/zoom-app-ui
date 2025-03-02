@@ -93,7 +93,7 @@ function onBack() {
           :loading="loading"
           @click="formSubmit"
         >
-          登录
+          注册/登录
         </ElButton>
       </ElFormItem>
     </Motion>
