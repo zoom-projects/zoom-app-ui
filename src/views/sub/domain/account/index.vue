@@ -130,7 +130,7 @@ const {
 .cards-box {
   margin: 16px 0;
   padding: 16px;
-  background-color: var(--el-fill-color-blank);
+  background-color: var(--el-bg-color-overlay);
   height: calc(100vh - 300px);
   overflow: auto;
   .cards-container {
@@ -176,7 +176,7 @@ const {
     }
   }
 }
-.card-aliyun {
+.card-aliyun,.card-cf {
   :deep(.el-tag) {
     background-color: #ff6a00;
     color: #fff;

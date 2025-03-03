@@ -2,7 +2,7 @@ import type { DomainAccount } from '/src/api/modules/domain/account/types'
 import type { FormRules } from 'element-plus'
 import type { PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
 import * as domainAccountApi from '@/api/modules/domain/account'
-import { refresh as domainAccountRefresh } from '@/api/modules/domain/info'
+import { refresh as domainAccountRefreshApi, domainsByAccountId as domainsByAccountIdApi } from '@/api/modules/domain/info'
 import { useDictStore } from '@/store'
 import { ElImage, ElSpace } from 'element-plus'
 import { dictKeys, domainPlatformDictKey } from './const'
@@ -49,6 +49,7 @@ export function useDomainAccountHook() {
   const dialogFormRef = ref<Nullable<PlusDialogFormInstance>>(null)
   const dialogVisible = ref<boolean>(false)
   const dialogLoading = ref<boolean>(false)
+  const dialogFormModel = ref<any>({})
   const dialogFormColumns: PlusColumn[] = [
     {
       label: '选择平台',
@@ -142,7 +143,7 @@ export function useDomainAccountHook() {
       prop: 'remark',
     },
   ]
-  const dialogFormModel = ref<any>({})
+
   const aliyunRules: FormRules = {
     label: [
       { required: true, message: '请输入标签', trigger: 'blur' },
@@ -304,14 +305,29 @@ export function useDomainAccountHook() {
   }
 
   async function handleDelete(row: DomainAccount.ResAccount) {
-    const { success } = await domainAccountApi.remove(row.id)
-    if (success) {
+    const { success, data } = await domainsByAccountIdApi(row.id)
+    if (success && data.length > 0) {
+      const vnodes: any = []
+      data.forEach((item) => {
+        vnodes.push(h('div', null, item))
+      })
+      ElNotification.warning({
+        title: '删除失败',
+        message: h('div', null, [
+          h('p', null, '账号下存在域名，无法删除'),
+        ].concat(vnodes)),
+        duration: 2000,
+      })
+      return
+    }
+    const res = await domainAccountApi.remove(row.id)
+    if (res.success) {
       handleSearch()
     }
   }
 
   async function handlePull(row: DomainAccount.ResAccount) {
-    domainAccountRefresh(row.id)
+    domainAccountRefreshApi(row.id)
     ElMessage.success('请求已发送，请稍后刷新列表')
   }
 

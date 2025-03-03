@@ -135,3 +135,42 @@ export function buildShortUUID(prefix = '') {
   })
   return prefix + uuid
 }
+
+// ===== copyText 函数 =====
+export function copyText(text: string) {
+  return new Promise((resolve, reject) => {
+    // 是否支持 clipboard
+    if (!navigator.clipboard) {
+      // 兼容处理
+      const input = document.createElement('input')
+      input.setAttribute('value', text)
+      document.body.appendChild(input)
+      input.select()
+      if (document.execCommand('copy')) {
+        document.execCommand('copy')
+        document.body.removeChild(input)
+        resolve(true)
+      }
+      else {
+        document.body.removeChild(input)
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject('复制失败')
+      }
+    }
+    else {
+      navigator.clipboard.writeText(text).then(() => {
+        resolve(true)
+      }, () => {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject('复制失败')
+      })
+    }
+  })
+}
+
+/**
+ * @description 跳转link
+ */
+export function openLink(link: string) {
+  window.open(link, '_blank')
+}

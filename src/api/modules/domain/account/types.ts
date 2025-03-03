@@ -29,6 +29,10 @@ export namespace DomainAccount{
      */
     password: string
     /**
+     * 邮箱
+     */
+    email?: string
+    /**
      * 创建者
      */
     createdBy: string
