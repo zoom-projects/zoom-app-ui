@@ -40,6 +40,16 @@ export function list(query?: DomainInfo.ReqQuery) {
 }
 
 /**
+ * 域名是否存在
+ *
+ * @param domain .
+ * @returns .
+ */
+export function domainExist(domain: string) {
+  return http.get<boolean>(`${SERVER1}/domain/list/exist/${domain}`)
+}
+
+/**
  *  创建
  * @param data .
  * @returns .
@@ -54,7 +64,7 @@ export function create(data: DomainInfo.ReqCreateDomainForm) {
  * @returns
  */
 export function remove(id: string) {
-  return http.delete(`${SERVER1}/domain/list/remove/${id}`)
+  return http.delete(`${SERVER1}/domain/list/delete/${id}`)
 }
 
 /**

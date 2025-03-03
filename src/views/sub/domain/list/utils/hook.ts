@@ -1,5 +1,6 @@
 import type { DomainAccount } from '@/api/modules/domain/account/types'
 import type { DomainInfo } from '@/api/modules/domain/info/types'
+import type { FormRules } from 'element-plus'
 import type { PageInfo, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
 import { list as domainAccountListApi } from '@/api/modules/domain/account'
 import * as domainInfoApi from '@/api/modules/domain/info'
@@ -102,6 +103,63 @@ export function useDomainInfoHook() {
     },
   ]
 
+  const dialogDomainRef = ref<Nullable<PlusDialogFormInstance>>(null)
+  const dialogDomainVisible = ref(false)
+  const dialogDomainLoading = ref(false)
+  const dialogDomainModel = ref<any>({})
+  const dialogDomainColumns: PlusColumn[] = [
+    {
+      label: '主域名',
+      prop: 'domain',
+      fieldProps: {
+        placeholder: '请输入主域名 如: example.com',
+      },
+    },
+    {
+      label: '平台账号',
+      prop: 'accountId',
+      valueType: 'select',
+      options: computed((): any => {
+        return domainAccountList.value?.map((item) => {
+          const dictItem = getDict(domainPlatformDictKey, item.platform)
+          return {
+            label: `${dictItem.label} - ${item.label}`,
+            value: item.id,
+          }
+        })
+      }),
+    },
+  ]
+  const dialogDomainRules: FormRules = {
+    domain: [
+      { required: true, message: '请输入域名', trigger: 'blur' },
+      {
+        // 主域名格式
+        validator: (_: any, value: string) => {
+          // 顶级域名
+          const reg = /^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]\.[a-z]{2,}$/i
+          return reg.test(value)
+        },
+        message: '请输入正确的域名',
+        trigger: 'blur',
+      },
+      {
+        validator: (_: any, value: string, callback) => {
+          domainInfoApi.domainExist(value).then(({ success, data }) => {
+            if (success && data) {
+              callback(new Error('域名已存在'))
+            }
+            else {
+              callback()
+            }
+          })
+        },
+        trigger: 'blur',
+      },
+    ],
+    cloud: [{ required: true, message: '请选择平台', trigger: 'change' }],
+  }
+
   const onLoad = async () => {
     const params: DomainInfo.ReqQuery = {
       ...searchModel.value,
@@ -155,6 +213,31 @@ export function useDomainInfoHook() {
     }
   }
 
+  async function handleOpenDomainDialog() {
+    dialogDomainModel.value = {}
+    dialogDomainVisible.value = true
+  }
+
+  async function handleDomainSave() {
+    dialogDomainLoading.value = true
+    const { success } = await domainInfoApi.create(dialogDomainModel.value).finally(() => {
+      dialogDomainLoading.value = false
+    })
+    if (success) {
+      ElMessage.success('创建成功')
+      dialogDomainVisible.value = false
+      onLoad()
+    }
+  }
+
+  async function handleRemove(row: DomainInfo.ResDomain) {
+    const { success } = await domainInfoApi.remove(row.id)
+    if (success) {
+      ElMessage.success('删除成功')
+      onLoad()
+    }
+  }
+
   onMounted(() => {
     loadDict(dictKeys)
     _loadAccountList()
@@ -181,5 +264,16 @@ export function useDomainInfoHook() {
     dialogExpireTimeColumns,
     openExpireTimeDialog,
     handleExpireTimeSave,
+
+    dialogDomainRef,
+    dialogDomainVisible,
+    dialogDomainLoading,
+    dialogDomainModel,
+    dialogDomainColumns,
+    dialogDomainRules,
+    handleOpenDomainDialog,
+    handleDomainSave,
+    handleRemove,
+
   }
 }

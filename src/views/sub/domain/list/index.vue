@@ -25,6 +25,17 @@ const {
   dialogExpireTimeColumns,
   openExpireTimeDialog,
   handleExpireTimeSave,
+
+  dialogDomainRef,
+  dialogDomainVisible,
+  dialogDomainLoading,
+  dialogDomainModel,
+  dialogDomainColumns,
+  dialogDomainRules,
+  handleOpenDomainDialog,
+  handleDomainSave,
+  handleRemove,
+
 } = useDomainInfoHook()
 </script>
 
@@ -41,7 +52,7 @@ const {
 
     <div class="cards-box">
       <div class="mb-2 flex justify-end">
-        <ElButton type="primary">
+        <ElButton type="primary" @click.stop="handleOpenDomainDialog()">
           绑定域名
         </ElButton>
       </div>
@@ -98,7 +109,12 @@ const {
             </div>
           </div>
           <template #footer>
-            <ElPopconfirm title="确定删除吗？" confirm-button-text="确定" cancel-button-text="取消">
+            <ElPopconfirm
+              title="确定删除吗？"
+              confirm-button-text="确定"
+              cancel-button-text="取消"
+              @confirm="handleRemove(item)"
+            >
               <template #reference>
                 <ElButton :icon="useRenderIcon({ icon: 'i-ep:delete' })" circle />
               </template>
@@ -143,6 +159,24 @@ const {
         loading: dialogExpireTimeLoading,
       }"
       @confirm="handleExpireTimeSave()"
+    />
+
+    <PlusDialogForm
+      ref="dialogDomainRef"
+      v-model="dialogDomainModel"
+      v-model:visible="dialogDomainVisible"
+      :form="{
+        labelWidth: '100px',
+        columns: dialogDomainColumns,
+        rules: dialogDomainRules,
+      }"
+      :dialog="{
+        title: '绑定域名',
+        width: '30%',
+        confirmLoading: dialogDomainLoading,
+        loading: dialogDomainLoading,
+      }"
+      @confirm="handleDomainSave()"
     />
   </div>
 </template>
