@@ -238,6 +238,14 @@ export function useDomainInfoHook() {
     }
   }
 
+  const recordVisible = ref(false)
+  const currentDomainInfo = ref<Nullable<DomainInfo.ResDomain>>(null)
+
+  async function openRecordDialog(row: DomainInfo.ResDomain) {
+    currentDomainInfo.value = row
+    recordVisible.value = true
+  }
+
   onMounted(() => {
     loadDict(dictKeys)
     _loadAccountList()
@@ -274,6 +282,10 @@ export function useDomainInfoHook() {
     handleOpenDomainDialog,
     handleDomainSave,
     handleRemove,
+
+    recordVisible,
+    currentDomainInfo,
+    openRecordDialog
 
   }
 }

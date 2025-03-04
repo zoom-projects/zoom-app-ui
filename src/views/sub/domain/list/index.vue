@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRenderIcon } from '@/components/ReIcon/hook'
 import { openLink } from '@/utils'
+import Record from './record.vue'
 import { useDomainInfoHook } from './utils/hook'
 
 const {
@@ -36,6 +37,9 @@ const {
   handleDomainSave,
   handleRemove,
 
+  recordVisible,
+  currentDomainInfo,
+  openRecordDialog,
 } = useDomainInfoHook()
 </script>
 
@@ -65,6 +69,7 @@ const {
           shadow="hover"
           hoverable
           :bordered="true"
+          @click="openRecordDialog(item)"
         >
           <template #header>
             <div class="flex items-center justify-between gap-10">
@@ -126,7 +131,11 @@ const {
               <ElButton :icon="useRenderIcon({ icon: 'i-ep:monitor' })" circle />
             </ElTooltip>
             <ElTooltip content="查看解析记录">
-              <ElButton :icon="useRenderIcon({ icon: 'iconify-ri:list-check' })" circle />
+              <ElButton
+                :icon="useRenderIcon({ icon: 'iconify-ri:list-check' })"
+                circle
+                @click.stop="openRecordDialog(item)"
+              />
             </ElTooltip>
           </template>
         </ElCard>
@@ -178,6 +187,8 @@ const {
       }"
       @confirm="handleDomainSave()"
     />
+
+    <Record v-model:visible="recordVisible" :domain-obj="currentDomainInfo" />
   </div>
 </template>
 
