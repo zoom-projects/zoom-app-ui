@@ -106,7 +106,7 @@ const {
         </ElSpace>
       </ElSpace>
       <ElSpace :size="12">
-        <ElButton :icon="Refresh" />
+        <ElButton :icon="Refresh" @click="searchChange()" />
         <ElButton :icon="Close" type="primary" @click="() => visible = false" />
       </ElSpace>
     </div>
@@ -123,7 +123,7 @@ const {
         onFormChange: handleFormChange,
         actionBar: {
           buttons: actionButtions,
-          type: 'button',
+          type: 'icon',
           confirmType: 'popconfirm',
         },
       }"

@@ -9,7 +9,7 @@ import * as domainRecordApi from '@/api/modules/domain/record'
 import ReIcon from '@/components/ReIcon/index.vue'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'
-import { Delete, Edit } from '@element-plus/icons-vue'
+import { Delete, Edit, Monitor } from '@element-plus/icons-vue'
 import { dictKeys, domainPlatformDictKey, domainRecordTypeDictKey } from './const'
 
 export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
@@ -330,20 +330,51 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
   }
   const actionButtions: ActionBarButtonsRow[] = [
     {
-      text: '编辑',
+      text: '',
+      icon: Edit,
       props: {
         type: 'primary',
         icon: Edit,
+        circle: true,
+      },
+      tooltipProps: {
+        content: '编辑',
       },
       onClick: ({ row }) => {
         handleOpenDialogForm(row)
       },
     },
     {
-      text: '删除',
+      text: '',
+      icon: h(ReIcon, { icon: 'svg-icon:verified-outlined' }),
       props: {
-        type: 'danger',
-        icon: Delete,
+        icon: h(ReIcon, { icon: 'svg-icon:verified-outlined' }),
+        circle: true,
+      },
+
+      tooltipProps: {
+        content: '申请证书',
+      },
+      onClick: async ({ row }) => {
+      },
+    },
+    {
+      text: '',
+      icon: Monitor,
+      props: {
+        icon: Monitor,
+        circle: true,
+      },
+      tooltipProps: {
+        content: '证书监控',
+      },
+    },
+    {
+      text: '',
+      icon: Delete,
+      props: { },
+      tooltipProps: {
+        content: '删除',
       },
       confirm: {
         message: '确认删除吗？',

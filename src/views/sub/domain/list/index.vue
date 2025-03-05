@@ -69,7 +69,7 @@ const {
           shadow="hover"
           hoverable
           :bordered="true"
-          @click="openRecordDialog(item)"
+          @click.stop="openRecordDialog(item)"
         >
           <template #header>
             <div class="flex items-center justify-between gap-10">
@@ -121,7 +121,7 @@ const {
               @confirm="handleRemove(item)"
             >
               <template #reference>
-                <ElButton :icon="useRenderIcon({ icon: 'i-ep:delete' })" circle />
+                <ElButton :icon="useRenderIcon({ icon: 'i-ep:delete' })" circle @click.stop />
               </template>
             </ElPopconfirm>
             <ElTooltip content="申请证书">
