@@ -76,3 +76,13 @@ export function remove(id: string) {
 export function changeExpireTime(id: string, data: DomainInfo.ReqChangeExpireTime) {
   return http.put(`${SERVER1}/domain/list/expire/${id}`, data)
 }
+
+/**
+ * 修改监控状态
+ * @param id .
+ * @param data .
+ * @returns .
+ */
+export function changeMonitor(id: string, data: DomainInfo.ReqChangeMonitor) {
+  return http.put(`${SERVER1}/domain/list/monitor/${id}`, data)
+}

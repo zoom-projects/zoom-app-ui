@@ -61,6 +61,37 @@ export function useDomainInfoHook() {
         })
       }),
     },
+    {
+      label: '过期时间',
+      prop: 'expireDaysMin',
+      valueType: 'select',
+      options: [
+        {
+          label: '3天内',
+          value: 3,
+        },
+        {
+          label: '7天内',
+          value: 7,
+        },
+        {
+          label: '15天内',
+          value: 15,
+        },
+        {
+          label: '30天内',
+          value: 30,
+        },
+        {
+          label: '90天内',
+          value: 90,
+        },
+        {
+          label: '已过期',
+          value: 0,
+        },
+      ],
+    },
   ]
 
   const pageRef = ref<Nullable<PlusPageInstance>>(null)
@@ -69,6 +100,7 @@ export function useDomainInfoHook() {
     pageSize: 6,
   })
   const pageTotal = ref(0)
+  const pageLoading = ref(false)
 
   const dataList = ref<Nullable<DomainInfo.ResDomain[]>>(null)
 
@@ -161,12 +193,13 @@ export function useDomainInfoHook() {
   }
 
   const onLoad = async () => {
+    pageLoading.value = true
     const params: DomainInfo.ReqQuery = {
       ...searchModel.value,
       size: pagination.value.pageSize,
       current: pagination.value.page,
     }
-    const { success, data } = await domainInfoApi.page(params)
+    const { success, data } = await domainInfoApi.page(params).finally(() => pageLoading.value = false)
     if (success) {
       dataList.value = data.records
       pageTotal.value = data.total
@@ -246,6 +279,59 @@ export function useDomainInfoHook() {
     recordVisible.value = true
   }
 
+  const dialogMonitorRef = ref<Nullable<PlusDialogFormInstance>>(null)
+  const dialogMonitorVisible = ref(false)
+  const dialogMonitorLoading = ref(false)
+  const dialogMonitorModel = ref<any>({})
+  const dialogMonitorColumns: PlusColumn[] = [
+    {
+      label: '当前域名',
+      prop: 'domain',
+      renderField: (value) => {
+        return h('span', {
+          style: {
+            color: 'var(--el-color-primary)',
+          },
+        }, value as string)
+      },
+    },
+    {
+      label: '监控状态',
+      prop: 'isMonitor',
+      valueType: 'switch',
+      options: [
+        { label: '开启', value: true },
+        { label: '关闭', value: false },
+      ],
+    },
+    {
+      label: '提醒状态',
+      prop: 'isRemind',
+      valueType: 'switch',
+      options: [
+        { label: '开启', value: true },
+        { label: '关闭', value: false },
+      ],
+    },
+  ]
+
+  async function openMonitorDialog(row: DomainInfo.ResDomain) {
+    dialogMonitorModel.value = { ...row }
+    dialogMonitorVisible.value = true
+  }
+
+  async function handleMonitorSave() {
+    dialogMonitorLoading.value = true
+    const { success } = await domainInfoApi.changeMonitor(dialogMonitorModel.value.id, dialogMonitorModel.value).finally(() => {
+      dialogMonitorLoading.value = false
+    })
+    if (success) {
+      ElMessage.success('修改成功')
+      dialogMonitorVisible.value = false
+      onLoad()
+    }
+  }
+
   onMounted(() => {
     loadDict(dictKeys)
     _loadAccountList()
@@ -261,6 +347,7 @@ export function useDomainInfoHook() {
     handleCopy,
     pageRef,
     pagination,
+    pageLoading,
     pageTotal,
     handleChangePage,
     dataList,
@@ -285,7 +372,15 @@ export function useDomainInfoHook() {
 
     recordVisible,
     currentDomainInfo,
-    openRecordDialog
+    openRecordDialog,
+
+    dialogMonitorRef,
+    dialogMonitorVisible,
+    dialogMonitorLoading,
+    dialogMonitorModel,
+    dialogMonitorColumns,
+    handleMonitorSave,
+    openMonitorDialog,
 
   }
 }

@@ -14,6 +14,7 @@ const {
 
   dataList,
 
+  pageLoading,
   pageTotal,
   pagination,
   handleChangePage,
@@ -40,6 +41,14 @@ const {
   recordVisible,
   currentDomainInfo,
   openRecordDialog,
+
+  dialogMonitorRef,
+  dialogMonitorVisible,
+  dialogMonitorLoading,
+  dialogMonitorModel,
+  dialogMonitorColumns,
+  handleMonitorSave,
+  openMonitorDialog,
 } = useDomainInfoHook()
 </script>
 
@@ -60,7 +69,7 @@ const {
           绑定域名
         </ElButton>
       </div>
-      <div class="cards-container">
+      <div class="cards-container" v-loading="pageLoading">
         <ElCard
           v-for="item in dataList"
           :key="item.id"
@@ -76,9 +85,19 @@ const {
               <ElSpace>
                 <ElImage style="height: 18px;" :src="getDomainPlatform(item.cloud)?.icon" />
               </ElSpace>
-              <ElTag type="info">
-                {{ item.accountLabel }}
-              </ElTag>
+              <div class="flex items-center gap-2">
+                <ElTooltip content="域名监控">
+                  <ReIcon
+                    icon="svg-icon:monitor-outlined"
+                    size="18px"
+                    :color="item.isMonitor ? '#67C23A' : ''"
+                    @click.stop="openMonitorDialog(item)"
+                  />
+                </ElTooltip>
+                <ElTag type="info">
+                  {{ item.accountLabel }}
+                </ElTag>
+              </div>
             </div>
           </template>
           <div class="domain-box">
@@ -186,6 +205,23 @@ const {
         loading: dialogDomainLoading,
       }"
       @confirm="handleDomainSave()"
+    />
+
+    <PlusDialogForm
+      ref="dialogMonitorRef"
+      v-model="dialogMonitorModel"
+      v-model:visible="dialogMonitorVisible"
+      :form="{
+        labelWidth: '100px',
+        columns: dialogMonitorColumns,
+      }"
+      :dialog="{
+        title: '监控域名',
+        width: '30%',
+        confirmLoading: dialogMonitorLoading,
+        loading: dialogMonitorLoading,
+      }"
+      @confirm="handleMonitorSave()"
     />
 
     <Record v-model:visible="recordVisible" :domain-obj="currentDomainInfo" />

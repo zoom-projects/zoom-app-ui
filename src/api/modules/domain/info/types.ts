@@ -6,6 +6,7 @@ export namespace DomainInfo {
     domain?: string
     cloud?: string
     accountId?: string
+    expireDaysMin?: number
   }
 
   export interface ResDomain {
@@ -46,6 +47,14 @@ export namespace DomainInfo {
      */
     renewLink?: string
     /**
+     * 是否监控
+     */
+    isMonitor?: boolean
+    /**
+     * 是否提醒
+     */
+    isRemind?: boolean
+    /**
      * 创建者
      */
     createdBy: string
@@ -58,6 +67,11 @@ export namespace DomainInfo {
   export interface ReqChangeExpireTime {
     expireTime: string
     renewLink?: string
+  }
+
+  export interface ReqChangeMonitor {
+    isMonitor: boolean
+    isRemind: boolean
   }
 
   export interface ReqCreateDomainForm {
