@@ -261,7 +261,7 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
     }
 
     // Reflect.set
-    params.sorts = 'created desc'
+    params.sorts = 'created,type,id desc'
     params.domainId = currentDomain.value.id
     const { success, data } = await domainRecordApi.page(params)
     if (success) {
