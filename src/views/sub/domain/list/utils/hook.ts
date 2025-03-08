@@ -7,6 +7,7 @@ import * as domainInfoApi from '@/api/modules/domain/info'
 import { useDictStore } from '@/store'
 import { copyText } from '@/utils'
 import { dictKeys, domainPlatformDictKey } from './const'
+import {isTopDomain as isTopDomainApi } from "@/api/modules/domain/common";
 
 export function useDomainInfoHook() {
   const { toOptions, getDict, loadDict } = useDictStore()
@@ -166,14 +167,16 @@ export function useDomainInfoHook() {
     domain: [
       { required: true, message: '请输入域名', trigger: 'blur' },
       {
-        // 主域名格式
-        validator: (_: any, value: string) => {
-          // 顶级域名
-          const reg = /^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]\.[a-z]{2,}$/i
-          return reg.test(value)
+        validator: (_: any, value: string, callback) => {
+          isTopDomainApi(value).then(({ success, data }) => {
+            if (!success || !data) {
+              callback(new Error('请输入正确的主域名 如: example.com or example.com.cn'))
+            }
+            else {
+              callback()
+            }
+          })
         },
-        message: '请输入正确的域名',
-        trigger: 'blur',
       },
       {
         validator: (_: any, value: string, callback) => {
