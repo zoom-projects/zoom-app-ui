@@ -17,6 +17,7 @@ const {
   handleOpenDialog,
   handleSave,
   handleFormChange,
+  handleGetList,
 } = useDoaminMonitorSSLHook()
 </script>
 
@@ -26,6 +27,9 @@ const {
       ref="plusPageRef"
       :columns="columns"
       :request="loadData"
+      :search="{
+        onChange: handleGetList,
+      }"
       :table="{
         actionBar: {
           buttons: actionButtions,

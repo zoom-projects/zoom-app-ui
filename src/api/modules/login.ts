@@ -98,6 +98,14 @@ export async function logoutApi() {
 export function getCurrentUserInfoApi() {
   return http.get(`${SERVER1}/auth/user`, {}, { loading: false })
 }
+/**
+ *  获取当前用户信息
+ * @param name email | phone
+ * @returns
+ */
+export function getCurrentUserInfoApi2(name: string) {
+  return http.get<string>(`${SERVER1}/auth/user/info`, { name }, { loading: false })
+}
 
 /**
  * 重置密码

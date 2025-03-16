@@ -69,6 +69,12 @@ export function useDoaminMonitorSSLHook() {
       },
     },
     {
+      label:"更新时间",
+      prop:"updateTimeLabel",
+      hideInSearch:true,
+      hideInForm:true,
+    },
+    {
       label: '监控中',
       prop: 'isMonitor',
       hasLabel: false,
@@ -287,6 +293,10 @@ export function useDoaminMonitorSSLHook() {
     }
   }
 
+  async function handleGetList(){
+    plusPageRef.value?.getList()
+  }
+
   async function loadData(query: PageInfo & any) {
     const params = clone(query, true)
     Reflect.set(params, 'current', Reflect.get(query, 'page'))
@@ -346,5 +356,6 @@ export function useDoaminMonitorSSLHook() {
     handleOpenDialog,
     handleSave,
     handleFormChange,
+    handleGetList,
   }
 }

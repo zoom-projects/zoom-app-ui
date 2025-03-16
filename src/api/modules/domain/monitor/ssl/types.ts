@@ -55,6 +55,14 @@ export namespace DomainMonitorSSL{
      */
     totalDays: number
     /**
+     * 更新时间
+     */
+    updateTime: string
+    /**
+     *  更新时间标签
+     */
+    updateTimeLabel:string
+    /**
      * 创建者
      */
     createdBy: string

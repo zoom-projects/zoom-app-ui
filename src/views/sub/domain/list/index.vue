@@ -60,6 +60,7 @@ const {
         v-model="searchModel"
         :columns="plusSearchColumns"
         @search="handleSearch"
+        @change="handleSearch"
       />
     </ElCard>
 

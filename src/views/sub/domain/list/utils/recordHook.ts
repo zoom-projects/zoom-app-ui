@@ -10,8 +10,8 @@ import ReIcon from '@/components/ReIcon/index.vue'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'
 import { Delete, Edit, Monitor } from '@element-plus/icons-vue'
-import { dictKeys, domainPlatformDictKey, domainRecordTypeDictKey } from './const'
 import { ElTooltip } from 'element-plus'
+import { dictKeys, domainPlatformDictKey, domainRecordTypeDictKey } from './const'
 
 export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
   const { toOptions, getDict, loadDict } = useDictStore()
@@ -84,6 +84,12 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
 
   const formColumns: PlusColumn[] = [
     {
+      label: '关键字',
+      prop: 'keyword',
+      hideInTable: true,
+      hideInForm: true,
+    },
+    {
       label: '解析类型',
       prop: 'type',
       valueType: 'select',
@@ -110,12 +116,6 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
       hideInTable: true,
     },
     {
-      label: '关键字',
-      prop: 'keyword',
-      hideInTable: true,
-      hideInForm: true,
-    },
-    {
       label: '监控中',
       prop: 'isMonitor',
       hasLabel: false,
@@ -131,18 +131,20 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
       prop: 'name',
       hideInSearch: true,
       hideInForm: true,
-      render: (value,{row})=>{
-        const {isMonitor} = row;
-        const monitorRender=h(ElTooltip,{
+      render: (value, { row }) => {
+        const { isMonitor } = row
+        const monitorRender = h(ElTooltip, {
           content: '证书监控中',
-        },{
-          default: ()=>h(ReIcon,{icon:'svg-icon:monitor-outlined',size:18,color:'#67C23A'})
+        }, {
+          default: () => h(ReIcon, { icon: 'svg-icon:monitor-outlined', size: 18, color: '#67C23A' }),
         })
-        const textRender=h('span',value)
-        return isMonitor?h( ElSpace,{class:'flex items-center',size:4 },{
-          default:()=>[monitorRender,textRender]
-        }):textRender
-      }
+        const textRender = h('span', value)
+        return isMonitor
+          ? h(ElSpace, { class: 'flex items-center', size: 4 }, {
+              default: () => [monitorRender, textRender],
+            })
+          : textRender
+      },
     },
     {
       label: '记录类型',
@@ -373,7 +375,7 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
     },
     {
       text: '',
-      icon: h(ReIcon, { icon: 'svg-icon:monitor-outlined',size:18}) ,
+      icon: h(ReIcon, { icon: 'svg-icon:monitor-outlined', size: 18 }),
       props: {
         icon: Monitor,
         circle: true,
@@ -381,7 +383,7 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
       tooltipProps: {
         content: '证书监控',
       },
-      show: (row) => !row.isMonitor,
+      show: row => !row.isMonitor,
     },
     {
       text: '',
