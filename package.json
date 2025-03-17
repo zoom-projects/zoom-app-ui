@@ -17,11 +17,11 @@
     "@vueuse/core": "^12.8.2",
     "@vueuse/motion": "^2.2.6",
     "animate.css": "^4.1.1",
-    "axios": "^1.8.1",
+    "axios": "^1.8.3",
     "codemirror": "^5.65.18",
     "codemirror-editor-vue3": "^2.8.0",
     "dayjs": "^1.11.13",
-    "element-plus": "^2.9.5",
+    "element-plus": "^2.9.6",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
@@ -40,22 +40,22 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.16.0",
-    "@iconify/json": "^2.2.314",
+    "@iconify/json": "^2.2.316",
     "@iconify/vue": "^4.3.0",
     "@plus-pro-components/resolver": "^0.0.3",
     "@tinymce/tinymce-vue": "^6.1.0",
     "@types/codemirror": "^5.60.15",
-    "@types/node": "^22.13.9",
+    "@types/node": "^22.13.10",
     "@types/nprogress": "^0.2.3",
     "@types/qs": "^6.9.18",
     "@unocss/eslint-plugin": "^0.65.4",
     "@unocss/reset": "^0.65.4",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
-    "eslint": "^9.21.0",
+    "eslint": "^9.22.0",
     "eslint-plugin-format": "^1.0.1",
     "esno": "^4.8.0",
-    "inquirer": "^12.4.2",
+    "inquirer": "^12.4.3",
     "mitt": "^3.0.1",
     "sass": "^1.85.1",
     "typescript": "^5.8.2",
@@ -72,7 +72,7 @@
     "vue-tsc": "^2.2.8"
   },
   "volta": {
-    "node": "20.18.3",
-    "pnpm": "9.15.7"
+    "node": "20.19.0",
+    "pnpm": "9.15.9"
   }
 }
