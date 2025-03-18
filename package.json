@@ -24,7 +24,7 @@
     "element-plus": "^2.9.6",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.2",
+    "jspdf": "^3.0.0",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.3.1",
