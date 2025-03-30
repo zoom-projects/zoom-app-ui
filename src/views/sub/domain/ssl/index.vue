@@ -1,23 +1,28 @@
 <script setup lang="ts">
+import CertIssueDialog from '@/views/sub/domain/component/cert/issue/index.vue'
 import { useDomainSSLHook } from './utils/hook'
 
 const {
   dialogVisible,
-  stepForm,
-  activeStep,
-  formColumns,
   formModel,
-
   plusPageRef,
   columns,
-
+  actionBar,
+  loadData,
   handleOpenDialog,
 } = useDomainSSLHook()
 </script>
 
 <template>
   <div class="main">
-    <PlusPage ref="plusPageRef" :columns="columns">
+    <PlusPage
+      ref="plusPageRef"
+      :columns="columns"
+      :request="loadData"
+      :table="{
+        actionBar,
+      }"
+    >
       <template #table-title>
         <ElButton
           type="primary"
@@ -27,41 +32,10 @@ const {
         </ElButton>
       </template>
     </PlusPage>
-    <PlusDialog
-      v-model="dialogVisible"
-      title="申请SSL证书"
-      :has-footer="false"
-      width="50%"
-    >
-      <ElSteps :active="activeStep">
-        <ElStep title="填写信息" />
-        <ElStep title="验证域名" />
-        <ElStep title="下载证书" />
-      </ElSteps>
-      <!-- 居中 -->
-      <div class="dialog-content">
-        <div v-show="activeStep === 0" class="step-content step1">
-          <div class="form">
-            <PlusForm
-              v-model="formModel"
-              :columns="formColumns"
-              :label-width="120"
-              :has-footer="false"
-            />
-          </div>
-          <div class="button-group">
-            <ElButton>
-              取消
-            </ElButton>
-            <ElButton
-              type="primary"
-            >
-              申请
-            </ElButton>
-          </div>
-        </div>
-      </div>
-    </PlusDialog>
+    <CertIssueDialog
+      v-model:visible="dialogVisible"
+      :form-model="formModel"
+    />
   </div>
 </template>
 

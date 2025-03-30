@@ -8,6 +8,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const ElImage: typeof import('element-plus/es')['ElImage']
+  const ElM: typeof import('element-plus/es')['ElM']
   const ElMessage: typeof import('element-plus/es')['ElMessage']
   const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
   const ElNotification: typeof import('element-plus/es')['ElNotification']
@@ -328,6 +329,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly ElImage: UnwrapRef<typeof import('element-plus/es')['ElImage']>
+    readonly ElM: UnwrapRef<typeof import('element-plus/es')['ElM']>
     readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly ElMessageBox: UnwrapRef<typeof import('element-plus/es')['ElMessageBox']>
     readonly ElNotification: UnwrapRef<typeof import('element-plus/es')['ElNotification']>

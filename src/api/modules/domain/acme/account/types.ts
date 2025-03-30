@@ -18,6 +18,14 @@ export namespace DomainAcmeAccount {
      * 邮箱
      */
     email: string
+    /**
+     * ca
+     */
+    ca: string
+    /**
+     * 创建时间
+     */
+    created: string
   }
 
   export interface ReqCreate {

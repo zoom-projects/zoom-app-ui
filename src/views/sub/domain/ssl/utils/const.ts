@@ -1,4 +1,5 @@
-export const domainDirectoryTypeDictKey = 'domainDirectoryType'
+export const domainCADictKey = 'domainCA'
 export const domainCertAlgorithmDictKey = 'domainCertAlgorithm'
+export const domainCertStatusDictKey = 'domainIssueStatus'
 
-export const dictKeys = [domainDirectoryTypeDictKey, domainCertAlgorithmDictKey]
+export const dictKeys = [domainCADictKey, domainCertAlgorithmDictKey,domainCertStatusDictKey]

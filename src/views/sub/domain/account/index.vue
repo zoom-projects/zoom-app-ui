@@ -8,6 +8,7 @@ const {
   searchModel,
   handleSearch,
   getDomainPlatform,
+  pageLoading,
   dataList,
   dialogFormRef,
   dialogVisible,
@@ -40,7 +41,7 @@ const {
           添加账号
         </ElButton>
       </div>
-      <div class="cards-container">
+      <div class="cards-container" v-loading="pageLoading">
         <ElCard
           v-for="item in dataList"
           :key="item.id"
@@ -140,6 +141,7 @@ const {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: min-content;
     gap: 16px;
+    min-height: 400px;
     max-width: 100%;
     justify-content: center;
 

@@ -24,6 +24,7 @@ declare module 'vue' {
     DesignerTopSetting: typeof import('./../src/views/sub/resume/legoDesigner/components/DesignerTopSetting/index.vue')['default']
     DownloadDialog: typeof import('./../src/views/sub/resume/legoDesigner/components/DownloadDialog/index.vue')['default']
     Editor: typeof import('./../src/components/Tinymce/src/Editor.vue')['default']
+    ElAl: typeof import('element-plus/es')['ElAl']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']

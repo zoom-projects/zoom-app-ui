@@ -11,6 +11,10 @@ export function list(query?: DomainAcmeAccount.QueryReq) {
   return http.get<DomainAcmeAccount.ResAcmeAccount[]>(`${SERVER1}/domain/acme/account/list`, query)
 }
 
+export function getCache() {
+  return http.get<DomainAcmeAccount.ResAcmeAccount[]>(`${SERVER1}/domain/acme/account/cache`)
+}
+
 export function decrypt(id: string) {
   return http.get<string>(`${SERVER1}/domain/acme/account/decrypt/${id}`)
 }

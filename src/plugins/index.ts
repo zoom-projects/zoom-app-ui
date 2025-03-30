@@ -5,6 +5,7 @@ import { setupStore } from '@/store'
 import { MotionPlugin } from '@vueuse/motion'
 import { setupContextmenu } from './contextmenu'
 import { setupDirectives } from './directives'
+import { setupHighlightJs } from './highlightjs'
 import './ep'
 import './unocss'
 import './svg'
@@ -23,5 +24,7 @@ export default {
     app.use(MotionPlugin)
     // 注册右键菜单
     setupContextmenu(app)
+    // mount highlightjs
+    setupHighlightJs(app)
   },
 }

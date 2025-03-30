@@ -248,6 +248,7 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
     currentDomain,
     () => {
       _loadGroupCount()
+      plusPageRef.value?.getList()
     },
   )
 
@@ -393,7 +394,7 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
         content: '删除',
       },
       confirm: {
-        message: '确认删除吗？',
+        message: '确认删除吗？会自动删除DNS服务器上的记录',
         title: '删除',
       },
       onConfirm: async ({ row }) => {

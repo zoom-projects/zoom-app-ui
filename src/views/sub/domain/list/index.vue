@@ -243,6 +243,7 @@ const {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: min-content;
     gap: 16px;
+    min-height: 400px;
     max-width: 100%;
     justify-content: center;
 

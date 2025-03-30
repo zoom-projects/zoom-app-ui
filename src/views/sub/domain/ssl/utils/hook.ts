@@ -1,87 +1,102 @@
-import type { type PlusColumn, PlusPageInstance, type PlusStepFromRow } from 'plus-pro-components'
-import { getCurrentUserInfoApi2 } from '@/api/modules/login'
+import type { ActionBarProps, PageInfo, PlusColumn, PlusPageInstance } from 'plus-pro-components'
+import * as domainCertApi from '@/api/modules/domain/cert'
 import { useDictStore } from '@/store'
-import { dictKeys, domainCertAlgorithmDictKey, domainDirectoryTypeDictKey } from './const'
+import { clone } from '@/utils'
+import { Delete } from '@element-plus/icons-vue'
+import { ElLink } from 'element-plus'
+import { dictKeys, domainCADictKey, domainCertStatusDictKey } from './const'
 
 export function useDomainSSLHook() {
-  const { toOptions, getDict, loadDict } = useDictStore()
+  const { toOptions, loadDict } = useDictStore()
 
   const dialogVisible = ref(false)
-  const currentUserEmail = ref('')
-  const stepForm = ref<PlusStepFromRow[]>([
-    {
-      title: '填写域名',
-      form: {},
-    },
-    {
-      title: '验证域名',
-      form: {},
-    },
-    {
-      title: '下载证书',
-      form: {},
-    },
-  ])
-  const activeStep = ref(0)
   const formModel = ref<any>({})
-  const formColumns: PlusColumn[] = [
-    {
-      label: '证书厂商',
-      prop: 'directoryType',
-      valueType: 'select',
-      options: computed(() => toOptions(domainDirectoryTypeDictKey)),
-      fieldProps: {
-        placeholder: '请选择证书厂商',
-      },
-    },
-    {
-      label: '申请域名',
-      prop: 'domains',
-      valueType: 'textarea',
-      fieldProps: {
-        placeholder: '请输入域名列表，每行一个',
-      },
-      tooltip: {
-        content: '申请域名为www.domain.com的证书同时支持保护domain.com',
-      },
-    },
-    {
-      label: '电子邮件',
-      prop: 'email',
-      fieldProps: {
-        placeholder: '在申请ACME证书时，需要填写电子邮件',
-      },
-    },
-    {
-      label: '加密算法',
-      prop: 'certAlgorithm',
-      valueType: 'select',
-      options: computed(() => toOptions(domainCertAlgorithmDictKey)),
-      fieldProps: {
-        placeholder: '请选择加密算法',
-      },
-      tooltip: {
-        content: `ECC 效率高、安全性强，兼容性略差,RSA 效率低，广泛兼容,数字越大越安全，速度越慢`,
-      },
-
-    },
-  ]
-
   const plusPageRef = ref<Nullable<PlusPageInstance>>(null)
   const columns: PlusColumn[] = [
     {
       label: '域名',
-      prop: 'domain',
+      prop: 'domains',
+      labelWidth: '100px',
+      render: (value, { row }) => {
+        return h(ElLink, {
+          type: 'primary',
+          underline: false,
+          onClick: () => {
+            handleOpenDialog(row)
+          },
+        }, () => value)
+      },
+    },
+    {
+      label: '证书类型',
+      prop: 'ca',
+      valueType: 'select',
+      options: computed(() => toOptions(domainCADictKey)),
     },
     {
       label: 'SSL签发时间',
-      prop: 'sslIssuedAt',
+      prop: 'issueTimes',
+      labelWidth: '100px',
+      hideInTable: true,
+      valueType: 'plus-date-picker',
+      fieldProps: {
+        type: 'date',
+        valueFormat: 'YYYY-MM-DD',
+        format: 'YYYY-MM-DD',
+      },
+    },
+    {
+      label: 'SSL签发时间',
+      prop: 'issueTime',
+      labelWidth: '100px',
+      hideInSearch: true,
     },
     {
       label: 'SSL到期时间',
-      prop: 'sslExpireAt',
+      prop: 'expireTimes',
+      labelWidth: '100px',
+      hideInTable: true,
+      valueType: 'plus-date-picker',
+      fieldProps: {
+        type: 'date',
+        valueFormat: 'YYYY-MM-DD',
+        format: 'YYYY-MM-DD',
+      },
+    },
+    {
+      label: 'SSL到期时间',
+      prop: 'expireTime',
+      labelWidth: '100px',
+      hideInSearch: true,
+    },
+    {
+      label: '总证书数',
+      prop: 'totalDays',
+    },
+    {
+      label: '验证状态',
+      prop: 'status',
+      valueType: 'select',
+      options: computed(() => toOptions(domainCertStatusDictKey)),
     },
   ]
+  const actionBar: ActionBarProps = {
+    buttons: [
+      {
+        text: '删除',
+        icon: Delete,
+        confirm: {
+          message: '确定删除吗？',
+        },
+
+        onConfirm: ({ row }) => {
+          _delete(row.id)
+        },
+      },
+    ],
+    type: 'icon',
+    confirmType: 'popconfirm',
+  }
 
   async function handleOpenDialog(data?: any) {
     if (data) {
@@ -89,36 +104,76 @@ export function useDomainSSLHook() {
     }
     else {
       formModel.value = {
-        directoryType: 'letsencrypt',
-        email: currentUserEmail.value,
+        ca: 'letsencrypt',
         certAlgorithm: 'RSA-2048',
       }
     }
     dialogVisible.value = true
   }
 
-  async function _loadUserInfo() {
-    const { data, success } = await getCurrentUserInfoApi2('email')
+  async function loadData(query: PageInfo & any) {
+    const params = clone(query, true)
+    Reflect.set(params, 'current', Reflect.get(query, 'page'))
+    Reflect.deleteProperty(params, 'page')
+    Reflect.set(params, 'size', Reflect.get(query, 'pageSize'))
+    Reflect.deleteProperty(params, 'pageSize')
+    // 设置issueTime和expireTime的时间范围
+    if (params.issueTimes && params.issueTimes.length) {
+      params.issueTimeStart = params.issueTimes[0]
+      params.issueTimeEnd = params.issueTimes[1]
+      Reflect.deleteProperty(params, 'issueTimes')
+    }
+    if (params.expireTimes && params.expireTimes.length) {
+      params.expireTimeStart = params.expireTimes[0]
+      params.expireTimeEnd = params.expireTimes[1]
+      Reflect.deleteProperty(params, 'expireTimes')
+    }
+    // 设置排序
+    params.sorts = 'created desc'
+
+    const { success, data } = await domainCertApi.page(params)
     if (success) {
-      currentUserEmail.value = data
+      return {
+        data: data.records,
+        total: data.total,
+      }
+    }
+    return {
+      data: [],
+      total: 0,
     }
   }
 
+  async function _delete(id: string) {
+    if (!id) {
+      return
+    }
+    const { success } = await domainCertApi.remove(id)
+    if (success) {
+      plusPageRef.value?.getList()
+    }
+  }
+
+  watch(
+    () => dialogVisible.value,
+    (val) => {
+      if (!val) {
+        plusPageRef.value?.getList()
+      }
+    },
+  )
+
   onMounted(() => {
     loadDict(dictKeys)
-    _loadUserInfo()
   })
 
   return {
     dialogVisible,
-    stepForm,
-    activeStep,
     formModel,
-    formColumns,
-
     plusPageRef,
     columns,
-
+    actionBar,
+    loadData,
     handleOpenDialog,
   }
 }

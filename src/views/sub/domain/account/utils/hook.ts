@@ -44,6 +44,7 @@ export function useDomainAccountHook() {
     },
   ]
 
+  const pageLoading= ref<boolean>(false)
   const dataList = ref<Nullable<DomainAccount.ResAccount[]>>(null)
 
   const dialogFormRef = ref<Nullable<PlusDialogFormInstance>>(null)
@@ -239,7 +240,8 @@ export function useDomainAccountHook() {
     const params = {
       ...searchModel.value,
     }
-    const { success, data } = await domainAccountApi.list(params)
+    pageLoading.value = true
+    const { success, data } = await domainAccountApi.list(params).finally(()=>pageLoading.value=false)
     if (success) {
       dataList.value = data
     }
@@ -344,6 +346,7 @@ export function useDomainAccountHook() {
     searchModel,
     handleSearch,
     getDomainPlatform,
+    pageLoading,
     dataList,
     dialogFormRef,
     dialogVisible,
