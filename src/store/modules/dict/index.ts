@@ -1,5 +1,6 @@
 import type { DictOptions, DictState } from './types'
 import { loadDictItem } from '@/api/modules/system/dict'
+import { store } from '../..'
 
 export const useDictStore = defineStore(
   'dict',
@@ -57,3 +58,7 @@ export const useDictStore = defineStore(
     }
   },
 )
+
+export function useDictStoreHook() {
+  return useDictStore(store)
+}

@@ -71,6 +71,6 @@ export const useUserStore = defineStore(
   },
 )
 
-export function userStoreHook() {
+export function useStoreHook() {
   return useUserStore(store)
 }
