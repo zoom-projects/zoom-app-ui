@@ -1,12 +1,13 @@
+import type { DomainCdnAccount } from '/src/api/modules/domain/cdn/account/types'
 import type { PlusColumn } from 'plus-pro-components'
-import { list as domainAccountApi } from '@/api/modules/domain/account'
+import { list as cdnAccountApi } from '@/api/modules/domain/cdn/account'
 import { useDictStore } from '@/store'
-import { dictKeys, domainCertDeployCommandDictKey, domainCertDeployTypeDictKey, domainPlatformDictKey, systemSshLoginTypeDictKey } from './const'
+import { dictKeys, domainCdnProviderDictKey, domainCertDeployCommandDictKey, domainCertDeployTypeDictKey, systemSshLoginTypeDictKey } from './const'
 
 export function useCertDeploySettingHook() {
   const { loadDict, getDict, toOptions } = useDictStore()
 
-  const cdnAccountList = ref<any>([])
+  const cdnAccountList = ref<DomainCdnAccount.ResAccount[]>([])
   const formModel = ref<any>({})
   const columns: PlusColumn[] = [
     {
@@ -22,12 +23,12 @@ export function useCertDeploySettingHook() {
 
     {
       label: 'CDN厂商',
-      prop: 'accountId',
+      prop: 'cdnAccountId',
       hideInForm: computed(() => formModel.value?.deployType !== 'cdn'),
       valueType: 'select',
       options: computed((): any => {
-        return cdnAccountList.value?.map((item: any) => {
-          const dictItem = getDict(domainPlatformDictKey, item.platform)
+        return cdnAccountList.value?.map((item) => {
+          const dictItem = getDict(domainCdnProviderDictKey, item.provider)
           return {
             label: `${dictItem.label} - ${item.label}`,
             value: item.id,
@@ -59,7 +60,7 @@ export function useCertDeploySettingHook() {
     },
     {
       label: '登陆方式',
-      prop: 'loginType',
+      prop: 'sshLoginType',
       valueType: 'select',
       options: computed(() => toOptions(systemSshLoginTypeDictKey)),
       hideInForm: computed(() => formModel.value?.deployType !== 'ssh'),
@@ -69,14 +70,14 @@ export function useCertDeploySettingHook() {
     {
       label: '密码',
       prop: 'password',
-      hideInForm: computed(() => formModel.value?.loginType !== 'password' || formModel.value?.deployType !== 'ssh'),
+      hideInForm: computed(() => formModel.value?.sshLoginType !== 'password' || formModel.value?.deployType !== 'ssh'),
       hideInTable: true,
       hideInSearch: true,
     },
     {
       label: '私钥',
       prop: 'privateKey',
-      hideInForm: computed(() => formModel.value?.loginType !== 'privatekey' || formModel.value?.deployType !== 'ssh'),
+      hideInForm: computed(() => formModel.value?.sshLoginType !== 'privatekey' || formModel.value?.deployType !== 'ssh'),
       hideInTable: true,
       hideInSearch: true,
       valueType: 'textarea',
@@ -103,7 +104,7 @@ export function useCertDeploySettingHook() {
     },
     {
       label: '执行命令',
-      prop: 'command',
+      prop: 'execCmd',
       valueType: 'select',
       options: computed(() => toOptions(domainCertDeployCommandDictKey)),
       hideInForm: computed(() => formModel.value?.deployType !== 'ssh'),
@@ -115,8 +116,8 @@ export function useCertDeploySettingHook() {
       },
     },
     {
-      label: '描述',
-      prop: 'description',
+      label: '备注',
+      prop: 'remark',
       valueType: 'textarea',
       hideInTable: true,
       hideInSearch: true,
@@ -127,7 +128,7 @@ export function useCertDeploySettingHook() {
   ]
   const defaultModel = {
     deployType: 'ssh',
-    loginType: 'password',
+    sshLoginType: 'password',
     host: '',
     port: 22,
     username: '',
@@ -140,6 +141,16 @@ export function useCertDeploySettingHook() {
 
   const dialogVisible = ref(false)
 
+  const cdnDialogVisible = ref(false)
+  const cdnAccountFormModel = ref<any>({})
+  const cdnAccountColumns: PlusColumn[] = [
+    {
+      label: '标签',
+      prop: 'label',
+
+    },
+  ]
+
   async function handleAdd() {
     formModel.value = {
       ...defaultModel,
@@ -147,8 +158,16 @@ export function useCertDeploySettingHook() {
     dialogVisible.value = true
   }
 
+  async function handleAddCdnAccount() {
+    cdnAccountFormModel.value = {}
+    cdnDialogVisible.value = true
+  }
+  async function handleLoadCdnAccount() {
+    _getCDNAccountList()
+  }
+
   async function _getCDNAccountList() {
-    const { success, data } = await domainAccountApi({})
+    const { success, data } = await cdnAccountApi()
     if (success) {
       cdnAccountList.value = data
     }
@@ -165,6 +184,12 @@ export function useCertDeploySettingHook() {
     formModel,
     dialogVisible,
 
+    cdnDialogVisible,
+    cdnAccountFormModel,
+    cdnAccountColumns,
+
     handleAdd,
+    handleAddCdnAccount,
+    handleLoadCdnAccount,
   }
 }
