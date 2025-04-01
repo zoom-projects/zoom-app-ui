@@ -10,12 +10,14 @@ const canDownload = computed(() => {
 })
 
 const code = computed(() => {
+  const serverName = currentModel.value?.domainList?.map(item => item).join(' ')
+  const firstDomain = currentModel.value?.domainList?.[0]
   return `server {
     listen 443 ssl;
-    server_name ${currentModel.value.domains};
+    server_name ${serverName};
 
-    ssl_certificate_key /var/www/ssl/${currentModel.value.domains}.key;
-    ssl_certificate /var/www/ssl/${currentModel.value.domains}.pem;
+    ssl_certificate_key /var/www/ssl/${firstDomain}.key;
+    ssl_certificate /var/www/ssl/${firstDomain}.pem;
   }`
 })
 

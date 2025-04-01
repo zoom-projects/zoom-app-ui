@@ -1,4 +1,4 @@
-import { ReqPage } from "@/api/types";
+import type { ReqPage } from '@/api/types'
 
 export namespace DomainCertDeploy{
 
@@ -20,5 +20,20 @@ export namespace DomainCertDeploy{
     execCmd: string
     deployPath: string
     remark: string
+  }
+
+  export interface ReqDeploy {
+    label: string
+    deployType: string
+    cdnAccountId?: string
+    host?: string
+    port?: number
+    username?: string
+    password?: string
+    privateKey?: string
+    sshLoginType?: string
+    execCmd?: string
+    deployPath?: string
+    remark?: string
   }
 }

@@ -24,6 +24,7 @@ export namespace DomainCert{
   export interface ResIssue {
     id: string
     domains: string
+    domainList: string[]
     certAlgorithm: string
     acmeAccount: string
     ca: string

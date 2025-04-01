@@ -3,11 +3,11 @@ import type { DomainInfo } from '@/api/modules/domain/info/types'
 import type { FormRules } from 'element-plus'
 import type { PageInfo, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
 import { list as domainAccountListApi } from '@/api/modules/domain/account'
+import { isTopDomain as isTopDomainApi } from '@/api/modules/domain/common'
 import * as domainInfoApi from '@/api/modules/domain/info'
 import { useDictStore } from '@/store'
 import { copyText } from '@/utils'
 import { dictKeys, domainPlatformDictKey } from './const'
-import {isTopDomain as isTopDomainApi } from "@/api/modules/domain/common";
 
 export function useDomainInfoHook() {
   const { toOptions, getDict, loadDict } = useDictStore()
