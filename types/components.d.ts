@@ -133,6 +133,7 @@ declare module 'vue' {
     PlusDialogForm: typeof import('plus-pro-components/es')['PlusDialogForm']
     PlusDrawerForm: typeof import('plus-pro-components/es')['PlusDrawerForm']
     PlusForm: typeof import('plus-pro-components/es')['PlusForm']
+    PlusIcon: typeof import('plus-pro-components/es')['PlusIcon']
     PlusPage: typeof import('plus-pro-components/es')['PlusPage']
     PlusPagination: typeof import('plus-pro-components/es')['PlusPagination']
     PlusSearch: typeof import('plus-pro-components/es')['PlusSearch']

@@ -131,7 +131,7 @@ const {
     <DomainCdnAccountList
       v-model="cdnAccountListVisible"
       title="CDN列表"
-      size="45%"
+      size="50%"
     />
   </div>
 </template>
