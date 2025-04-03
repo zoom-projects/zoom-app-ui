@@ -287,7 +287,9 @@ export function useCertDeploySettingHook() {
   }
 
   async function handleAddCdnAccount() {
-    cdnAccountFormModel.value = {}
+    cdnAccountFormModel.value = {
+      provider: 'aliyun',
+    }
     cdnDialogVisible.value = true
   }
   async function handleOpenCdnAccountList() {

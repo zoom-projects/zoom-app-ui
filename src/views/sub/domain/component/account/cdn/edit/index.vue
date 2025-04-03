@@ -19,7 +19,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:visible', 'update:formModel', 'success'])
 const plusDialogFormRef = ref<Nullable<PlusDialogFormInstance>>(null)
-const { loadDict, getDict, toOptions } = useDictStore()
+const { loadDict, toOptions } = useDictStore()
 const currentModel = ref<any>(props.formModel)
 const dialogVisible = ref(props.visible)
 const formLoading = ref(false)

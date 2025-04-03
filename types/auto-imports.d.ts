@@ -333,7 +333,6 @@ declare module 'vue' {
     readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly ElMessageBox: UnwrapRef<typeof import('element-plus/es')['ElMessageBox']>
     readonly ElNotification: UnwrapRef<typeof import('element-plus/es')['ElNotification']>
-    readonly ElP: UnwrapRef<typeof import('element-plus/es')['ElP']>
     readonly ElSpace: UnwrapRef<typeof import('element-plus/es')['ElSpace']>
     readonly ElTag: UnwrapRef<typeof import('element-plus/es')['ElTag']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>

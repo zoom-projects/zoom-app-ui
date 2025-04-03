@@ -191,7 +191,16 @@ export function useCertIssueHook(props: DialogProps, emits: any) {
     }
   })
 
-  async function _loadAcmeAccountCache() {
+  const dialogAcmeAccountVisible = ref(false)
+  const domainAcmeAccountFormModel = ref<any>({})
+  async function handleOpenDomainAccountDialog() {
+    domainAcmeAccountFormModel.value = {
+      ...formModel.value,
+      ca: currentCa.value.value,
+    }
+    dialogAcmeAccountVisible.value = true
+  }
+  async function loadAcmeAccountCache() {
     const { data, success } = await getAcmeAccountCacheApi()
     if (success) {
       acmeAccountOptions.value = data.map((item) => {
@@ -206,7 +215,7 @@ export function useCertIssueHook(props: DialogProps, emits: any) {
 
   onMounted(() => {
     loadDict(dictKeys)
-    _loadAcmeAccountCache()
+    loadAcmeAccountCache()
   })
 
   return {
@@ -222,5 +231,10 @@ export function useCertIssueHook(props: DialogProps, emits: any) {
     handleClose,
     handleFormConfirm,
     handleNextStep,
+
+    dialogAcmeAccountVisible,
+    domainAcmeAccountFormModel,
+    handleOpenDomainAccountDialog,
+    loadAcmeAccountCache,
   }
 }

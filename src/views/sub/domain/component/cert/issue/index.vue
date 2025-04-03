@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DialogProps } from './utils/types'
+import DomainAcmeAccountEdit from '@/views/sub/domain/component/account/acme/edit/index.vue'
 import CertIssueChallenge from './challenge.vue'
 import CertDownload from './download.vue'
 import { useCertIssueHook } from './utils/hook'
@@ -19,6 +20,12 @@ const {
   handleClose,
   handleFormConfirm,
   handleNextStep,
+
+  dialogAcmeAccountVisible,
+  domainAcmeAccountFormModel,
+  handleOpenDomainAccountDialog,
+  loadAcmeAccountCache,
+
 } = useCertIssueHook(props, emits)
 </script>
 
@@ -46,7 +53,30 @@ const {
             :label-width="120"
             :has-footer="false"
             :rules="formRules"
-          />
+          >
+            <template #plus-field-acmeAccount="{ prop, column }">
+              <el-select v-model="formModel[prop]" :clearable="column.clearable">
+                <el-option
+                  v-for="item in column.options.value"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+                <template #footer>
+                  <el-button
+                    type="primary"
+                    text
+                    @click="handleOpenDomainAccountDialog()"
+                  >
+                    <template #icon>
+                      <ReIcon icon="i-ep:plus" class="el-icon" />
+                    </template>
+                    新增
+                  </el-button>
+                </template>
+              </el-select>
+            </template>
+          </PlusForm>
         </div>
         <div class="button-group">
           <ElButton @click="handleClose">
@@ -79,6 +109,12 @@ const {
         @close="handleClose"
       />
     </div>
+
+    <DomainAcmeAccountEdit
+      v-model:visible="dialogAcmeAccountVisible"
+      :form-model="domainAcmeAccountFormModel"
+      @success="loadAcmeAccountCache"
+    />
   </PlusDialog>
 </template>
 

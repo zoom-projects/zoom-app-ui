@@ -195,6 +195,9 @@ export function useDomainInfoHook() {
     cloud: [{ required: true, message: '请选择平台', trigger: 'change' }],
   }
 
+  const dialogDomainAccountVisible = ref(false)
+  const dialogDomainAccountFormModel = ref<any>({})
+
   const onLoad = async () => {
     pageLoading.value = true
     const params: DomainInfo.ReqQuery = {
@@ -225,7 +228,7 @@ export function useDomainInfoHook() {
     ElMessage.success('复制成功')
   }
 
-  async function _loadAccountList() {
+  async function loadAccountList() {
     const { success, data } = await domainAccountListApi()
     if (success) {
       domainAccountList.value = data
@@ -335,9 +338,16 @@ export function useDomainInfoHook() {
     }
   }
 
+  async function handleOpenDomainAccountDialog() {
+    dialogDomainAccountFormModel.value = {
+      platform: 'aliyun',
+    }
+    dialogDomainAccountVisible.value = true
+  }
+
   onMounted(() => {
     loadDict(dictKeys)
-    _loadAccountList()
+    loadAccountList()
     onLoad()
   })
 
@@ -353,6 +363,7 @@ export function useDomainInfoHook() {
     pageLoading,
     pageTotal,
     handleChangePage,
+    loadAccountList,
     dataList,
 
     dialogExpireTimeRef,
@@ -384,6 +395,10 @@ export function useDomainInfoHook() {
     dialogMonitorColumns,
     handleMonitorSave,
     openMonitorDialog,
+
+    dialogDomainAccountVisible,
+    dialogDomainAccountFormModel,
+    handleOpenDomainAccountDialog,
 
   }
 }

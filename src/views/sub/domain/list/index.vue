@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRenderIcon } from '@/components/ReIcon/hook'
 import { openLink } from '@/utils'
+import DomainAccountEdit from '@/views/sub/domain/component/account/domain/edit/index.vue'
 import Record from './record.vue'
 import { useDomainInfoHook } from './utils/hook'
 
@@ -49,6 +50,12 @@ const {
   dialogMonitorColumns,
   handleMonitorSave,
   openMonitorDialog,
+
+  dialogDomainAccountVisible,
+  dialogDomainAccountFormModel,
+  handleOpenDomainAccountDialog,
+  loadAccountList,
+
 } = useDomainInfoHook()
 </script>
 
@@ -70,7 +77,7 @@ const {
           绑定域名
         </ElButton>
       </div>
-      <div class="cards-container" v-loading="pageLoading">
+      <div v-loading="pageLoading" class="cards-container">
         <ElCard
           v-for="item in dataList"
           :key="item.id"
@@ -206,7 +213,30 @@ const {
         loading: dialogDomainLoading,
       }"
       @confirm="handleDomainSave()"
-    />
+    >
+      <template #plus-field-accountId="{ prop, column }">
+        <el-select v-model="dialogDomainModel[prop]" :clearable="column.clearable">
+          <el-option
+            v-for="item in column.options.value"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+          <template #footer>
+            <el-button
+              type="primary"
+              text
+              @click="handleOpenDomainAccountDialog()"
+            >
+              <template #icon>
+                <ReIcon icon="i-ep:plus" class="el-icon" />
+              </template>
+              新增
+            </el-button>
+          </template>
+        </el-select>
+      </template>
+    </PlusDialogForm>
 
     <PlusDialogForm
       ref="dialogMonitorRef"
@@ -223,6 +253,12 @@ const {
         loading: dialogMonitorLoading,
       }"
       @confirm="handleMonitorSave()"
+    />
+
+    <DomainAccountEdit
+      v-model:form-model="dialogDomainAccountFormModel"
+      v-model:visible="dialogDomainAccountVisible"
+      @success="loadAccountList()"
     />
 
     <Record v-model:visible="recordVisible" :domain-obj="currentDomainInfo" />

@@ -17,15 +17,6 @@ export function list(query?: DomainAccount.ReqQuery) {
 }
 
 /**
- *  详情
- * @param id  id
- * @returns .
- */
-export function info(id: string) {
-  return http.get<DomainAccount.ResAccount>(`${SERVER1}/domain/account/${id}`)
-}
-
-/**
  *  新增
  * @param form  新增表单
  * @returns .

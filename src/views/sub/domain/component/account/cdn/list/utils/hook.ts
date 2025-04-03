@@ -6,7 +6,7 @@ import { Delete, Edit } from '@element-plus/icons-vue'
 import { dictKeys, domainCdnProviderDictKey } from './const'
 
 export function useCDNAccountListHook() {
-  const { loadDict, getDict, toOptions } = useDictStore()
+  const { loadDict, toOptions } = useDictStore()
   const plusPageRef = ref<Nullable<PlusPageInstance>>(null)
   const columns: PlusColumn[] = [
     {

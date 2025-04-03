@@ -1,12 +1,11 @@
-import type { FormRules } from 'element-plus'
-import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
+import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusPageInstance } from 'plus-pro-components'
 import * as DomainAcmeAccountApi from '@/api/modules/domain/acme/account'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'
 import { dictKeys, domainCADictKey } from './const'
 
 export function useDomainAcmeAccountHook() {
-  const { toOptions, getDict, loadDict } = useDictStore()
+  const { toOptions, loadDict } = useDictStore()
 
   const plusPageRef = ref<Nullable<PlusPageInstance>>(null)
   const columns: PlusColumn[] = [
@@ -21,14 +20,14 @@ export function useDomainAcmeAccountHook() {
             class: 'cursor-pointer',
             onClick: async () => {
               row.hasDecrypt = !row.hasDecrypt
-              if(row.emailDecrypt) {
-                return;
+              if (row.emailDecrypt) {
+                return
               }
               const { success, data } = await DomainAcmeAccountApi.decrypt(row.id)
               if (success) {
                 row.emailDecrypt = data
 
-              row.hasDecrypt = true
+                row.hasDecrypt = true
               }
             },
           }, {
@@ -64,7 +63,7 @@ export function useDomainAcmeAccountHook() {
         title: '删除',
         message: '确定要删除吗？',
       },
-      onConfirm:async ({ row }) => {
+      onConfirm: async ({ row }) => {
         const { id } = row
         const { success } = await DomainAcmeAccountApi.remove(id)
         if (success) {
@@ -73,47 +72,8 @@ export function useDomainAcmeAccountHook() {
       },
     },
   ]
-  const dialogFormRef = ref<Nullable<PlusDialogFormInstance>>(null)
   const dialogVisible = ref<boolean>(false)
   const dialogFormModel = ref<any>({})
-  const dialogFormColumns: PlusColumn[] = [
-    {
-      label: '邮箱',
-      prop: 'email',
-    },
-    {
-      label: '证书厂商',
-      prop: 'ca',
-      valueType: 'select',
-      options: computed(() => toOptions(domainCADictKey).filter(item => item.isCa)),
-      fieldProps: {
-        clearable: false,
-      },
-    },
-    {
-      label: 'kid',
-      tooltip: {
-        content: '外部账户绑定',
-      },
-      hideInForm: computed(() => dialogFormModel.value.ca === 'letsencrypt'),
-      prop: 'kid',
-    },
-    {
-      label: 'hmacKey',
-      tooltip: '外部账户绑定',
-      hideInForm: computed(() => dialogFormModel.value.ca === 'letsencrypt'),
-      prop: 'hmacKey',
-    },
-
-  ]
-  const dialogFormRules: FormRules = {
-    email: [
-      { required: true, message: '请输入邮箱', trigger: 'blur' },
-      { type: 'email', message: '邮箱格式不正确', trigger: 'blur' },
-    ],
-    ca: [{ required: true, message: '请选择证书厂商', trigger: 'blur' }],
-  }
-  const confirmLoading = ref<boolean>(false)
 
   const handleOpenDialog = () => {
     dialogFormModel.value = {
@@ -143,16 +103,6 @@ export function useDomainAcmeAccountHook() {
     }
   }
 
-  async function handleSave() {
-    const body = clone(dialogFormModel.value, true)
-    confirmLoading.value = true
-    const { success } = await DomainAcmeAccountApi.save(body).finally(() => confirmLoading.value = false)
-    if (success) {
-      dialogVisible.value = false
-      plusPageRef.value?.getList()
-    }
-  }
-
   onMounted(() => {
     loadDict(dictKeys)
   })
@@ -161,14 +111,8 @@ export function useDomainAcmeAccountHook() {
     columns,
     actionButtions,
     onLoadData,
-
-    dialogFormRef,
     dialogVisible,
-    dialogFormColumns,
     dialogFormModel,
-    dialogFormRules,
-    confirmLoading,
     handleOpenDialog,
-    handleSave,
   }
 }

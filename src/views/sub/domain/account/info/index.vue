@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRenderIcon } from '@/components/ReIcon/hook'
 import { useDomainAccountHook } from './utils/hook'
+import DomainAccountEdit from "@/views/sub/domain/component/account/domain/edit/index.vue"
 
 const {
   plusSearchRef,
@@ -10,14 +11,9 @@ const {
   getDomainPlatform,
   pageLoading,
   dataList,
-  dialogFormRef,
-  dialogVisible,
-  dialogLoading,
-  dialogFormColumns,
   dialogFormModel,
-  dialogFormRules,
+  dialogVisible,
   handleOpenDialog,
-  handleConfirm,
   getAccountField,
   handleDelete,
   handlePull,
@@ -98,33 +94,11 @@ const {
       </div>
     </div>
 
-    <PlusDialogForm
-      ref="dialogFormRef"
-      v-model="dialogFormModel"
-      v-model:visible="dialogVisible"
-      :form="{
-        columns: dialogFormColumns,
-        rules: dialogFormRules,
-        labelWidth: '100px',
-      }"
-      :dialog="{
-        title: dialogFormModel.id ? '编辑账号' : '添加账号',
-        width: '45%',
-      }"
-    >
-      <template #dialog-footer>
-        <ElButton @click="dialogVisible = false">
-          取消
-        </ElButton>
-        <ElPopconfirm title="确定要提交吗？" @confirm="handleConfirm" @cancel="dialogVisible = false">
-          <template #reference>
-            <ElButton type="primary" :loading="dialogLoading">
-              提交
-            </ElButton>
-          </template>
-        </ElPopconfirm>
-      </template>
-    </PlusDialogForm>
+    <DomainAccountEdit
+    v-model:form-model="dialogFormModel"
+    v-model:visible="dialogVisible"
+    @success="handleSearch"
+    />
   </div>
 </template>
 
