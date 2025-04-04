@@ -3,7 +3,7 @@ import type { DomainAccount } from '@/api/modules/domain/account/types'
 import type { DomainInfo } from '@/api/modules/domain/info/types'
 import type { ActionBarButtonsRow, FormChangeCallBackParams, PageInfo, PlusColumn, PlusPageInstance } from 'plus-pro-components'
 import type { PlusDialogFormProps } from 'plus-pro-components/lib/components/index.js'
-import { list as domainAccountListApi } from '@/api/modules/domain/account'
+import { cache as domainAccountListApi } from '@/api/modules/domain/account'
 import { list as domainInfoListApi } from '@/api/modules/domain/info'
 import * as domainRecordApi from '@/api/modules/domain/record'
 import ReIcon from '@/components/ReIcon/index.vue'
@@ -385,6 +385,9 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
         content: '证书监控',
       },
       show: row => !row.isMonitor,
+      onClick: async ({ row }) => {
+        handleOpenMotionForm(row)
+      },
     },
     {
       text: '',
@@ -461,6 +464,22 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
     }
   }
 
+  const motionFormModel = ref<any>({})
+  const motionFormVisible = ref(false)
+  async function handleOpenMotionForm(row: any) {
+    motionFormVisible.value = true
+    motionFormModel.value = {
+      domain: row.name === '@' ? row.domain : `${row.name}.${row.domain}`,
+      isMonitor: true,
+      isRemind: true,
+      sslType: 'SSL',
+      port: 443,
+    }
+  }
+  async function handleMotionFormSubmit() {
+    plusPageRef.value?.getList()
+  }
+
   onMounted(() => {
     loadDict(dictKeys)
     _loadDomainAccountList()
@@ -496,5 +515,11 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
     handleOpenDialogForm,
     handleDialogFormSubmit,
     handleDelete,
+
+    motionFormModel,
+    motionFormVisible,
+    handleOpenMotionForm,
+    handleMotionFormSubmit,
+
   }
 }

@@ -7,8 +7,8 @@ export function page(query?: DomainCertDeploy.QueryReq) {
   return http.get<ResPage<DomainCertDeploy.ResDeploy>>(`${SERVER1}/domain/cert/deploy/setting/page`, query)
 }
 
-export function list(query?: DomainCertDeploy.QueryReq) {
-  return http.get<DomainCertDeploy.ResDeploy[]>(`${SERVER1}/domain/cert/deploy/setting/list`, query)
+export function cache() {
+  return http.get<DomainCertDeploy.ResDeploy[]>(`${SERVER1}/domain/cert/deploy/setting/cache`)
 }
 
 export function save(data: DomainCertDeploy.ReqDeploy) {

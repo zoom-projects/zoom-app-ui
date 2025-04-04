@@ -61,7 +61,7 @@ export namespace DomainMonitorSSL{
     /**
      *  更新时间标签
      */
-    updateTimeLabel:string
+    updateTimeLabel: string
     /**
      * 创建者
      */
@@ -70,6 +70,14 @@ export namespace DomainMonitorSSL{
      * 创建时间
      */
     created: string
+    /**
+     * 是否错误
+     */
+    fetchError: boolean
+    /**
+     * 错误信息
+     */
+    errorMessage: string
   }
 
   export interface ReqCreate {

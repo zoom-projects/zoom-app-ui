@@ -7,8 +7,8 @@ export function page(query?: DomainAcmeAccount.QueryReq) {
   return http.get<ResPage<DomainAcmeAccount.ResAcmeAccount>>(`${SERVER1}/domain/acme/account/page`, query)
 }
 
-export function list(query?: DomainAcmeAccount.QueryReq) {
-  return http.get<DomainAcmeAccount.ResAcmeAccount[]>(`${SERVER1}/domain/acme/account/list`, query)
+export function cache() {
+  return http.get<DomainAcmeAccount.ResAcmeAccount[]>(`${SERVER1}/domain/acme/account/cache`)
 }
 
 export function getCache() {

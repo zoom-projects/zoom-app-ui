@@ -12,8 +12,22 @@ export function page(query?: DomainAccount.ReqQuery) {
   return http.get<ResPage<DomainAccount.ResAccount>>(`${SERVER1}/domain/account/page`, query)
 }
 
+/**
+ *
+ * @description  列表查询
+ * @param query
+ * @returns
+ */
 export function list(query?: DomainAccount.ReqQuery) {
   return http.get<DomainAccount.ResAccount[]>(`${SERVER1}/domain/account/list`, query)
+}
+
+/**
+ * @description  查询缓存
+ * @returns
+ */
+export function cache() {
+  return http.get<DomainAccount.ResAccount[]>(`${SERVER1}/domain/account/cache`)
 }
 
 /**

@@ -11,8 +11,8 @@ export function list(query?: DomainMonitorSSL.ReqQuery) {
   return http.get<DomainMonitorSSL.ResDomainMonitorSSL[]>(`${SERVER1}/domain/cert/monitor/list`, query)
 }
 
-export function isMonitor(domain: string) {
-  return http.get<boolean>(`${SERVER1}/domain/cert/monitor/isMonitor`,{domain})
+export function isMonitor(domain: string, id?: string) {
+  return http.get<boolean>(`${SERVER1}/domain/cert/monitor/isMonitor`, { domain, id })
 }
 
 export function save(data: DomainMonitorSSL.ReqCreate) {
@@ -26,7 +26,6 @@ export function update(id: string, data: DomainMonitorSSL.ReqCreate) {
 export function remove(id: string) {
   return http.delete(`${SERVER1}/domain/cert/monitor/delete/${id}`)
 }
-
 
 export function refreshExpireTime(id: string) {
   return http.put(`${SERVER1}/domain/cert/monitor/refreshExpireTime/${id}`)

@@ -1,7 +1,7 @@
 import type { DomainCdnAccount } from '/src/api/modules/domain/cdn/account/types'
 import type { FormRules } from 'element-plus'
 import type { ActionBarProps, PageInfo, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
-import { list as cdnAccountApi } from '@/api/modules/domain/cdn/account'
+import { cache as cdnAccountApi } from '@/api/modules/domain/cdn/account'
 import * as domainCertDeploySettingApi from '@/api/modules/domain/deploy/setting'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'

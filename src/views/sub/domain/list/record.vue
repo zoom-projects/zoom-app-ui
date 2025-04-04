@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DomainInfo } from '/src/api/modules/domain/info/types'
+import DomainCertMonitorEdit from '@/views/sub/domain/component/monitor/ssl/edit/index.vue'
 import { ArrowDown, ArrowUp, Close, Delete, Download, Refresh, Upload } from '@element-plus/icons-vue'
 import { useRecordHook } from './utils/recordHook'
 import { useRenderIcon } from '/src/components/ReIcon/hook'
@@ -54,6 +55,10 @@ const {
   handleOpenDialogForm,
   handleDialogFormSubmit,
   handleDelete,
+
+  motionFormModel,
+  motionFormVisible,
+  handleMotionFormSubmit,
 } = useRecordHook(props)
 </script>
 
@@ -229,6 +234,12 @@ const {
         confirmLoading: dialogFormLoading,
       }"
       @confirm="handleDialogFormSubmit"
+    />
+
+    <DomainCertMonitorEdit
+      v-model:form-model="motionFormModel"
+      v-model:visible="motionFormVisible"
+      @success="handleMotionFormSubmit"
     />
   </ElDrawer>
 </template>

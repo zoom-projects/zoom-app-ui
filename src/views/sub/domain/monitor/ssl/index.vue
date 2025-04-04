@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import DomainCertMonitorEdit from '@/views/sub/domain/component/monitor/ssl/edit/index.vue'
 import { useDoaminMonitorSSLHook } from './utils/hook'
 
 const {
@@ -6,16 +7,11 @@ const {
   columns,
   actionButtions,
 
-  plusDialogFormRef,
   formModel,
   dialogVisible,
-  dialogFormColumns,
-  dialogFormRules,
-  dialogLoading,
 
   loadData,
   handleOpenDialog,
-  handleSave,
   handleFormChange,
   handleGetList,
 } = useDoaminMonitorSSLHook()
@@ -51,20 +47,10 @@ const {
       </template>
     </PlusPage>
 
-    <PlusDialogForm
-      ref="plusDialogFormRef"
-      v-model="formModel"
+    <DomainCertMonitorEdit
+      v-model:form-model="formModel"
       v-model:visible="dialogVisible"
-      :form="{
-        columns: dialogFormColumns,
-        rules: dialogFormRules,
-      }"
-      :dialog="{
-        title: formModel.id ? '编辑' : '添加域名',
-        confirmLoading: dialogLoading,
-        width: '35%',
-      }"
-      @confirm="handleSave"
+      @success="handleGetList"
     />
   </div>
 </template>

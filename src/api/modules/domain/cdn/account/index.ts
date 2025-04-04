@@ -7,8 +7,8 @@ export function page(query?: DomainCdnAccount.QueryReq) {
   return http.get<ResPage<DomainCdnAccount.ResAccount>>(`${SERVER1}/domain/cdn/account/page`, query)
 }
 
-export function list(query?: DomainCdnAccount.QueryReq) {
-  return http.get<DomainCdnAccount.ResAccount[]>(`${SERVER1}/domain/cdn/account/list`, query)
+export function cache() {
+  return http.get<DomainCdnAccount.ResAccount[]>(`${SERVER1}/domain/cdn/account/cache`)
 }
 
 export function save(data: DomainCdnAccount.ReqAccount) {
