@@ -115,6 +115,13 @@ declare global {
       touched?: boolean
     }
   }
+
+  /**
+   * 扩展 `window`
+   */
+  interface Window {
+    jsonlint: any
+  }
 }
 
 export {}

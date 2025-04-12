@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DomainInfo } from '/src/api/modules/domain/info/types'
+import DomainCertIssue from '@/views/sub/domain/component/cert/issue/index.vue'
 import DomainCertMonitorEdit from '@/views/sub/domain/component/monitor/ssl/edit/index.vue'
 import { ArrowDown, ArrowUp, Close, Delete, Download, Refresh, Upload } from '@element-plus/icons-vue'
 import { useRecordHook } from './utils/recordHook'
@@ -59,6 +60,9 @@ const {
   motionFormModel,
   motionFormVisible,
   handleMotionFormSubmit,
+
+  certIssueVisible,
+  certIssueFormModel,
 } = useRecordHook(props)
 </script>
 
@@ -240,6 +244,10 @@ const {
       v-model:form-model="motionFormModel"
       v-model:visible="motionFormVisible"
       @success="handleMotionFormSubmit"
+    />
+    <DomainCertIssue
+      v-model:visible="certIssueVisible"
+      :form-model="certIssueFormModel"
     />
   </ElDrawer>
 </template>

@@ -372,6 +372,7 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
         content: '申请证书',
       },
       onClick: async ({ row }) => {
+        handleOpenCertIssueForm(row)
       },
     },
     {
@@ -480,6 +481,22 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
     plusPageRef.value?.getList()
   }
 
+  const certIssueVisible = ref(false)
+  const certIssueFormModel = ref<any>({})
+
+  async function handleOpenCertIssueForm(row: any) {
+    certIssueVisible.value = true
+    certIssueFormModel.value = {
+      domains: row.name === '@' ? row.domain : `${row.name}.${row.domain}`,
+      ca: 'letsencrypt',
+      certAlgorithm: 'RSA-2048',
+    }
+  }
+
+  async function handleCertIssueFormSubmit() {
+
+  }
+
   onMounted(() => {
     loadDict(dictKeys)
     _loadDomainAccountList()
@@ -520,6 +537,11 @@ export function useRecordHook(props: { visible: boolean, domainObj?: any }) {
     motionFormVisible,
     handleOpenMotionForm,
     handleMotionFormSubmit,
+
+    certIssueVisible,
+    certIssueFormModel,
+    handleOpenCertIssueForm,
+    handleCertIssueFormSubmit,
 
   }
 }

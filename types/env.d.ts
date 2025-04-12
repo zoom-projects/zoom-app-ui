@@ -48,3 +48,5 @@ declare const __APP_INFO__: {
 }
 
 declare module 'vue3-json-viewer';
+
+declare module 'jsonlint-mod';
