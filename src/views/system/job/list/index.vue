@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Crontab from '@/components/Crontab'
 import { useJob } from './utils/hook'
 
 const {
@@ -13,6 +14,13 @@ const {
   addNew,
   handleSave,
   loadData,
+  handleShowCronTab,
+
+  plusDialogRef,
+  crontabRef,
+  cronTabDialogVisible,
+  handleHideCronTab,
+  handleCronTabConfirm,
 } = useJob()
 </script>
 
@@ -56,6 +64,19 @@ const {
       }"
       @confirm="handleSave"
     >
+      <template #plus-field-cronExpression="{ prop, column }">
+        <ElInput
+          v-model="formModel[prop]"
+          :placeholder="column.fieldProps?.placeholder"
+          :clearable="column.clearable"
+        >
+          <template #append>
+            <ElButton @click="handleShowCronTab">
+              生成表达式<ReIcon icon="i-ep:clock" class="el-icon" />
+            </ElButton>
+          </template>
+        </ElInput>
+      </template>
       <template #dialog-footer="{ handleConfirm, handleCancel }">
         <ElButton
           @click="handleCancel"
@@ -74,5 +95,21 @@ const {
         </ElPopconfirm>
       </template>
     </PlusDialogForm>
+
+    <PlusDialog
+      ref="plusDialogRef"
+      v-model="cronTabDialogVisible"
+      width="50%"
+      title="生成表达式"
+      :has-footer="false"
+      :destroy-on-close="true"
+    >
+      <Crontab
+        ref="crontabRef"
+        :expression="formModel.cronExpression"
+        @hide="handleHideCronTab"
+        @fill="handleCronTabConfirm"
+      />
+    </PlusDialog>
   </div>
 </template>

@@ -1,5 +1,5 @@
 import type { FormRules } from 'element-plus'
-import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
+import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusDialogFormInstance, PlusDialogInstance, PlusPageInstance } from 'plus-pro-components'
 import * as jobApi from '@/api/modules/system/job'
 import { useDictStore } from '@/store'
 import { clone } from '@/utils'
@@ -40,6 +40,9 @@ export function useJob() {
       label: 'cron表达式',
       prop: 'cronExpression',
       hideInSearch: true,
+      fieldProps: {
+        placeholder: '请输入cron表达式',
+      },
     },
     {
       label: '描述',
@@ -191,6 +194,24 @@ export function useJob() {
   async function _update() {
     return jobApi.update(formModel.value.id, formModel.value)
   }
+
+  const plusDialogRef = ref<Nullable<PlusDialogInstance>>(null)
+  const crontabRef = ref<Nullable<any>>(null)
+  const cronTabDialogVisible = ref(false)
+
+  function handleShowCronTab() {
+    cronTabDialogVisible.value = true
+  }
+
+  function handleHideCronTab() {
+    cronTabDialogVisible.value = false
+    crontabRef.value?.clearCron()
+  }
+
+  function handleCronTabConfirm(cron: string) {
+    formModel.value.cronExpression = cron
+  }
+
   onBeforeMount(() => {
     loadDict(dictKeys)
   })
@@ -207,5 +228,12 @@ export function useJob() {
     addNew,
     handleSave,
     loadData,
+    handleShowCronTab,
+
+    plusDialogRef,
+    crontabRef,
+    cronTabDialogVisible,
+    handleHideCronTab,
+    handleCronTabConfirm,
   }
 }
