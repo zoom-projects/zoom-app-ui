@@ -60,7 +60,7 @@ export function useDictItems() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:dict:item:edit'],
@@ -77,7 +77,7 @@ export function useDictItems() {
       text: '删除',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:dict:item:delete'],

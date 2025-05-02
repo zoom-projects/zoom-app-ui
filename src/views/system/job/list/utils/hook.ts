@@ -65,7 +65,7 @@ export function useJob() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       onClick: ({ row }) => {
         formModel.value = clone(row, true)
@@ -76,7 +76,7 @@ export function useJob() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '提示',
@@ -95,7 +95,7 @@ export function useJob() {
       show: row => !row.status,
       props: {
         type: 'success',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '提示',
@@ -114,7 +114,7 @@ export function useJob() {
       show: row => row.status,
       props: {
         type: 'warning',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '提示',
@@ -132,7 +132,7 @@ export function useJob() {
       text: '立即执行',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '提示',

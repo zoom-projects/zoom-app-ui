@@ -55,7 +55,7 @@ export function useRole(onEdit: (row: any) => void) {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:role:update'],
@@ -69,7 +69,7 @@ export function useRole(onEdit: (row: any) => void) {
       text: '删除',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '删除提示',
@@ -87,7 +87,7 @@ export function useRole(onEdit: (row: any) => void) {
       text: '权限',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:role:grant'],
@@ -101,7 +101,7 @@ export function useRole(onEdit: (row: any) => void) {
       text: '分配OpenAPI',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:role:open:api:grant'],

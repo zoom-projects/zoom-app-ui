@@ -52,7 +52,7 @@ export function useAttachmentHook() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '提示',

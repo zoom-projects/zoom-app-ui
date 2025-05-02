@@ -17,7 +17,7 @@ export function useAccessToken() {
       text: '撤销',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       show: row => row.status,
       confirm: {
@@ -32,7 +32,7 @@ export function useAccessToken() {
       text: '恢复',
       props: {
         type: 'success',
-        underline: false,
+        underline: 'never',
       },
       show: row => !row.status,
       confirm: {
@@ -48,7 +48,7 @@ export function useAccessToken() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '删除',

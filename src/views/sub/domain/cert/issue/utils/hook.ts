@@ -20,7 +20,7 @@ export function useDomainSSLHook() {
       render: (value, { row }) => {
         return h(ElLink, {
           type: 'primary',
-          underline: false,
+          underline: 'never',
           onClick: () => {
             handleOpenDialog(row)
           },

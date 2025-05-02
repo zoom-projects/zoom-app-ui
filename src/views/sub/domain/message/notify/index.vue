@@ -64,7 +64,7 @@ const {
       <template #plus-extra-dingTalkBody>
         <ElLink
           href="https://open.dingtalk.com/document/orgapp/robot-overview"
-          :underline="false"
+          underline="never"
           type="primary"
           target="_blank"
         >
@@ -77,7 +77,7 @@ const {
       <template #plus-extra-workWechatBody>
         <ElLink
           href="https://developer.work.weixin.qq.com/document/path/99110"
-          :underline="false"
+          underline="never"
           type="primary"
           target="_blank"
         >
@@ -90,7 +90,7 @@ const {
       <template #plus-extra-feishuBody>
         <ElLink
           href="https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot"
-          :underline="false"
+          underline="never"
           type="primary"
           target="_blank"
         >

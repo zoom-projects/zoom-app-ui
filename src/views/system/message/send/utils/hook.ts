@@ -109,7 +109,7 @@ export function useMessage() {
       text: '删除',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '删除提示',

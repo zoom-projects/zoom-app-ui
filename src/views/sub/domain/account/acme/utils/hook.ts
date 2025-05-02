@@ -57,7 +57,7 @@ export function useDomainAcmeAccountHook() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '删除',

@@ -100,7 +100,7 @@ export function useMessageTemplate() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:message:template:update'],
@@ -114,7 +114,7 @@ export function useMessageTemplate() {
       text: '删除',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:message:template:delete'],

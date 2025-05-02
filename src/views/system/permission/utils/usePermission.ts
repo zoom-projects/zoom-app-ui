@@ -249,7 +249,7 @@ export function usePermission() {
       ],
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       onClick: ({ row }) => {
         handleAddNew(row.id)
@@ -264,7 +264,7 @@ export function usePermission() {
       ],
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       onClick: ({ row }) => {
         formModel.value = clone(row, true)
@@ -279,7 +279,7 @@ export function usePermission() {
       ],
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '删除提示',

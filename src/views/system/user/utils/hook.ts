@@ -107,7 +107,7 @@ export function useUser() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:user:update'],
@@ -122,7 +122,7 @@ export function useUser() {
       text: '重置密码',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       show: row => !row?.isSystem,
       directives: [
@@ -137,7 +137,7 @@ export function useUser() {
       text: '分配角色',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       show: row => !row?.isSystem,
       directives: [
@@ -156,7 +156,7 @@ export function useUser() {
       ],
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '删除提示',

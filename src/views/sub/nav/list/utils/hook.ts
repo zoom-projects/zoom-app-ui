@@ -29,7 +29,7 @@ export function useNavWebsitesHook() {
       valueType: 'link',
       hideInSearch: true,
       fieldProps: value => ({
-        underline: false,
+        underline: 'never',
         target: '_blank',
         href: value,
       }),
@@ -136,7 +136,7 @@ export function useNavWebsitesHook() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'nav:list:update'],
@@ -150,7 +150,7 @@ export function useNavWebsitesHook() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'nav:list:delete'],

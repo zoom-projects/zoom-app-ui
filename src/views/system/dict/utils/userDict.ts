@@ -1,7 +1,8 @@
+import type { FormRules } from 'element-plus'
 import type { ActionBarButtonsRow, PageInfo, PlusColumn, PlusDialogFormInstance, PlusPageInstance } from 'plus-pro-components'
 import * as dictAPi from '@/api/modules/system/dict'
 import { useDictStore } from '@/store'
-import { ElTag, type FormRules } from 'element-plus'
+import { ElTag } from 'element-plus'
 import { resolveDirective } from 'vue'
 import { dictKeys, dictStatus, dictValueTypeKey, innerKeys, ValueType } from './const'
 import { clone } from '/src/utils'
@@ -176,7 +177,7 @@ export function useDict() {
       text: '查看',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:dict:item:query'],
@@ -191,7 +192,7 @@ export function useDict() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:dict:update'],
@@ -205,7 +206,7 @@ export function useDict() {
       text: '删除',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:dict:delete'],

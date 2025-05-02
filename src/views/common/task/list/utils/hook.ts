@@ -66,7 +66,7 @@ export function useTaskListHook() {
       text: '下载',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '确认下载',

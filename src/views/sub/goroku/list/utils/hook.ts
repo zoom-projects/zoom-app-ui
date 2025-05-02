@@ -130,7 +130,7 @@ export function useGorokuInfo() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'goroku:info:update'],
@@ -144,7 +144,7 @@ export function useGorokuInfo() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '提示',
@@ -165,7 +165,7 @@ export function useGorokuInfo() {
       text: '审核',
       props: {
         type: 'success',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'goroku:info:audit'],

@@ -212,7 +212,7 @@ const {
 
         <ElLink
           type="primary"
-          :underline="false"
+          underline="never"
           href="javaScript:;"
           class="plus-search__unfold"
           @click="handleUnfold"

@@ -122,7 +122,7 @@ export function useNavCategoryHook() {
       ],
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       onClick: ({ row }) => {
         currentRow.value = row
@@ -136,7 +136,7 @@ export function useNavCategoryHook() {
       ],
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       onClick: ({ row }) => {
         formModel.value = clone(row, true)
@@ -152,7 +152,7 @@ export function useNavCategoryHook() {
       ],
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       confirm: {
         title: '删除提示',

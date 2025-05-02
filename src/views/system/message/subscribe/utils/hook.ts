@@ -65,7 +65,7 @@ export function useOpenApi() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:open:api:update'],
@@ -79,7 +79,7 @@ export function useOpenApi() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'sys:open:api:del'],

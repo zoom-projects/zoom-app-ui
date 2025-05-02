@@ -63,7 +63,7 @@ const httpColumns: PlusColumn[] = [
         {
           href: url,
           target: '_blank',
-          underline: false,
+          underline: 'never',
         },
         () => row.recordName,
       )
@@ -77,7 +77,7 @@ const httpColumns: PlusColumn[] = [
         ElLink,
         {
           type: 'primary',
-          underline: false,
+          underline: 'never',
           onClick: () => {
             // 写入文件
             const { value, token } = row

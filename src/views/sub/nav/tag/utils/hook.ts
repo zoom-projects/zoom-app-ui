@@ -26,7 +26,7 @@ export function useNavTagHook() {
       text: '编辑',
       props: {
         type: 'primary',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'nav:tag:update'],
@@ -40,7 +40,7 @@ export function useNavTagHook() {
       text: '删除',
       props: {
         type: 'danger',
-        underline: false,
+        underline: 'never',
       },
       directives: [
         [auth, 'nav:tag:delete'],

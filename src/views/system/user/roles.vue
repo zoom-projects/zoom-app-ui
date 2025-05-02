@@ -68,7 +68,7 @@ const actionButtons: ActionBarButtonsRow[] = [
     text: '删除',
     props: {
       type: 'primary',
-      underline: false,
+      underline: 'never',
     },
     onClick: ({ index }) => {
       tableData.value.splice(index, 1)
