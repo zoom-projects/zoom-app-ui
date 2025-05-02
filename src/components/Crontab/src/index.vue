@@ -131,7 +131,6 @@ watch(
   () => props.expression,
   (value) => {
     expression.value = value
-    resolveExp()
   },
   { immediate: true },
 )

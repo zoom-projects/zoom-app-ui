@@ -103,6 +103,10 @@ export function useDomainAcmeAccountHook() {
     }
   }
 
+  async function handleSeach() {
+    plusPageRef.value?.getList()
+  }
+
   onMounted(() => {
     loadDict(dictKeys)
   })
@@ -111,6 +115,7 @@ export function useDomainAcmeAccountHook() {
     columns,
     actionButtions,
     onLoadData,
+    handleSeach,
     dialogVisible,
     dialogFormModel,
     handleOpenDialog,

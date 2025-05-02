@@ -11,7 +11,7 @@ const props = defineProps({
     default: () => ({}),
   },
 })
-const emits = defineEmits(['update:visible', 'update:modelValue', 'success'])
+const emits = defineEmits(['update:visible', 'update:formModel', 'success'])
 
 const {
   dialogFormRef,

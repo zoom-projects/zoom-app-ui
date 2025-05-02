@@ -359,6 +359,10 @@ export function useCertDeploySettingHook() {
     }
   }
 
+  async function handleSeach() {
+    plusPageRef.value?.getList()
+  }
+
   async function _getCDNAccountList() {
     const { success, data } = await cdnAccountApi()
     if (success) {
@@ -397,6 +401,7 @@ export function useCertDeploySettingHook() {
     cdnAccountListVisible,
 
     loadData,
+    handleSeach,
     handleAdd,
     handleAddCdnAccount,
     handleOpenCdnAccountList,

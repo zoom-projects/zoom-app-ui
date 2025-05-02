@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRenderIcon } from '@/components/ReIcon/hook'
+import DomainAccountEdit from '@/views/sub/domain/component/account/domain/edit/index.vue'
 import { useDomainAccountHook } from './utils/hook'
-import DomainAccountEdit from "@/views/sub/domain/component/account/domain/edit/index.vue"
 
 const {
   plusSearchRef,
@@ -37,7 +37,7 @@ const {
           添加账号
         </ElButton>
       </div>
-      <div class="cards-container" v-loading="pageLoading">
+      <div v-loading="pageLoading" class="cards-container">
         <ElCard
           v-for="item in dataList"
           :key="item.id"
@@ -95,9 +95,9 @@ const {
     </div>
 
     <DomainAccountEdit
-    v-model:form-model="dialogFormModel"
-    v-model:visible="dialogVisible"
-    @success="handleSearch"
+      v-model:form-model="dialogFormModel"
+      v-model:visible="dialogVisible"
+      @success="handleSearch"
     />
   </div>
 </template>
@@ -153,7 +153,8 @@ const {
     }
   }
 }
-.card-aliyun,.card-cf {
+.card-aliyun,
+.card-cf {
   :deep(.el-tag) {
     background-color: #ff6a00;
     color: #fff;

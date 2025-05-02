@@ -7,6 +7,7 @@ const {
   columns,
   actionButtions,
   onLoadData,
+  handleSeach,
 
   dialogVisible,
   dialogFormModel,
@@ -24,6 +25,9 @@ const {
         actionBar: {
           buttons: actionButtions,
         },
+      }"
+      :search="{
+        onChange:handleSeach
       }"
     >
       <template #table-title>

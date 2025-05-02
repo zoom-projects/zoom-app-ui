@@ -18,6 +18,7 @@ const {
   cdnAccountListVisible,
 
   loadData,
+  handleSeach,
   handleAdd,
   handleAddCdnAccount,
   handleOpenCdnAccountList,
@@ -34,6 +35,9 @@ const {
       :request="loadData"
       :table="{
         actionBar,
+      }"
+      :search="{
+        onChange: handleSeach,
       }"
     >
       <template #table-title>

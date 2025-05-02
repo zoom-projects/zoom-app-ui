@@ -139,7 +139,7 @@ export function useDomainAutomationHook() {
           currentCa.value = getDict(domainCADictKey, value)
           currentCaOptions.value = acmeAccountOptions.value.filter((item: any) => item.ca === currentCa.value
             .value)
-          formModel.value.acmeAccount = currentCaOptions.value[0]?.value
+          formModel.value.acmeAccountId = currentCaOptions.value[0]?.value
         },
       },
     },
@@ -234,7 +234,7 @@ export function useDomainAutomationHook() {
         trigger: 'change',
       },
     ],
-    acmeAccount: [
+    acmeAccountId: [
       {
         required: true,
         message: '请选择ACME账号',
@@ -332,6 +332,9 @@ export function useDomainAutomationHook() {
     }
   }
 
+  async function handleSeach() {
+    plusPageRef.value?.getList()
+  }
   async function loadData(query?: PageInfo & any) {
     const params = clone(query, true)
     Reflect.set(params, 'current', Reflect.get(query, 'page'))
@@ -394,7 +397,7 @@ export function useDomainAutomationHook() {
       currentCa.value = getDict(domainCADictKey, value)
       currentCaOptions.value = acmeAccountOptions.value.filter((item: any) => item.ca === currentCa.value
         .value)
-      formModel.value.acmeAccount = currentCaOptions.value[0]?.value
+      formModel.value.acmeAccountId = currentCaOptions.value[0]?.value
     },
   )
 
@@ -412,6 +415,17 @@ export function useDomainAutomationHook() {
       }
     },
   )
+
+  const certIssueDialogVisible = ref(false)
+  const issueFormModel = ref<any>({})
+
+  function handleOpenCertIssueDialog() {
+    certIssueDialogVisible.value = true
+    issueFormModel.value = {
+      ca: 'letsencrypt',
+      certAlgorithm: 'RSA-2048',
+    }
+  }
 
   onMounted(() => {
     loadDict(dictKeys)
@@ -434,10 +448,15 @@ export function useDomainAutomationHook() {
     formModel,
     formDomains,
     loadData,
+    handleSeach,
     handleOpenDialog,
     handleAddDomainRecord,
     handleSelectDomain,
     handleDeleteDomainRecord,
     handleSave,
+
+    certIssueDialogVisible,
+    issueFormModel,
+    handleOpenCertIssueDialog,
   }
 }

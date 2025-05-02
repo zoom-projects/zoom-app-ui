@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CertIssueDialog from '@/views/sub/domain/component/cert/issue/index.vue'
 import { Delete } from '@element-plus/icons-vue'
 import { useDomainAutomationHook } from './utils/hook'
 
@@ -15,11 +16,16 @@ const {
   dialogVisible,
   formModel,
   loadData,
+  handleSeach,
   handleOpenDialog,
   handleAddDomainRecord,
   handleSelectDomain,
   handleDeleteDomainRecord,
   handleSave,
+
+  certIssueDialogVisible,
+  issueFormModel,
+  handleOpenCertIssueDialog,
 } = useDomainAutomationHook()
 </script>
 
@@ -31,6 +37,9 @@ const {
       :request="loadData"
       :table="{
         actionBar,
+      }"
+      :search="{
+        onChange: handleSeach,
       }"
     >
       <template #table-title>
@@ -49,7 +58,11 @@ const {
           部署记录
         </el-button>
 
-        <el-button type="primary" text>
+        <el-button
+          type="primary"
+          text
+          @click="handleOpenCertIssueDialog"
+        >
           申请证书
         </el-button>
       </template>
@@ -146,6 +159,11 @@ const {
         </el-popconfirm>
       </template>
     </PlusDialogForm>
+
+    <CertIssueDialog
+      v-model:visible="certIssueDialogVisible"
+      :form-model="issueFormModel"
+    />
   </div>
 </template>
 
