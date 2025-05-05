@@ -33,7 +33,7 @@ importers:
         specifier: ^1.11.13
         version: 1.11.13
       element-plus:
-        specifier: ^2.9.8
+        specifier: ^2.9.9
         version: 2.9.9(vue@3.5.13(typescript@5.8.3))
       html-to-image:
         specifier: ^1.11.13
@@ -60,8 +60,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0(pinia@2.3.1(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3)))(rollup@4.40.1)
       plus-pro-components:
-        specifier: 0.1.21
-        version: 0.1.21(element-plus@2.9.9(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3))
+        specifier: 0.1.22
+        version: 0.1.22(element-plus@2.9.9(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3))
       qs:
         specifier: ^6.14.0
         version: 6.14.0
@@ -72,7 +72,7 @@ importers:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.3)
       vue-router:
-        specifier: ^4.5.0
+        specifier: ^4.5.1
         version: 4.5.1(vue@3.5.13(typescript@5.8.3))
       vue-tippy:
         specifier: 6.7.0
@@ -88,7 +88,7 @@ importers:
         specifier: ^4.12.0
         version: 4.12.0(@typescript-eslint/utils@8.29.1(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3))(@unocss/eslint-plugin@0.65.4(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-format@1.0.1(eslint@9.25.1(jiti@2.4.2)))(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.15.3)(sass@1.87.0)(terser@5.34.1))
       '@iconify/json':
-        specifier: ^2.2.331
+        specifier: ^2.2.334
         version: 2.2.334
       '@iconify/vue':
         specifier: ^4.3.0
@@ -103,7 +103,7 @@ importers:
         specifier: ^5.60.15
         version: 5.60.15
       '@types/node':
-        specifier: ^22.15.2
+        specifier: ^22.15.3
         version: 22.15.3
       '@types/nprogress':
         specifier: ^0.2.3
@@ -154,7 +154,7 @@ importers:
         specifier: ^28.5.0
         version: 28.5.0(@babel/parser@7.26.10)(@nuxt/kit@3.14.1592(rollup@4.40.1))(vue@3.5.13(typescript@5.8.3))
       vite:
-        specifier: ^5.4.18
+        specifier: ^5.4.19
         version: 5.4.19(@types/node@22.15.3)(sass@1.87.0)(terser@5.34.1)
       vite-plugin-compression:
         specifier: ^0.5.1
@@ -4836,8 +4836,8 @@ packages:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
-  plus-pro-components@0.1.21:
-    resolution: {integrity: sha512-/0WdoMm9Dhs58T+gLzL1ZjvSEWicHEGy5dl5S4+h+k7eY/BznjH2R5bcmsoQ6HHomyw7RODwxarzD4On00sVWQ==}
+  plus-pro-components@0.1.22:
+    resolution: {integrity: sha512-SCh83M7kwRj04X3DdzXLGfWt93Ehho2YVZV/ucnBGXNYJLW1NLbX7WiDHg0pn6Dvru290X66vzV1gAINfLSv/g==}
     peerDependencies:
       element-plus: ^2.3.4
       vue: ^3.2.0
@@ -11296,7 +11296,7 @@ snapshots:
 
   pluralize@8.0.0: {}
 
-  plus-pro-components@0.1.21(element-plus@2.9.9(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3)):
+  plus-pro-components@0.1.22(element-plus@2.9.9(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3)):
     dependencies:
       '@element-plus/icons-vue': 2.3.1(vue@3.5.13(typescript@5.8.3))
       element-plus: 2.9.9(vue@3.5.13(typescript@5.8.3))
