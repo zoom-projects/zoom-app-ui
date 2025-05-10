@@ -40,13 +40,13 @@
             display: flex;
             border: none;
             .el-tabs__item {
-              display: flex;
+              display: inline-flex;
               align-items: center;
-              justify-content: center;
+              text-align: center;
               color: #afafaf;
               border: none;
               .tabs-icon {
-                margin: 1.5px 4px 0 0;
+                margin-right: 6px;
                 font-size: 18px;
               }
               .is-icon-close {
