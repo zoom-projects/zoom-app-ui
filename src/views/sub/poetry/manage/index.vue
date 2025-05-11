@@ -22,8 +22,9 @@ const {
   drawerModel,
   formColumns,
   formRules,
-  handleAdd,
+  handleOpenDrawer,
   handleConfirm,
+  handleDelete,
 
   authorVisible,
   authorModel,
@@ -61,13 +62,13 @@ const {
         <ElButton
           type="primary"
           :icon="Plus"
-          @click="handleAdd"
+          @click="handleOpenDrawer()"
         >
           添加诗词
         </ElButton>
       </div>
 
-      <ElRow v-if="tableData.length" :gutter="20">
+      <ElRow v-if="tableData.length" :gutter="20" class="poetry-list">
         <ElCol
           v-for="(item, index) in tableData"
           :key="index"
@@ -77,6 +78,7 @@ const {
             :body-style="{ padding: '10px' }"
             class="poetry-card"
             :style="{ height: '100%' }"
+            @click="handleOpenDrawer(item)"
           >
             <div class="poetry-main">
               <div class="poetry-title">
@@ -211,6 +213,35 @@ const {
           </template>
         </ElSelect>
       </template>
+
+      <template #drawer-footer>
+        <div class="drawer-footer">
+          <div class="footer-left">
+            <ElPopconfirm
+              title="确定要删除吗？"
+              @confirm="handleDelete(drawerModel)"
+            >
+              <template #reference>
+                <ElButton v-if="drawerModel.id" type="danger" :loading="drawerLoading">
+                  删除
+                </ElButton>
+              </template>
+            </ElPopconfirm>
+          </div>
+          <div class="footer-right">
+            <ElButton @click="drawerVisible = false">
+              取消
+            </ElButton>
+            <ElButton
+              type="primary"
+              :loading="drawerLoading"
+              @click.stop="handleConfirm"
+            >
+              确定
+            </ElButton>
+          </div>
+        </div>
+      </template>
     </PlusDrawerForm>
 
     <AuthorDetail
@@ -232,6 +263,18 @@ const {
   </div>
 </template>
 
+<style>
+html {
+  --poetry-author-color: #999;
+  --poetry-content-color: #333;
+}
+
+html.dark {
+  --poetry-author-color: #ccc;
+  --poetry-content-color: #eee;
+}
+</style>
+
 <style lang="scss" scoped>
 .table-header {
   display: flex;
@@ -243,7 +286,13 @@ const {
     font-weight: bold;
   }
 }
+.poetry-list {
+  // gap 上下间距 col 上下间距问题
 
+  ::v-deep(.el-col) {
+    margin-bottom: 20px;
+  }
+}
 .poetry-card {
   cursor: pointer;
   transition: all 0.3s;
@@ -265,10 +314,11 @@ const {
     }
     .poetry-author {
       font-size: 14px;
-      color: #999;
+      color: var(--poetry-author-color);
     }
     .poetry-content {
-      max-height: 200px;
+      margin-top: 10px;
+      max-height: 240px;
       overflow-y: auto;
       table {
         width: 100%;
@@ -278,10 +328,32 @@ const {
             padding: 5px 0;
             text-align: center;
             font-size: 14px;
-            color: #333;
+            color: var(--poetry-content-color);
           }
         }
       }
+    }
+  }
+}
+
+.drawer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    .el-button {
+      margin-right: 10px;
+    }
+  }
+  .footer-right {
+    display: flex;
+    align-items: center;
+    .el-button {
+      margin-left: 10px;
     }
   }
 }

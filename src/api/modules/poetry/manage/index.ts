@@ -17,7 +17,7 @@ export function save(data: PoetryInfo.ReqCreate) {
 }
 
 export function update(id: string, data: PoetryInfo.ReqCreate) {
-  return http.put(`${SERVER1}/poetry/${id}`, data)
+  return http.put(`${SERVER1}/poetry/update/${id}`, data)
 }
 
 export function remove(id: string) {

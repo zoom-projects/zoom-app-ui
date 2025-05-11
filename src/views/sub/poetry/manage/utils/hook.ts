@@ -8,11 +8,15 @@ import { list as authorListApi } from '@/api/modules/poetry/author'
 import { list as collectionListApi } from '@/api/modules/poetry/collection'
 import * as poetryApi from '@/api/modules/poetry/manage'
 import { list as rhythmicListApi } from '@/api/modules/poetry/rhythmic'
+import {list as dynastyListApi} from '@/api/modules/poetry/dynasty'
+import { clone } from '@/utils'
+import { PoetryDynasty } from '/src/api/modules/poetry/dynasty/types'
 
 export function usePoetryMangeHook() {
   const authorList = ref<any>([])
   const collectionList = ref<any>([])
   const rhythmicList = ref<any>([])
+  const dynastyList = ref<any>([])
 
   const searchForm = ref({})
   const searchColumns: PlusColumn[] = [
@@ -40,6 +44,17 @@ export function usePoetryMangeHook() {
       label: '朝代',
       prop: 'dynastyId',
       valueType: 'select',
+      fieldProps: {
+        placeholder: '请选择',
+      },
+      options: computed(() => {
+        return dynastyList.value.map((item: PoetryDynasty.ResDynasty) => {
+          return {
+            label: item.name,
+            value: item.id,
+          }
+        })
+      }),
     },
     {
       label: '词牌名',
@@ -80,7 +95,7 @@ export function usePoetryMangeHook() {
   const pageTotal = ref<number>(0)
   const pageInfo = ref<PageInfo>({
     page: 1,
-    pageSize: 10,
+    pageSize: 8,
   })
 
   function handlePageChange(page: PageInfo) {
@@ -92,7 +107,7 @@ export function usePoetryMangeHook() {
   async function handleReset() {
     searchForm.value = {}
     pageInfo.value.page = 1
-    pageInfo.value.pageSize = 10
+    pageInfo.value.pageSize = 8
     await getPoetryList()
   }
 
@@ -127,6 +142,8 @@ export function usePoetryMangeHook() {
       fieldProps: {
         placeholder: '请选择',
         onChange: (val: string) => {
+          drawerModel.value.authorId = val
+          // 选择诗人时，设置朝代
           const res = authorList.value.filter((item: PoetryAuthor.ResAuthor) => item.id === val)
           if (res.length > 0) {
             drawerModel.value.dynastyId = res[0].dynastyId
@@ -181,6 +198,11 @@ export function usePoetryMangeHook() {
       colProps: {
         span: 24,
       },
+      fieldProps: {
+        autosize: {
+          minRows: 4,
+        },
+      },
     },
     {
       label: '笔记',
@@ -188,6 +210,11 @@ export function usePoetryMangeHook() {
       valueType: 'textarea',
       colProps: {
         span: 24,
+      },
+      fieldProps: {
+        autosize: {
+          minRows: 4,
+        },
       },
     },
     {
@@ -197,6 +224,11 @@ export function usePoetryMangeHook() {
       colProps: {
         span: 24,
       },
+      fieldProps: {
+        autosize: {
+          minRows: 4,
+        },
+      },
     },
     {
       label: '鉴赏',
@@ -204,6 +236,11 @@ export function usePoetryMangeHook() {
       valueType: 'textarea',
       colProps: {
         span: 24,
+      },
+      fieldProps: {
+        autosize: {
+          minRows: 4,
+        },
       },
     },
   ]
@@ -228,9 +265,9 @@ export function usePoetryMangeHook() {
     ],
   }
 
-  async function handleAdd() {
+  async function handleOpenDrawer(model?: Record<string, any>) {
     drawerVisible.value = true
-    drawerModel.value = {}
+    drawerModel.value = clone(model, true) || {}
     plusDrawerFormRef.value?.formInstance?.resetFields()
   }
 
@@ -251,6 +288,7 @@ export function usePoetryMangeHook() {
     if (success) {
       ElMessage.success('操作成功')
       drawerVisible.value = false
+      getPoetryList()
     }
   }
 
@@ -261,6 +299,19 @@ export function usePoetryMangeHook() {
     })
     if (success) {
       ElMessage.success('操作成功')
+      drawerVisible.value = false
+      getPoetryList()
+    }
+  }
+
+  async function handleDelete(item: Record<string, any>) {
+    drawerLoading.value = true
+    const { success } = await poetryApi.remove(item.id).finally(() => {
+      drawerLoading.value = false
+    })
+    if (success) {
+      ElMessage.success('操作成功')
+      getPoetryList()
       drawerVisible.value = false
     }
   }
@@ -320,6 +371,13 @@ export function usePoetryMangeHook() {
     }
   }
 
+  async function getDynastyList() {
+    const { success, data } = await dynastyListApi();
+    if (success) {
+      dynastyList.value = data
+    }
+  }
+
   watch(
     () => drawerVisible.value,
     (val) => {
@@ -334,6 +392,7 @@ export function usePoetryMangeHook() {
     getAuthorList()
     getCollectionList()
     getRhythmicList()
+  getDynastyList()
   })
 
   return {
@@ -354,8 +413,9 @@ export function usePoetryMangeHook() {
     drawerModel,
     formColumns,
     formRules,
-    handleAdd,
+    handleOpenDrawer,
     handleConfirm,
+    handleDelete,
 
     authorVisible,
     authorModel,
