@@ -41,13 +41,13 @@
     "vue3-json-viewer": "^2.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.15.0",
-    "@iconify/json": "^2.2.351",
+    "@antfu/eslint-config": "^4.16.1",
+    "@iconify/json": "^2.2.353",
     "@iconify/vue": "^4.3.0",
     "@plus-pro-components/resolver": "^0.0.3",
     "@tinymce/tinymce-vue": "^6.2.0",
     "@types/codemirror": "^5.60.16",
-    "@types/node": "^22.15.32",
+    "@types/node": "^22.15.33",
     "@types/nprogress": "^0.2.3",
     "@types/qs": "^6.14.0",
     "@unocss/eslint-plugin": "^0.65.4",
@@ -74,7 +74,7 @@
     "vue-tsc": "^2.2.10"
   },
   "volta": {
-    "node": "20.19.2",
+    "node": "20.19.3",
     "pnpm": "9.15.9"
   }
 }
