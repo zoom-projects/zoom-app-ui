@@ -12,8 +12,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.11.1)(vue@3.5.18(typescript@5.9.2))
       '@vueuse/core':
-        specifier: ^12.8.2
-        version: 12.8.2(typescript@5.9.2)
+        specifier: ^13.6.0
+        version: 13.6.0(vue@3.5.18(typescript@5.9.2))
       '@vueuse/motion':
         specifier: ^2.2.6
         version: 2.2.6(rollup@4.40.1)(vue@3.5.18(typescript@5.9.2))
@@ -79,7 +79,7 @@ importers:
         version: 6.7.1(vue@3.5.18(typescript@5.9.2))
       vue3-colorpicker:
         specifier: ^2.3.0
-        version: 2.3.0(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@12.8.2(typescript@5.9.2))(gradient-parser@1.0.2)(lodash-es@4.17.21)(tinycolor2@1.6.0)(vue-types@4.2.1(vue@3.5.18(typescript@5.9.2)))(vue@3.5.18(typescript@5.9.2))
+        version: 2.3.0(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@13.6.0(vue@3.5.18(typescript@5.9.2)))(gradient-parser@1.0.2)(lodash-es@4.17.21)(tinycolor2@1.6.0)(vue-types@4.2.1(vue@3.5.18(typescript@5.9.2)))(vue@3.5.18(typescript@5.9.2))
       vue3-json-viewer:
         specifier: ^2.4.1
         version: 2.4.1(vue@3.5.18(typescript@5.9.2))
@@ -149,7 +149,7 @@ importers:
         version: 0.65.4(postcss@5.2.18)(rollup@4.40.1)(vite@5.4.19(@types/node@22.17.0)(sass@1.90.0)(terser@5.34.1))(vue@3.5.18(typescript@5.9.2))
       unplugin-auto-import:
         specifier: ^19.3.0
-        version: 19.3.0(@nuxt/kit@3.17.3)(@vueuse/core@12.8.2(typescript@5.9.2))
+        version: 19.3.0(@nuxt/kit@3.17.3)(@vueuse/core@13.6.0(vue@3.5.18(typescript@5.9.2)))
       unplugin-vue-components:
         specifier: ^28.8.0
         version: 28.8.0(@babel/parser@7.28.0)(@nuxt/kit@3.17.3)(vue@3.5.18(typescript@5.9.2))
@@ -1875,8 +1875,10 @@ packages:
   '@vueuse/core@10.11.1':
     resolution: {integrity: sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==}
 
-  '@vueuse/core@12.8.2':
-    resolution: {integrity: sha512-HbvCmZdzAu3VGi/pWYm5Ut+Kd9mn1ZHnn4L5G8kOQTPs/IwIAmJoBrmYk2ckLArgMXZj0AW3n5CAejLUO+PhdQ==}
+  '@vueuse/core@13.6.0':
+    resolution: {integrity: sha512-DJbD5fV86muVmBgS9QQPddVX7d9hWYswzlf4bIyUD2dj8GC46R1uNClZhVAmsdVts4xb2jwp1PbpuiA50Qee1A==}
+    peerDependencies:
+      vue: ^3.5.0
 
   '@vueuse/core@9.13.0':
     resolution: {integrity: sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==}
@@ -1884,8 +1886,8 @@ packages:
   '@vueuse/metadata@10.11.1':
     resolution: {integrity: sha512-IGa5FXd003Ug1qAZmyE8wF3sJ81xGLSqTqtQ6jaVfkeZ4i5kS2mwQF61yhVqojRnenVew5PldLyRgvdl4YYuSw==}
 
-  '@vueuse/metadata@12.8.2':
-    resolution: {integrity: sha512-rAyLGEuoBJ/Il5AmFHiziCPdQzRt88VxR+Y/A/QhJ1EWtWqPBBAxTAFaSkviwEuOEZNtW8pvkPgoCZQ+HxqW1A==}
+  '@vueuse/metadata@13.6.0':
+    resolution: {integrity: sha512-rnIH7JvU7NjrpexTsl2Iwv0V0yAx9cw7+clymjKuLSXG0QMcLD0LDgdNmXic+qL0SGvgSVPEpM9IDO/wqo1vkQ==}
 
   '@vueuse/metadata@9.13.0':
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
@@ -1898,8 +1900,10 @@ packages:
   '@vueuse/shared@10.11.1':
     resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
-  '@vueuse/shared@12.8.2':
-    resolution: {integrity: sha512-dznP38YzxZoNloI0qpEfpkms8knDtaoQ6Y/sfS0L7Yki4zh40LFHEhur0odJC6xTHG5dxWVPiUWBXn+wCG2s5w==}
+  '@vueuse/shared@13.6.0':
+    resolution: {integrity: sha512-pDykCSoS2T3fsQrYqf9SyF0QXWHmcGPQ+qiOVjlYSzlWd9dgppB2bFSM1GgKKkt7uzn0BBMV3IbJsUfHG2+BCg==}
+    peerDependencies:
+      vue: ^3.5.0
 
   '@vueuse/shared@9.13.0':
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
@@ -7894,14 +7898,12 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/core@12.8.2(typescript@5.9.2)':
+  '@vueuse/core@13.6.0(vue@3.5.18(typescript@5.9.2))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
-      '@vueuse/metadata': 12.8.2
-      '@vueuse/shared': 12.8.2(typescript@5.9.2)
+      '@vueuse/metadata': 13.6.0
+      '@vueuse/shared': 13.6.0(vue@3.5.18(typescript@5.9.2))
       vue: 3.5.18(typescript@5.9.2)
-    transitivePeerDependencies:
-      - typescript
 
   '@vueuse/core@9.13.0(vue@3.5.18(typescript@5.9.2))':
     dependencies:
@@ -7915,7 +7917,7 @@ snapshots:
 
   '@vueuse/metadata@10.11.1': {}
 
-  '@vueuse/metadata@12.8.2': {}
+  '@vueuse/metadata@13.6.0': {}
 
   '@vueuse/metadata@9.13.0': {}
 
@@ -7943,11 +7945,9 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/shared@12.8.2(typescript@5.9.2)':
+  '@vueuse/shared@13.6.0(vue@3.5.18(typescript@5.9.2))':
     dependencies:
       vue: 3.5.18(typescript@5.9.2)
-    transitivePeerDependencies:
-      - typescript
 
   '@vueuse/shared@9.13.0(vue@3.5.18(typescript@5.9.2))':
     dependencies:
@@ -12448,7 +12448,7 @@ snapshots:
       - supports-color
       - vue
 
-  unplugin-auto-import@19.3.0(@nuxt/kit@3.17.3)(@vueuse/core@12.8.2(typescript@5.9.2)):
+  unplugin-auto-import@19.3.0(@nuxt/kit@3.17.3)(@vueuse/core@13.6.0(vue@3.5.18(typescript@5.9.2))):
     dependencies:
       local-pkg: 1.1.1
       magic-string: 0.30.17
@@ -12458,7 +12458,7 @@ snapshots:
       unplugin-utils: 0.2.4
     optionalDependencies:
       '@nuxt/kit': 3.17.3
-      '@vueuse/core': 12.8.2(typescript@5.9.2)
+      '@vueuse/core': 13.6.0(vue@3.5.18(typescript@5.9.2))
 
   unplugin-utils@0.2.4:
     dependencies:
@@ -12769,11 +12769,11 @@ snapshots:
       is-plain-object: 5.0.0
       vue: 3.5.18(typescript@5.9.2)
 
-  vue3-colorpicker@2.3.0(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@12.8.2(typescript@5.9.2))(gradient-parser@1.0.2)(lodash-es@4.17.21)(tinycolor2@1.6.0)(vue-types@4.2.1(vue@3.5.18(typescript@5.9.2)))(vue@3.5.18(typescript@5.9.2)):
+  vue3-colorpicker@2.3.0(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@13.6.0(vue@3.5.18(typescript@5.9.2)))(gradient-parser@1.0.2)(lodash-es@4.17.21)(tinycolor2@1.6.0)(vue-types@4.2.1(vue@3.5.18(typescript@5.9.2)))(vue@3.5.18(typescript@5.9.2)):
     dependencies:
       '@aesoper/normal-utils': 0.1.5
       '@popperjs/core': 2.11.8
-      '@vueuse/core': 12.8.2(typescript@5.9.2)
+      '@vueuse/core': 13.6.0(vue@3.5.18(typescript@5.9.2))
       gradient-parser: 1.0.2
       lodash-es: 4.17.21
       tinycolor2: 1.6.0
