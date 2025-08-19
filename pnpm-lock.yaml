@@ -45,8 +45,8 @@ importers:
         specifier: ^1.7.6
         version: 1.7.6
       jspdf:
-        specifier: ^2.5.2
-        version: 2.5.2
+        specifier: ^3.0.0
+        version: 3.0.1
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1519,6 +1519,9 @@ packages:
   '@types/tern@0.23.9':
     resolution: {integrity: sha512-ypzHFE/wBzh+BlH6rrBgS5I/Z7RD21pGhZ2rltb/+ZrVM1awdZwjx7hE5XfuYgHWk9uvV5HLZN3SloevCAp3Bw==}
 
+  '@types/trusted-types@2.0.7':
+    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
+
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
@@ -2226,8 +2229,8 @@ packages:
   caniuse-lite@1.0.30001727:
     resolution: {integrity: sha512-pB68nIHmbN6L/4C6MH1DokyR3bYqFwjaSs/sWDHGj4CTcFtQUQMuJftVwWkXq7mNWOybD3KhUv3oWHoGxgP14Q==}
 
-  canvg@3.0.10:
-    resolution: {integrity: sha512-qwR2FRNO9NlzTeKIPIKpnTY6fqwuYSequ8Ru8c0YkYU7U0oW+hLUvWadLvAu1Rl72OMNiFhoLu4f8eUjQ7l/+Q==}
+  canvg@3.0.11:
+    resolution: {integrity: sha512-5ON+q7jCTgMp9cjpu4Jo6XbvfYwSB2Ow3kzHKfIyJfaCAOHLbdKPQqGKgfED/R5B+3TFFfe8pegYA+b423SRyA==}
     engines: {node: '>=10.0.0'}
 
   caw@2.0.1:
@@ -2671,8 +2674,8 @@ packages:
     resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
     engines: {node: '>= 4'}
 
-  dompurify@2.5.8:
-    resolution: {integrity: sha512-o1vSNgrmYMQObbSSvF/1brBYEQPHhV1+gsmrusO7/GXtp1T9rCS8cXFqVxK/9crT1jA6Ccv+5MTSjBNqr7Sovw==}
+  dompurify@3.2.6:
+    resolution: {integrity: sha512-/2GogDQlohXPZe6D6NOgQvXLPSYBqIWMnZ8zzOhn09REE4eyAzb+Hed3jhoM9OkuaJ8P6ZGTTVWQKAi8ieIzfQ==}
 
   domutils@1.7.0:
     resolution: {integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==}
@@ -4062,8 +4065,8 @@ packages:
     engines: {node: '>= 0.6'}
     hasBin: true
 
-  jspdf@2.5.2:
-    resolution: {integrity: sha512-myeX9c+p7znDWPk0eTrujCzNjT+CXdXyk7YmJq5nD5V7uLLKmSXnlQ/Jn/kuo3X09Op70Apm0rQSnFWyGK8uEQ==}
+  jspdf@3.0.1:
+    resolution: {integrity: sha512-qaGIxqxetdoNnFQQXxTKUD9/Z7AloLaw94fFsOiJMxbfYdBbrBuhWmbzI8TVjrw7s3jBY1PFHofBKMV/wZPapg==}
 
   junk@3.1.0:
     resolution: {integrity: sha512-pBxcB3LFc8QVgdggvZWyeys+hnrNWg4OcZIU/1X59k5jQdLBlCsYGRQaz234SqoRLTCgMH00fY0xRJH+F9METQ==}
@@ -7309,6 +7312,9 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.7
 
+  '@types/trusted-types@2.0.7':
+    optional: true
+
   '@types/unist@3.0.3': {}
 
   '@types/web-bluetooth@0.0.16': {}
@@ -8314,7 +8320,7 @@ snapshots:
 
   caniuse-lite@1.0.30001727: {}
 
-  canvg@3.0.10:
+  canvg@3.0.11:
     dependencies:
       '@babel/runtime': 7.26.7
       '@types/raf': 3.4.3
@@ -8783,7 +8789,9 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
-  dompurify@2.5.8:
+  dompurify@3.2.6:
+    optionalDependencies:
+      '@types/trusted-types': 2.0.7
     optional: true
 
   domutils@1.7.0:
@@ -10436,16 +10444,16 @@ snapshots:
       chalk: 2.4.2
       underscore: 1.13.7
 
-  jspdf@2.5.2:
+  jspdf@3.0.1:
     dependencies:
       '@babel/runtime': 7.26.7
       atob: 2.1.2
       btoa: 1.2.1
       fflate: 0.8.2
     optionalDependencies:
-      canvg: 3.0.10
+      canvg: 3.0.11
       core-js: 3.40.0
-      dompurify: 2.5.8
+      dompurify: 3.2.6
       html2canvas: 1.4.1
 
   junk@3.1.0: {}
