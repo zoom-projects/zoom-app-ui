@@ -63,7 +63,7 @@ importers:
         specifier: ^0.1.30
         version: 0.1.30(element-plus@2.13.0(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       qs:
-        specifier: ^6.14.0
+        specifier: ^6.14.1
         version: 6.14.1
       v-contextmenu:
         specifier: ^3.2.0
@@ -88,8 +88,8 @@ importers:
         specifier: ^4.19.0
         version: 4.19.0(@unocss/eslint-plugin@0.65.4(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-sfc@3.5.26)(eslint-plugin-format@1.1.0(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.19.3)(sass@1.97.1)(terser@5.34.1))
       '@iconify/json':
-        specifier: ^2.2.421
-        version: 2.2.421
+        specifier: ^2.2.424
+        version: 2.2.424
       '@iconify/vue':
         specifier: ^4.3.0
         version: 4.3.0(vue@3.5.26(typescript@5.9.3))
@@ -1011,8 +1011,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/json@2.2.421':
-    resolution: {integrity: sha512-jc0BOjmdVz4DxfYlvJWEBl8FIdOtgRCDZkyOEDFlHqCnfw6Yyr41fDaiECU/FSzkqjwNuKu5H10N7bLN+JPQGA==}
+  '@iconify/json@2.2.424':
+    resolution: {integrity: sha512-Lxx8ad2DgyTGV88ec0mlaJ+OSjr0SyU0j8Awfbxl9JrxxHmBEFQJ+jywhztWAhLnaMUG3+G1htNJYzEsoAsNMQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -6863,7 +6863,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@iconify/json@2.2.421':
+  '@iconify/json@2.2.424':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
