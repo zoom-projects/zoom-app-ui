@@ -18,7 +18,7 @@
     "@vueuse/core": "^12.8.2",
     "@vueuse/motion": "^2.2.6",
     "animate.css": "^4.1.1",
-    "axios": "^1.13.2",
+    "axios": "^1.13.4",
     "codemirror": "^5.65.20",
     "codemirror-editor-vue3": "^2.8.0",
     "dayjs": "^1.11.19",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
-    "@iconify/json": "^2.2.431",
+    "@iconify/json": "^2.2.433",
     "@iconify/vue": "^4.3.0",
     "@plus-pro-components/resolver": "^0.0.3",
     "@tinymce/tinymce-vue": "^6.3.0",
