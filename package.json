@@ -16,7 +16,7 @@
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
     "@vueuse/core": "^12.8.2",
-    "@vueuse/motion": "^2.2.6",
+    "@vueuse/motion": "^3.0.3",
     "animate.css": "^4.1.1",
     "axios": "^1.13.4",
     "codemirror": "^5.65.20",
