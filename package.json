@@ -19,7 +19,7 @@
     "@vueuse/motion": "^2.2.6",
     "animate.css": "^4.1.1",
     "axios": "^1.13.5",
-    "codemirror": "^5.65.21",
+    "codemirror": "^6.0.2",
     "codemirror-editor-vue3": "^2.8.0",
     "dayjs": "^1.11.19",
     "element-plus": "^2.13.2",
