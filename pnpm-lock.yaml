@@ -21,8 +21,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1
       axios:
-        specifier: ^1.16.1
-        version: 1.16.1
+        specifier: ^1.17.0
+        version: 1.17.0
       codemirror:
         specifier: ^5.65.21
         version: 5.65.21
@@ -60,8 +60,8 @@ importers:
         specifier: ^4.7.1
         version: 4.7.1(@nuxt/kit@3.17.3)(pinia@2.3.1(typescript@5.9.3)(vue@3.5.35(typescript@5.9.3)))
       plus-pro-components:
-        specifier: ^0.1.30
-        version: 0.1.30(element-plus@2.14.1(vue@3.5.35(typescript@5.9.3)))(vue@3.5.35(typescript@5.9.3))
+        specifier: ^0.1.31
+        version: 0.1.31(element-plus@2.14.1(vue@3.5.35(typescript@5.9.3)))(vue@3.5.35(typescript@5.9.3))
       qs:
         specifier: ^6.15.2
         version: 6.15.2
@@ -88,8 +88,8 @@ importers:
         specifier: ^4.19.0
         version: 4.19.0(@unocss/eslint-plugin@0.65.4(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-sfc@3.5.35)(eslint-plugin-format@1.5.0(eslint@9.39.4(jiti@2.6.1)))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.19.19)(sass@1.100.0)(terser@5.34.1))
       '@iconify/json':
-        specifier: ^2.2.480
-        version: 2.2.481
+        specifier: ^2.2.483
+        version: 2.2.483
       '@iconify/vue':
         specifier: ^4.3.0
         version: 4.3.0(vue@3.5.35(typescript@5.9.3))
@@ -459,11 +459,6 @@ packages:
 
   '@dprint/toml@0.7.0':
     resolution: {integrity: sha512-eFaQTcfxKHB+YyTh83x7GEv+gDPuj9q5NFOTaoj5rZmQTbj6OgjjMxUicmS1R8zYcx8YAq5oA9J3YFa5U6x2gA==}
-
-  '@element-plus/icons-vue@2.3.1':
-    resolution: {integrity: sha512-XxVUZv48RZAd87ucGS48jPf6pKu0yV5UCg9f4FFwtrYxXOwWuVJo6wOvSLKEoMQKjv8GsX/mhP6UsC1lRwbUWg==}
-    peerDependencies:
-      vue: ^3.2.0
 
   '@element-plus/icons-vue@2.3.2':
     resolution: {integrity: sha512-OzIuTaIfC8QXEPmJvB4Y4kw34rSXdCJzxcD1kFStBvr8bK6X1zQAYDo0CNMjojnfTqRQCJ0I7prlErcoRiET2A==}
@@ -1016,8 +1011,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/json@2.2.481':
-    resolution: {integrity: sha512-H/bCPJN+JawFnEgSFtBGQMz2nAc3KNsLZ6fKG6KfJX7X9H0blv0Acbt6umCBVRxZ0xBM/9FcUYZst4/Zv6SB/A==}
+  '@iconify/json@2.2.483':
+    resolution: {integrity: sha512-LpxtDg0b1akhxSxXu0Kpx8Pz+wq3AAO9Nb4ZWAeTEG2tVcfonKLXdGAS1CWRsz6DTCliIema1kI5r1/7TI2VHw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2204,8 +2199,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  axios@1.16.1:
-    resolution: {integrity: sha512-caYkukvroVPO8KrzuJEb50Hm07KwfBZPEC3VeFHTsqWHvKTsy54hjJz9BS/cdaypROE2rH6xvm9mHX4fgWkr3A==}
+  axios@1.17.0:
+    resolution: {integrity: sha512-J8SwNxprqqpbfenehxWYXE7CW+wM1BB4w3+N+g+/Wx40xM4rsLrfPmHHxSWIxJLYDgSY/HqlFPIYb2/S3rxafw==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -5050,8 +5045,8 @@ packages:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
-  plus-pro-components@0.1.30:
-    resolution: {integrity: sha512-tGmkC5ECu0QS7IyYuyrOTwb6Y8hTF+nUyUK47hGAdyfgs4VdjTlyaYBsNwG9n5ykile5F3vDwx8k4qWrOzEcXA==}
+  plus-pro-components@0.1.31:
+    resolution: {integrity: sha512-LKYAoDrM+VufVCfRuHUPJTBNwmzo/MRu7Lfkcg9+QKjmHzsOP1zo5ecMI4euddTqVjvvjC+8ZURK2CIpge0BQA==}
     peerDependencies:
       element-plus: ^2.3.4
       vue: ^3.2.0
@@ -6688,10 +6683,6 @@ snapshots:
 
   '@dprint/toml@0.7.0': {}
 
-  '@element-plus/icons-vue@2.3.1(vue@3.5.35(typescript@5.9.3))':
-    dependencies:
-      vue: 3.5.35(typescript@5.9.3)
-
   '@element-plus/icons-vue@2.3.2(vue@3.5.35(typescript@5.9.3))':
     dependencies:
       vue: 3.5.35(typescript@5.9.3)
@@ -7038,7 +7029,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@iconify/json@2.2.481':
+  '@iconify/json@2.2.483':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
@@ -8404,7 +8395,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  axios@1.16.1:
+  axios@1.17.0:
     dependencies:
       follow-redirects: 1.16.0
       form-data: 4.0.5
@@ -9033,7 +9024,7 @@ snapshots:
     dependencies:
       es-define-property: 1.0.1
       es-errors: 1.3.0
-      gopd: 1.0.1
+      gopd: 1.2.0
 
   define-properties@1.2.1:
     dependencies:
@@ -10200,7 +10191,7 @@ snapshots:
   globalthis@1.0.4:
     dependencies:
       define-properties: 1.2.1
-      gopd: 1.0.1
+      gopd: 1.2.0
 
   globby@10.0.2:
     dependencies:
@@ -11776,9 +11767,9 @@ snapshots:
 
   pluralize@8.0.0: {}
 
-  plus-pro-components@0.1.30(element-plus@2.14.1(vue@3.5.35(typescript@5.9.3)))(vue@3.5.35(typescript@5.9.3)):
+  plus-pro-components@0.1.31(element-plus@2.14.1(vue@3.5.35(typescript@5.9.3)))(vue@3.5.35(typescript@5.9.3)):
     dependencies:
-      '@element-plus/icons-vue': 2.3.1(vue@3.5.35(typescript@5.9.3))
+      '@element-plus/icons-vue': 2.3.2(vue@3.5.35(typescript@5.9.3))
       element-plus: 2.14.1(vue@3.5.35(typescript@5.9.3))
       lodash-es: 4.18.1
       sortablejs: 1.15.3
@@ -12146,7 +12137,7 @@ snapshots:
       es-errors: 1.3.0
       function-bind: 1.1.2
       get-intrinsic: 1.3.0
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-property-descriptors: 1.0.2
 
   set-function-name@2.0.2:
@@ -12666,7 +12657,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       for-each: 0.3.3
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-proto: 1.0.3
       is-typed-array: 1.1.13
 
@@ -12683,7 +12674,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       for-each: 0.3.3
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
