@@ -54,7 +54,7 @@
     "@unocss/reset": "^0.65.4",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitejs/plugin-vue-jsx": "^4.2.0",
-    "eslint": "^9.39.5",
+    "eslint": "^10.10.0",
     "eslint-plugin-format": "^1.5.0",
     "esno": "^4.8.0",
     "inquirer": "^12.11.1",
