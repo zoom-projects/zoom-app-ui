@@ -88,8 +88,8 @@ importers:
         specifier: ^4.19.0
         version: 4.19.0(@unocss/eslint-plugin@0.65.4(eslint@9.39.5(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-sfc@3.5.43)(eslint-plugin-format@1.5.0(eslint@9.39.5(jiti@2.6.1)))(eslint@9.39.5(jiti@2.6.1))(typescript@5.9.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.20.5)(sass@1.105.1)(terser@5.34.1))
       '@iconify/json':
-        specifier: ^2.2.537
-        version: 2.2.538
+        specifier: ^2.2.540
+        version: 2.2.541
       '@iconify/vue':
         specifier: ^4.3.0
         version: 4.3.0(vue@3.5.43(typescript@5.9.3))
@@ -1011,8 +1011,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/json@2.2.538':
-    resolution: {integrity: sha512-7WBO1cCja8ayEPsJJ4QI44NQNgYaDPm5EqVIxLkuB2nkxmd8BDksu9+6jSnaFY80O1jMsruS7QVCUhvJ4zM1TA==}
+  '@iconify/json@2.2.541':
+    resolution: {integrity: sha512-s89hthisPkDuwrhPPvYdDKczNAvW7y3OI19L0NXdlVFzmoFi4uO02P8UvHT02hSrQ22ZmPLhInf5K+Knn9TPew==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -7047,7 +7047,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@iconify/json@2.2.538':
+  '@iconify/json@2.2.541':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
