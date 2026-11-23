@@ -35,14 +35,14 @@
     "qs": "^6.17.1",
     "v-contextmenu": "^3.2.0",
     "vue": "^3.5.45",
-    "vue-router": "^4.6.4",
+    "vue-router": "^4.6.5",
     "vue-tippy": "6.8.0",
     "vue3-colorpicker": "^2.3.0",
     "vue3-json-viewer": "^2.4.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
-    "@iconify/json": "^2.2.556",
+    "@iconify/json": "^2.2.559",
     "@iconify/vue": "^4.3.0",
     "@plus-pro-components/resolver": "^0.0.3",
     "@tinymce/tinymce-vue": "^6.3.0",
